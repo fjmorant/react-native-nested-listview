@@ -1,0 +1,25 @@
+{
+  "name": "react-native-nested-listview",
+  "version": "0.0.1",
+  "description": "Nested Listview for React native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javierM84/react-native-nested-listview.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "list",
+    "nested"
+  ],
+  "author": "Javier Morant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/javierM84/react-native-nested-listview/issues"
+  },
+  "homepage": "https://github.com/javierM84/react-native-nested-listview#readme"
+}
