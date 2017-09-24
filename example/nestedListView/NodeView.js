@@ -1,38 +1,46 @@
 /* @flow */
 
 import React from 'react'
-import {TouchableOpacity, View} from 'react-native'
+import {TouchableOpacity, View, FlatList} from 'react-native'
 
-const NodeView = ({
-  getChildren,
-  node,
-  renderNode,
-  renderChildrenNode,
-  onLayout,
-  onNodePressed,
-}: {
-  getChildren: Function,
-  node: any,
-  nodeStyle?: any,
-  onLayout?: Function,
-  onNodePressed: Function,
-  renderNode: Function,
-  renderChildrenNode: Function,
-}) => {
-  const children = getChildren(node)
+export default class NodeView extends React.PureComponent {
 
-  return (
-    <View onLayout={onLayout}>
-      <TouchableOpacity onPress={() => onNodePressed(node)}>
-        {renderNode()}
-      </TouchableOpacity>
-      {node.opened && children
-        ? <View>
-            {children.map(renderChildrenNode)}
-          </View>
-        : null}
-    </View>
-  )
+  componentWillMount = () => {
+    let rootChildren = this.props.getChildren(this.props.node)
+
+    if (rootChildren) {   
+      rootChildren = rootChildren.map((child, index) => {
+        return this.props.generateIds(rootChildren[index])
+      })
+    } 
+    
+    this.setState({data: rootChildren})
+  }
+
+  onNodePressed = (node: any) => {
+    const newState = rootChildren = this.state.data.map((child, index) => {
+      return this.props.searchTree(this.state.data[index], node)
+    })
+
+    this.setState({data: newState})
+    this.props.onNodePressed(node)
+  }
+
+  render() {
+    const {getChildren, node, nodeStyle, onLayout, onNodePressed, renderNode, renderChildrenNode} = this.props
+    const children = getChildren(node)
+    
+    return (
+      <View onLayout={onLayout}>
+        <TouchableOpacity onPress={() => onNodePressed(node)}>
+          {renderNode()}
+        </TouchableOpacity>
+        {node.opened && this.state.data
+          ? <FlatList
+          data={this.state.data}      
+          renderItem={({item}) => renderChildrenNode(item)}
+          keyExtractor={(item) => item.id}/> : null}
+      </View>
+    )
+  }
 }
-
-export default NodeView

@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import {ScrollView} from 'react-native'
+import {ScrollView, FlatList} from 'react-native'
 import NodeView from './NodeView'
 import shortid from 'shortid'
 
@@ -100,13 +100,13 @@ export default class NestedListView extends React.Component {
   }
 
   searchTree = (element: any, otherElement: any) => {
-    const childrenName = this.props.getChildrenName(element)
-
-    if (element.id == otherElement.id) {
+    if (element.id === otherElement.id) {
       element.opened = !element.opened
 
       return element
     } 
+
+    const childrenName = this.props.getChildrenName(element)
     
     if (childrenName) {
       const children = element[childrenName]
@@ -154,45 +154,28 @@ export default class NestedListView extends React.Component {
     this.props.onNodePressed(node)
   }
 
-  onLayoutSelectedNode = (event: any) => {
-    const {x, y} = event.nativeEvent.layout
-
-    this.scrollview.scrollTo({x, y, animated: true})
-  }
-
   onCreateChildren = (item: any, level: number) => {
-    const autoScrollToNodeId = this.props.autoScrollToNodeId
-
     return (
       <NodeView
         getChildren={(node: Object) => node[this.props.getChildrenName(node)]}
         key={item.id}
         node={item}
-        onLayout={
-          autoScrollToNodeId && item.id_video === autoScrollToNodeId
-            ? this.onLayoutSelectedNode
-            : null
-        }
+        searchTree={this.searchTree}
+        generateIds={this.generateIds}
         onNodePressed={() => this.onNodePressed(item)}
-        renderChildrenNode={(childrenNode: Object) =>
-          this.onCreateChildren(childrenNode, level + 1)}
+        renderChildrenNode={(childrenNode: Object) => this.onCreateChildren(childrenNode, level + 1)}
         renderNode={() => this.props.renderNode(item, level)}
       />
     )
   }
 
   render = () => {
-    
     return (
-      <ScrollView
-        ref={ref => {
-          this.scrollview = ref
-        }}
-        style={this.props.style}>
-        {this.state.data
-          ? this.state.data.map((item: Object) => this.onCreateChildren(item, 0))
-          : null}
-      </ScrollView>
+      <FlatList
+        data={this.state.data}      
+        style={this.props.style} 
+        renderItem={({item}) => this.onCreateChildren(item, 0)}
+        keyExtractor={(item) => item.id}/>      
     )
   }
 }

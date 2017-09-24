@@ -31,7 +31,7 @@ const data = [
       },
       {
         name: 'Item level 1.2.2',
-        children: generateXNumItems(1000, 'Item level 1.2.2')
+        children: generateXNumItems(2, 'Item level 1.2.2')
       },
     ],
   },
@@ -45,7 +45,7 @@ export default class ExampleApp extends React.Component {
   nestedListView: any
 
   renderNode = (node: Object, level: string) => {
-    const paddingLeft = (level + 1) * 10
+    const paddingLeft = (level + 1) * 30
     return (
       <View style={{flex: 1, padding: 10, paddingLeft, borderWidth: 1, borderColor: 'rgb(0, 0, 0)'}}>
         <Text>{node.name}</Text>
