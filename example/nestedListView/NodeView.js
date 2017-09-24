@@ -18,11 +18,14 @@ export default class NodeView extends React.PureComponent {
   }
 
   onNodePressed = (node: any) => {
-    const newState = rootChildren = this.state.data.map((child, index) => {
-      return this.props.searchTree(this.state.data[index], node)
-    })
-
-    this.setState({data: newState})
+    if (this.state.data) {
+      const newState = rootChildren = this.state.data.map((child, index) => {
+        return this.props.searchTree(this.state.data[index], node)
+      })
+  
+      this.setState({data: newState})
+    }
+    
     this.props.onNodePressed(node)
   }
 
@@ -32,7 +35,7 @@ export default class NodeView extends React.PureComponent {
     
     return (
       <View onLayout={onLayout}>
-        <TouchableOpacity onPress={() => onNodePressed(node)}>
+        <TouchableOpacity onPress={() => this.onNodePressed(node)}>
           {renderNode()}
         </TouchableOpacity>
         {node.opened && this.state.data
