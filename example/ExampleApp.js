@@ -1,7 +1,14 @@
 /* @flow */
 
 import React from 'react'
-import {Alert, StyleSheet, Text, View} from 'react-native'
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  View,
+  type Props,
+  type State,
+} from 'react-native'
 import NestedListView from './nestedListView'
 
 const generateXNumItems = (numItems, prefix) => {
@@ -42,10 +49,10 @@ const data = [
 ]
 
 const colorLevels = {
-  0: 'white',
-  1: 'blue',
-  2: 'green',
-  3: 'red',
+  [0]: 'white',
+  [1]: 'blue',
+  [2]: 'green',
+  [3]: 'red',
 }
 
 const styles = StyleSheet.create({
@@ -53,22 +60,20 @@ const styles = StyleSheet.create({
   node: {
     flex: 1,
     padding: 10,
-    paddingLeft,
     borderWidth: 1,
     borderColor: 'rgb(0, 0, 0)',
-    backgroundColor,
   },
   nestedListView: {padding: 10},
 })
-export default class ExampleApp extends React.Component {
+export default class ExampleApp extends React.Component<Props, State> {
   nestedListView: any
 
-  renderNode = (node: Object, level: string) => {
+  renderNode = (node: Object, level: number) => {
     const paddingLeft = (level + 1) * 30
     const backgroundColor = colorLevels[level] || 'white'
 
     return (
-      <View style={styles.node}>
+      <View style={[styles.node, {backgroundColor, paddingLeft}]}>
         <Text>{node.name}</Text>
       </View>
     )

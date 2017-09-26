@@ -1,11 +1,11 @@
 /* @flow */
 
 import React from 'react'
-import {FlatList} from 'react-native'
+import {FlatList, type Props, type State} from 'react-native'
 import NodeView from './NodeView'
 import shortid from 'shortid'
 
-export default class NestedListView extends React.PureComponent {
+export default class NestedListView extends React.PureComponent<Props, State> {
   props: {
     data: any,
     renderNode: Function,
@@ -14,15 +14,19 @@ export default class NestedListView extends React.PureComponent {
     style: any,
   }
 
+  state: {
+    childrenNodes: Array<any>,
+  }
+
   state = {
-    data: {},
+    childrenNodes: [],
   }
 
   componentWillMount = () => {
     const rootChildren = this.props.data
     if (rootChildren) {
       this.setState({
-        data: rootChildren.map((child, index) =>
+        childrenNodes: rootChildren.map((child, index) =>
           this.generateIds(rootChildren[index])
         ),
       })
@@ -76,11 +80,11 @@ export default class NestedListView extends React.PureComponent {
   }
 
   onNodePressed = (node: any) => {
-    const rootChildren = this.state.data.map((child, index) =>
-      this.searchTree(this.state.data[index], node)
+    const childrenNodes = this.state.childrenNodes.map((child, index) =>
+      this.searchTree(this.state.childrenNodes[index], node)
     )
 
-    this.setState({data: rootChildren})
+    this.setState({childrenNodes})
     this.props.onNodePressed(node)
   }
 
@@ -103,7 +107,7 @@ export default class NestedListView extends React.PureComponent {
   render = () => {
     return (
       <FlatList
-        data={this.state.data}
+        data={this.state.childrenNodes}
         style={this.props.style}
         renderItem={({item}) => this.onCreateChildren(item, 0)}
         keyExtractor={item => item.id}

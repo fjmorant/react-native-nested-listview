@@ -1,9 +1,15 @@
 /* @flow */
 
 import React from 'react'
-import {TouchableWithoutFeedback, View, FlatList} from 'react-native'
+import {
+  TouchableWithoutFeedback,
+  View,
+  FlatList,
+  type Props,
+  type State,
+} from 'react-native'
 
-export default class NodeView extends React.PureComponent {
+export default class NodeView extends React.PureComponent<Props, State> {
   props: {
     generateIds: Function,
     getChildren: Function,
@@ -15,25 +21,33 @@ export default class NodeView extends React.PureComponent {
     renderChildrenNode: Function,
   }
 
+  state: {
+    childrenNodes: Array<any>,
+  }
+
+  state = {
+    childrenNodes: [],
+  }
+
   componentWillMount = () => {
-    let rootChildren = this.props.getChildren(this.props.node)
+    const rootChildren = this.props.getChildren(this.props.node)
 
     if (rootChildren) {
-      rootChildren = rootChildren.map((child, index) => {
-        return this.props.generateIds(rootChildren[index])
+      this.setState({
+        childrenNodes: rootChildren.map((child, index) => {
+          return this.props.generateIds(rootChildren[index])
+        }),
       })
     }
-
-    this.setState({data: rootChildren})
   }
 
   onNodePressed = (node: any) => {
-    if (this.state.data) {
-      const newRootChildren = this.state.data.map((child, index) => {
-        return this.props.searchTree(this.state.data[index], node)
+    if (this.state.childrenNodes) {
+      const childrenNodes = this.state.childrenNodes.map((child, index) => {
+        return this.props.searchTree(this.state.childrenNodes[index], node)
       })
 
-      this.setState({data: newRootChildren})
+      this.setState({childrenNodes})
     }
 
     this.props.onNodePressed(node)
@@ -47,9 +61,9 @@ export default class NodeView extends React.PureComponent {
         <TouchableWithoutFeedback onPress={() => this.onNodePressed(node)}>
           {renderNode()}
         </TouchableWithoutFeedback>
-        {node.opened && this.state.data ? (
+        {node.opened && this.state.childrenNodes ? (
           <FlatList
-            data={this.state.data}
+            data={this.state.childrenNodes}
             renderItem={({item}) => renderChildrenNode(item)}
             keyExtractor={item => item.id}
           />
