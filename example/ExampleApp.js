@@ -1,13 +1,13 @@
 /* @flow */
 
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {Alert, StyleSheet, Text, View} from 'react-native'
 import NestedListView from './nestedListView'
-
-const styles = StyleSheet.create({})
 
 const generateXNumItems = (numItems, prefix) => {
   const items = []
+
+  let i
 
   for (i = 0; i < numItems; i++) {
     items.push({
@@ -21,7 +21,7 @@ const generateXNumItems = (numItems, prefix) => {
 const data = [
   {
     name: 'Item level 1.1',
-    items: generateXNumItems(100, 'Item level 1.1')    
+    items: generateXNumItems(100, 'Item level 1.1'),
   },
   {
     name: 'Item level 1.2',
@@ -31,7 +31,7 @@ const data = [
       },
       {
         name: 'Item level 1.2.2',
-        children: generateXNumItems(2, 'Item level 1.2.2')
+        children: generateXNumItems(2, 'Item level 1.2.2'),
       },
     ],
   },
@@ -43,11 +43,23 @@ const data = [
 
 const colorLevels = {
   0: 'white',
-  1: 'blue',  
-  2: 'green',  
-  3: 'red',    
+  1: 'blue',
+  2: 'green',
+  3: 'red',
 }
 
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: 'rgb(255, 255, 255)', padding: 10},
+  node: {
+    flex: 1,
+    padding: 10,
+    paddingLeft,
+    borderWidth: 1,
+    borderColor: 'rgb(0, 0, 0)',
+    backgroundColor,
+  },
+  nestedListView: {padding: 10},
+})
 export default class ExampleApp extends React.Component {
   nestedListView: any
 
@@ -56,18 +68,18 @@ export default class ExampleApp extends React.Component {
     const backgroundColor = colorLevels[level] || 'white'
 
     return (
-      <View style={{flex: 1, padding: 10, paddingLeft, borderWidth: 1, borderColor: 'rgb(0, 0, 0)', backgroundColor}}>
+      <View style={styles.node}>
         <Text>{node.name}</Text>
       </View>
     )
   }
 
   onNodePressed = (node: any) => {
-    // alert(JSON.stringify(node))
+    Alert.alert(node.id)
   }
 
   getChildrenName = (node: Object) => {
-    if(node.name === 'Item level 1.2.2') {
+    if (node.name === 'Item level 1.2.2') {
       return 'children'
     }
 
@@ -76,7 +88,7 @@ export default class ExampleApp extends React.Component {
 
   render = () => {
     return (
-      <View style={{flex: 1, backgroundColor: 'rgb(255, 255, 255)', padding: 10}}>
+      <View style={styles.container}>
         <NestedListView
           data={data}
           getChildrenName={this.getChildrenName}
@@ -85,7 +97,7 @@ export default class ExampleApp extends React.Component {
             this.nestedListView = ref
           }}
           renderNode={this.renderNode}
-          style={{padding: 10}}
+          style={styles.nestedListView}
         />
       </View>
     )

@@ -4,6 +4,17 @@ import React from 'react'
 import {TouchableWithoutFeedback, View, FlatList} from 'react-native'
 
 export default class NodeView extends React.PureComponent {
+  props: {
+    generateIds: Function,
+    getChildren: Function,
+    node: any,
+    searchTree: Function,
+    onNodePressed: Function,
+    onLayout: Function,
+    renderNode: Function,
+    renderChildrenNode: Function,
+  }
+
   componentWillMount = () => {
     let rootChildren = this.props.getChildren(this.props.node)
 
@@ -18,27 +29,18 @@ export default class NodeView extends React.PureComponent {
 
   onNodePressed = (node: any) => {
     if (this.state.data) {
-      const newState = (rootChildren = this.state.data.map((child, index) => {
+      const newRootChildren = this.state.data.map((child, index) => {
         return this.props.searchTree(this.state.data[index], node)
-      }))
+      })
 
-      this.setState({data: newState})
+      this.setState({data: newRootChildren})
     }
 
     this.props.onNodePressed(node)
   }
 
   render() {
-    const {
-      getChildren,
-      node,
-      nodeStyle,
-      onLayout,
-      onNodePressed,
-      renderNode,
-      renderChildrenNode,
-    } = this.props
-    const children = getChildren(node)
+    const {node, onLayout, renderNode, renderChildrenNode} = this.props
 
     return (
       <View onLayout={onLayout}>

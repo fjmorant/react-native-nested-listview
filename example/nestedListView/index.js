@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import {ScrollView, FlatList} from 'react-native'
+import {FlatList} from 'react-native'
 import NodeView from './NodeView'
 import shortid from 'shortid'
 
@@ -11,6 +11,7 @@ export default class NestedListView extends React.PureComponent {
     renderNode: Function,
     onNodePressed: Function,
     getChildrenName: Function,
+    style: any,
   }
 
   state = {

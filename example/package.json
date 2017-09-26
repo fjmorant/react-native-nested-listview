@@ -8,20 +8,21 @@
     "lint": "eslint --cache ."
   },
   "dependencies": {
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.48.3"
+    "react": "16.0.0",
+    "react-native": "0.48.4"
   },
   "devDependencies": {
-    "babel-eslint": "7",
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "2.1.0",
-    "eslint": "3.x",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-preset-react-native": "^4.0.0",
+    "eslint": "^4.7.2",
+    "eslint-plugin-flowtype": "^2.36.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^3.1.0",
-    "jest": "20.0.4",
+    "jest": "^21.2.0",
     "prettier": "^1.7.0",
     "prettier-eslint": "^8.1.1",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-test-renderer": "16.0.0"
   },
   "jest": {
     "preset": "react-native"
