@@ -41,13 +41,22 @@ const data = [
   },
 ]
 
+const colorLevels = {
+  0: 'white',
+  1: 'blue',  
+  2: 'green',  
+  3: 'red',    
+}
+
 export default class ExampleApp extends React.Component {
   nestedListView: any
 
   renderNode = (node: Object, level: string) => {
     const paddingLeft = (level + 1) * 30
+    const backgroundColor = colorLevels[level] || 'white'
+
     return (
-      <View style={{flex: 1, padding: 10, paddingLeft, borderWidth: 1, borderColor: 'rgb(0, 0, 0)'}}>
+      <View style={{flex: 1, padding: 10, paddingLeft, borderWidth: 1, borderColor: 'rgb(0, 0, 0)', backgroundColor}}>
         <Text>{node.name}</Text>
       </View>
     )

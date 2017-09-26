@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-native"],
+  "ecmaFeatures": {
+    "jsx": true
+  }
+}
