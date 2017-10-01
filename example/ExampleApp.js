@@ -28,23 +28,23 @@ const generateXNumItems = (numItems, prefix) => {
 const data = [
   {
     name: 'Item level 1.1',
-    items: generateXNumItems(100, 'Item level 1.1'),
+    descendants: generateXNumItems(10, 'Item level 1.1'),
   },
   {
     name: 'Item level 1.2',
-    items: [
+    descendants: [
       {
         name: 'Item level 1.2.1',
       },
       {
         name: 'Item level 1.2.2',
-        children: generateXNumItems(2, 'Item level 1.2.2'),
+        children: generateXNumItems(25, 'Item level 1.2.2'),
       },
     ],
   },
   {
     name: 'Item level 1.3',
-    items: generateXNumItems(1000, 'Item level 1.3'),
+    descendants: generateXNumItems(50, 'Item level 1.3'),
   },
 ]
 
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgb(0, 0, 0)',
   },
-  nestedListView: {padding: 10},
+  nestedListView: {padding: 10, flex: 1},
 })
 export default class ExampleApp extends React.Component<Props, State> {
   nestedListView: any
@@ -80,7 +80,7 @@ export default class ExampleApp extends React.Component<Props, State> {
   }
 
   onNodePressed = (node: any) => {
-    Alert.alert(node.id)
+    // alert(node)
   }
 
   getChildrenName = (node: Object) => {
@@ -88,7 +88,7 @@ export default class ExampleApp extends React.Component<Props, State> {
       return 'children'
     }
 
-    return 'items'
+    return 'descendants'
   }
 
   render = () => {

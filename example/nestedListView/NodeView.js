@@ -14,57 +14,53 @@ export default class NodeView extends React.PureComponent<Props, State> {
     generateIds: Function,
     getChildren: Function,
     node: any,
-    searchTree: Function,
     onNodePressed: Function,
     onLayout: Function,
     renderNode: Function,
     renderChildrenNode: Function,
   }
 
-  state: {
-    childrenNodes: Array<any>,
-  }
-
-  state = {
-    childrenNodes: [],
-  }
-
   componentWillMount = () => {
-    const rootChildren = this.props.getChildren(this.props.node)
-
-    if (rootChildren) {
-      this.setState({
-        childrenNodes: rootChildren.map((child, index) => {
-          return this.props.generateIds(rootChildren[index])
-        }),
-      })
-    }
+    this.setState({
+      node: this.props.node,
+    })
   }
 
-  onNodePressed = (node: any) => {
-    if (this.state.childrenNodes) {
-      const childrenNodes = this.state.childrenNodes.map((child, index) => {
-        return this.props.searchTree(this.state.childrenNodes[index], node)
-      })
+  onNodePressed = () => {
+    this.setState({
+      node: {
+        ...this.state.node,
+        opened: !this.state.node.opened,
+      },
+    })
+  }
 
-      this.setState({childrenNodes})
-    }
-
-    this.props.onNodePressed(node)
+  renderChildren = (item: any, level: number) => {
+    return (
+      <NodeView
+        getChildrenName={this.props.getChildrenName}
+        node={item}
+        level={level + 1}
+        renderNode={(item, level) => this.props.renderNode(item, level)}
+      />
+    )
   }
 
   render() {
-    const {node, onLayout, renderNode, renderChildrenNode} = this.props
+    const rootChildrenName = this.props.getChildrenName(this.state.node)
+    const rootChildren = this.state.node[rootChildrenName]
 
     return (
-      <View onLayout={onLayout}>
-        <TouchableWithoutFeedback onPress={() => this.onNodePressed(node)}>
-          {renderNode()}
-        </TouchableWithoutFeedback>
-        {node.opened && this.state.childrenNodes ? (
+      <View>
+        {!this.state.node.hidden ? (
+          <TouchableWithoutFeedback onPress={this.onNodePressed}>
+            {this.props.renderNode(this.state.node, this.props.level)}
+          </TouchableWithoutFeedback>
+        ) : null}
+        {this.state.node.opened && rootChildren ? (
           <FlatList
-            data={this.state.childrenNodes}
-            renderItem={({item}) => renderChildrenNode(item)}
+            data={rootChildren}
+            renderItem={({item}) => this.renderChildren(item, this.props.level)}
             keyExtractor={item => item.id}
           />
         ) : null}

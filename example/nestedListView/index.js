@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import {FlatList, type Props, type State} from 'react-native'
+import {FlatList, type Props, type State, View} from 'react-native'
 import NodeView from './NodeView'
 import shortid from 'shortid'
 
@@ -14,47 +14,18 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     style: any,
   }
 
-  state: {
-    childrenNodes: Array<any>,
-  }
-
-  state = {
-    childrenNodes: [],
-  }
-
   componentWillMount = () => {
-    const rootChildren = this.props.data
-    if (rootChildren) {
-      this.setState({
-        childrenNodes: rootChildren.map((child, index) =>
-          this.generateIds(rootChildren[index])
-        ),
-      })
-    }
-  }
-
-  searchTree = (element: any, otherElement: any) => {
-    if (element.id === otherElement.id) {
-      element.opened = !element.opened
-
-      return element
+    const root = {
+      id: 1,
+      items: this.props.data.map((child, index) =>
+        this.generateIds(this.props.data[index])
+      ),
+      name: 'root',
+      opened: true,
+      hidden: true,
     }
 
-    const childrenName = this.props.getChildrenName(element)
-
-    if (childrenName) {
-      const children = element[childrenName]
-
-      if (children) {
-        element[childrenName] = children.map((child, index) =>
-          this.searchTree(children[index], otherElement)
-        )
-      }
-
-      return element
-    }
-
-    return element
+    this.setState({root})
   }
 
   generateIds = (element: any) => {
@@ -79,39 +50,25 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     return element
   }
 
-  onNodePressed = (node: any) => {
-    const childrenNodes = this.state.childrenNodes.map((child, index) =>
-      this.searchTree(this.state.childrenNodes[index], node)
-    )
+  getChildrenName = node => {
+    if (node.name === 'root') {
+      return 'items'
+    }
 
-    this.setState({childrenNodes})
-    this.props.onNodePressed(node)
-  }
-
-  onCreateChildren = (item: any, level: number) => {
-    return (
-      <NodeView
-        getChildren={(node: Object) => node[this.props.getChildrenName(node)]}
-        key={item.id}
-        node={item}
-        searchTree={this.searchTree}
-        generateIds={this.generateIds}
-        onNodePressed={() => this.onNodePressed(item)}
-        renderChildrenNode={(childrenNode: Object) =>
-          this.onCreateChildren(childrenNode, level + 1)}
-        renderNode={() => this.props.renderNode(item, level)}
-      />
-    )
+    return this.props.getChildrenName(node)
   }
 
   render = () => {
     return (
-      <FlatList
-        data={this.state.childrenNodes}
-        style={this.props.style}
-        renderItem={({item}) => this.onCreateChildren(item, 0)}
-        keyExtractor={item => item.id}
-      />
+      <View style={this.props.style}>
+        <NodeView
+          getChildrenName={this.getChildrenName}
+          node={this.state.root}
+          generateIds={this.generateIds}
+          level={0}
+          renderNode={(item, level) => this.props.renderNode(item, level)}
+        />
+      </View>
     )
   }
 }
