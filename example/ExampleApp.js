@@ -80,7 +80,7 @@ export default class ExampleApp extends React.Component<Props, State> {
   }
 
   onNodePressed = (node: any) => {
-    // alert(node)
+    alert(node.name)
   }
 
   getChildrenName = (node: Object) => {

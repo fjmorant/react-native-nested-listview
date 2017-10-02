@@ -9,13 +9,20 @@ import {
   type State,
 } from 'react-native'
 
+export type Node = {
+  id: string,
+  hidden: boolean,
+  opened: boolean,
+}
+
 export default class NodeView extends React.PureComponent<Props, State> {
   props: {
     generateIds: Function,
     getChildren: Function,
-    node: any,
+    getChildrenName: Function,
+    node: Node,
+    level: number,
     onNodePressed: Function,
-    onLayout: Function,
     renderNode: Function,
     renderChildrenNode: Function,
   }
@@ -33,15 +40,18 @@ export default class NodeView extends React.PureComponent<Props, State> {
         opened: !this.state.node.opened,
       },
     })
+
+    this.props.onNodePressed(this.state.node)
   }
 
-  renderChildren = (item: any, level: number) => {
+  renderChildren = (item: Node, level: number) => {
     return (
       <NodeView
         getChildrenName={this.props.getChildrenName}
         node={item}
         level={level + 1}
-        renderNode={(item, level) => this.props.renderNode(item, level)}
+        onNodePressed={this.props.onNodePressed}
+        renderNode={this.props.renderNode}
       />
     )
   }

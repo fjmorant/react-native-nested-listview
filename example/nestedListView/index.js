@@ -2,7 +2,7 @@
 
 import React from 'react'
 import {FlatList, type Props, type State, View} from 'react-native'
-import NodeView from './NodeView'
+import NodeView, {type Node} from './NodeView'
 import shortid from 'shortid'
 
 export default class NestedListView extends React.PureComponent<Props, State> {
@@ -15,9 +15,9 @@ export default class NestedListView extends React.PureComponent<Props, State> {
   }
 
   componentWillMount = () => {
-    const root = {
-      id: 1,
-      items: this.props.data.map((child, index) =>
+    const root: Node = {
+      id: shortid.generate(),
+      items: this.props.data.map((child: Node, index: number) =>
         this.generateIds(this.props.data[index])
       ),
       name: 'root',
@@ -28,29 +28,29 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     this.setState({root})
   }
 
-  generateIds = (element: any) => {
-    if (!element) {
+  generateIds = (node: Node) => {
+    if (!node) {
       return
     }
 
-    const childrenName = this.props.getChildrenName(element)
+    const childrenName: string = this.props.getChildrenName(node)
 
     if (childrenName) {
-      const children = element[childrenName]
+      const children = node[childrenName]
 
       if (children) {
-        element[childrenName] = children.map((child, index) =>
+        node[childrenName] = children.map((child, index) =>
           this.generateIds(children[index])
         )
       }
     }
 
-    element.id = shortid.generate()
+    node.id = shortid.generate()
 
-    return element
+    return node
   }
 
-  getChildrenName = node => {
+  getChildrenName = (node: Node) => {
     if (node.name === 'root') {
       return 'items'
     }
@@ -64,9 +64,10 @@ export default class NestedListView extends React.PureComponent<Props, State> {
         <NodeView
           getChildrenName={this.getChildrenName}
           node={this.state.root}
+          onNodePressed={this.props.onNodePressed}
           generateIds={this.generateIds}
           level={0}
-          renderNode={(item, level) => this.props.renderNode(item, level)}
+          renderNode={this.props.renderNode}
         />
       </View>
     )
