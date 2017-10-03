@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import {FlatList, type Props, type State, View} from 'react-native'
+import {FlatList, type Props, type State, Text, View} from 'react-native'
 import NodeView, {type Node} from './NodeView'
 import shortid from 'shortid'
 
@@ -17,9 +17,11 @@ export default class NestedListView extends React.PureComponent<Props, State> {
   componentWillMount = () => {
     const root: Node = {
       id: shortid.generate(),
-      items: this.props.data.map((child: Node, index: number) =>
-        this.generateIds(this.props.data[index])
-      ),
+      items: this.props.data
+        ? this.props.data.map((child: Node, index: number) =>
+            this.generateIds(this.props.data[index])
+          )
+        : [],
       name: 'root',
       opened: true,
       hidden: true,
@@ -59,6 +61,18 @@ export default class NestedListView extends React.PureComponent<Props, State> {
   }
 
   render = () => {
+    if (!this.props.getChildrenName) {
+      return <Text>getChildrenName has been passed</Text>
+    }
+
+    if (!this.props.renderNode) {
+      return <Text>renderNode has been passed</Text>
+    }
+
+    if (!this.props.data) {
+      return <Text>No data has been passed</Text>
+    }
+
     return (
       <View style={this.props.style}>
         <NodeView
