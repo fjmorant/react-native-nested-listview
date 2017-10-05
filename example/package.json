@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest nestedListView",
     "lint": "eslint --cache .",
     "flow": "flow"
   },
   "dependencies": {
     "react": "16.0.0",
     "react-native": "0.48.4",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "react-native-nested-listview": ".."
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",

@@ -9,7 +9,7 @@ import {
   type Props,
   type State,
 } from 'react-native'
-import NestedListView from './nestedListView'
+import NestedListView from 'react-native-nested-listview'
 
 const generateXNumItems = (numItems, prefix) => {
   const items = []

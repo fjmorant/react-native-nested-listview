@@ -3886,6 +3886,11 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-nested-listview@..:
+  version "0.0.1"
+  dependencies:
+    shortid "^2.2.8"
+
 react-native@0.48.4:
   version "0.48.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.48.4.tgz#f305e9fef069a5b3f6a7250ddd50f603cf30ab2d"
