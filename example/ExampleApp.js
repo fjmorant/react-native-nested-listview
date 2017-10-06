@@ -56,14 +56,13 @@ const colorLevels = {
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'rgb(255, 255, 255)', padding: 10},
+  container: {flex: 1, backgroundColor: 'rgb(255, 255, 255)', padding: 15},
   node: {
     flex: 1,
     padding: 10,
     borderWidth: 1,
     borderColor: 'rgb(0, 0, 0)',
   },
-  nestedListView: {padding: 10, flex: 1},
 })
 export default class ExampleApp extends React.Component<Props, State> {
   nestedListView: any
@@ -98,11 +97,7 @@ export default class ExampleApp extends React.Component<Props, State> {
           data={data}
           getChildrenName={this.getChildrenName}
           onNodePressed={this.onNodePressed}
-          ref={ref => {
-            this.nestedListView = ref
-          }}
           renderNode={this.renderNode}
-          style={styles.nestedListView}
         />
       </View>
     )
