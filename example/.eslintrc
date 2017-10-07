@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-native", "flowtype"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "plugin:flowtype/recommended"
+  ],
+  "rules": {
+    "react-native/no-color-literals": 0
+  }
+}

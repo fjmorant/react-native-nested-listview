@@ -1,0 +1,33 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint --cache .",
+    "flow": "flow"
+  },
+  "dependencies": {
+    "react": "16.0.0",
+    "react-native": "0.48.4",
+    "shortid": "^2.2.8",
+    "react-native-nested-listview": ".."
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-preset-react-native": "^4.0.0",
+    "eslint": "^4.7.2",
+    "eslint-plugin-flowtype": "^2.36.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-native": "^3.1.0",
+    "flow-bin": "^0.55.0",
+    "jest": "^21.2.0",
+    "prettier": "^1.7.0",
+    "prettier-eslint": "^8.1.1",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
