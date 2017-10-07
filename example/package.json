@@ -8,10 +8,10 @@
     "flow": "flow"
   },
   "dependencies": {
-    "react": "16.0.0",
-    "react-native": "0.48.4",
-    "shortid": "^2.2.8",
-    "react-native-nested-listview": ".."
+    "react": "16.0.0-beta.5",
+    "react-native": "0.49.2",
+    "react-native-nested-listview": "..",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
