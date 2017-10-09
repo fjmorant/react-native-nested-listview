@@ -3805,12 +3805,12 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-native-nested-listview@..:
-  version "0.0.2"
+"react-native-nested-listview@file:..":
+  version "0.0.3"
   dependencies:
     shortid "^2.2.8"
 
-react-native@0.49.2:
+react-native@~0.49.2:
   version "0.49.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.49.2.tgz#d40503cee172ad4c74f91a9115a1b11c54c21888"
   dependencies:
