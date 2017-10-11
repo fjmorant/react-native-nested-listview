@@ -1,6 +1,6 @@
 {
   "name": "react-native-nested-listview",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Nested Listview for React native",
   "scripts": {
     "test": "jest index.test.js",
