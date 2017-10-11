@@ -28,7 +28,19 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
   data={data}
   getChildrenName={(node) => 'items'}
   onNodePressed={(node) => alert('Selected node')}
-  renderNode={(node, level) => <Text>{node.name}</Text>}
+  renderNode={(node, level) => (
+            <View
+              style={{
+                flex: 1,
+                padding: 10,
+                borderWidth: 1,
+                borderColor: 'rgb(0, 0, 0)',
+              }}
+            >
+              <Text>{node.title}</Text>
+            </View>
+    )
+  }
 />
 ```
 
