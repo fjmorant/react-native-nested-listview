@@ -19,7 +19,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
       id: shortid.generate(),
       items: this.props.data
         ? this.props.data.map((child: Node, index: number) =>
-            this.generateIds(this.props.data[index]),
+            this.generateIds(this.props.data[index])
           )
         : [],
       name: 'root',
@@ -40,7 +40,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
 
     if (children) {
       node[childrenName] = children.map((child, index) =>
-        this.generateIds(children[index]),
+        this.generateIds(children[index])
       )
     }
 
@@ -49,7 +49,15 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     return node
   }
 
-  getChildrenName = (node: Node) => this.props.getChildrenName(node)
+  getChildrenName = (node: Node) => {
+    if (node.name === 'root') {
+      return 'items'
+    }
+
+    return this.props.getChildrenName
+      ? this.props.getChildrenName(node)
+      : 'items'
+  }
 
   render = () => {
     if (!this.props.getChildrenName) {
