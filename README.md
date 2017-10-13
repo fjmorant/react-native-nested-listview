@@ -5,6 +5,8 @@ Nested listview component for React native that it allows to create a listview t
 [![npm](https://img.shields.io/npm/v/react-native-nested-listview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-nested-listview)
 [![github release](https://img.shields.io/github/release/fjmorant/react-native-nested-listview.svg?style=flat-square)](https://github.com/fjmorant/react-native-nested-listview/releases)
 
+![react-native-nested-listview](https://imgur.com/OqvopyK.gif)
+
 ## Table of contents
 
 1. [Usage](#usage)
@@ -49,8 +51,6 @@ Prop | Description | Type | Default
 
 ## Example
 You can find the following example in the [`/example` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
-
-![react-native-nested-listview](https://imgur.com/OqvopyK.gif)
 
 ## Roadmap
 
