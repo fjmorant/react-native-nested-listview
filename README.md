@@ -5,6 +5,7 @@ UI component for React Native that allows to create a listview with N levels of 
 [![npm](https://img.shields.io/npm/v/react-native-nested-listview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-nested-listview)
 [![github release](https://img.shields.io/github/release/fjmorant/react-native-nested-listview.svg?style=flat-square)](https://github.com/fjmorant/react-native-nested-listview/releases)
 [![vulnerabilities](https://snyk.io.cnpmjs.org/test/npm/react-native-nested-listview/badge.svg?style=flat-square)](https://snyk.io.cnpmjs.org/test/npm/react-native-nested-listview)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
 
 ![react-native-nested-listview](https://imgur.com/OqvopyK.gif)
 
