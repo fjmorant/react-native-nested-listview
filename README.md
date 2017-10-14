@@ -1,5 +1,5 @@
 # react-native-nested-listview
-Nested listview component for React native that it allows to create a listview that has N levels of nesting
+UI component for React Native that allows to create a listview with N levels of nesting
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square)
 [![npm](https://img.shields.io/npm/v/react-native-nested-listview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-nested-listview)
