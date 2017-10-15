@@ -8,8 +8,8 @@ const options = [
     title: 'Custom Node Example',
   },
   {
-    screen: 'NodeStatusChangeExample',
-    title: 'Node Status Change',
+    screen: 'StateChangeNodeExample',
+    title: 'Opened Nodes Change',
   },
 ]
 

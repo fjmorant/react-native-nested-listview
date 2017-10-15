@@ -29,7 +29,10 @@ export default class NodeView extends React.PureComponent<Props, State> {
 
   componentWillMount = () => {
     this.setState({
-      node: this.props.node,
+      node: {
+        opened: false,
+        ...this.props.node,
+      },
     })
   }
 
