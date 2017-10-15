@@ -48,13 +48,6 @@ const data = [
   },
 ]
 
-const colorLevels = {
-  [0]: 'white',
-  [1]: 'white',
-  [2]: 'white',
-  [3]: 'white',
-}
-
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: 'rgb(255, 255, 255)', padding: 15},
   node: {
