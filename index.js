@@ -4,6 +4,7 @@ import React from 'react'
 import {FlatList, type Props, type State, Text, View} from 'react-native'
 import NodeView, {type Node} from './NodeView'
 import shortid from 'shortid'
+export type {Node}
 
 export default class NestedListView extends React.PureComponent<Props, State> {
   props: {

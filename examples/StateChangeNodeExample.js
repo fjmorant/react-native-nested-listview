@@ -9,7 +9,7 @@ import {
   type Props,
   type State,
 } from 'react-native'
-import NestedListView from 'react-native-nested-listview'
+import NestedListView, {type Node} from 'react-native-nested-listview'
 
 const generateXNumItems = (numItems, prefix) => {
   const items = []
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 export default class ExampleApp extends React.Component<Props, State> {
   nestedListView: any
 
-  renderNode = (node: Object, level: number) => {
+  renderNode = (node: Node, level: number) => {
     const paddingLeft = (level + 1) * 30
 
     return (
@@ -75,9 +75,9 @@ export default class ExampleApp extends React.Component<Props, State> {
     )
   }
 
-  onNodePressed = (node: Object) => {}
+  onNodePressed = (node: Node) => {}
 
-  getChildrenName = (node: Object) => {
+  getChildrenName = (node: Node) => {
     if (node.name === 'Item level 1.2.2') {
       return 'children'
     }
