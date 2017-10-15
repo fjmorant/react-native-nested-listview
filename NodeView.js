@@ -29,7 +29,10 @@ export default class NodeView extends React.PureComponent<Props, State> {
 
   componentWillMount = () => {
     this.setState({
-      node: this.props.node,
+      node: {
+        opened: false,
+        ...this.props.node,
+      },
     })
   }
 
@@ -56,6 +59,8 @@ export default class NodeView extends React.PureComponent<Props, State> {
     )
   }
 
+  renderItem = ({item}) => this.renderChildren(item, this.props.level)
+
   render() {
     const rootChildrenName = this.props.getChildrenName(this.state.node)
     const rootChildren = this.state.node[rootChildrenName]
@@ -70,7 +75,7 @@ export default class NodeView extends React.PureComponent<Props, State> {
         {this.state.node.opened && rootChildren ? (
           <FlatList
             data={rootChildren}
-            renderItem={({item}) => this.renderChildren(item, this.props.level)}
+            renderItem={this.renderItem}
             keyExtractor={item => item.id}
           />
         ) : null}
