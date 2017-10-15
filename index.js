@@ -61,27 +61,35 @@ export default class NestedListView extends React.PureComponent<Props, State> {
   }
 
   render = () => {
-    if (!this.props.getChildrenName) {
+    const {
+      data,
+      getChildrenName,
+      onNodePressed,
+      renderNode,
+      style
+    } = this.props
+    
+    if (!getChildrenName) {
       return <Text>getChildrenName has been passed</Text>
     }
 
-    if (!this.props.renderNode) {
+    if (!renderNode) {
       return <Text>renderNode has been passed</Text>
     }
 
-    if (!this.props.data) {
+    if (!data) {
       return <Text>No data has been passed</Text>
     }
 
     return (
-      <View style={this.props.style}>
+      <View style={style}>
         <NodeView
           getChildrenName={this.getChildrenName}
           node={this.state.root}
-          onNodePressed={this.props.onNodePressed}
+          onNodePressed={onNodePressed}
           generateIds={this.generateIds}
           level={0}
-          renderNode={this.props.renderNode}
+          renderNode={renderNode}
         />
       </View>
     )
