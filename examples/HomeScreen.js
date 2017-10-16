@@ -11,6 +11,10 @@ const options = [
     screen: 'StateChangeNodeExample',
     title: 'Opened Nodes Change',
   },
+  {
+    screen: 'ErrorMessageExample',
+    title: 'Error Messages',
+  },
 ]
 
 export default class HomeScreen extends React.Component {
