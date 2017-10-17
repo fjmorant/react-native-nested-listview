@@ -10,6 +10,8 @@
 
 .*/node_modules/*
 
+.*/examples/*
+
 ; Ignore duplicate module providers
 ; For RN Apps installed via npm, "Libraries" folder is inside
 ; "node_modules/react-native" but in the source repo it is in the root
