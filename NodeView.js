@@ -59,7 +59,8 @@ export default class NodeView extends React.PureComponent<Props, State> {
     )
   }
 
-  renderItem = ({item}) => this.renderChildren(item, this.props.level)
+  renderItem = ({item}: {item: Node}) =>
+    this.renderChildren(item, this.props.level)
 
   render() {
     const rootChildrenName = this.props.getChildrenName(this.state.node)

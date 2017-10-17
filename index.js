@@ -82,7 +82,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
       : 'items'
   }
 
-  renderErrorMessage(prop) {
+  renderErrorMessage(prop: string) {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>prop {prop} has not been passed</Text>
