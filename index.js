@@ -1,11 +1,33 @@
 /* @flow */
 
 import React from 'react'
-import {FlatList, type Props, type State, Text, View} from 'react-native'
+import {
+  FlatList,
+  type Props,
+  type State,
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native'
 import NodeView, {type Node} from './NodeView'
 import shortid from 'shortid'
 export type {Node}
 
+const styles = StyleSheet.create({
+  errorContainer: {
+    borderColor: 'rgb(84, 85, 86)',
+    backgroundColor: 'rgb(237, 57, 40)',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 60,
+  },
+  errorText: {
+    color: 'rgb(255, 255, 255)',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+})
 export default class NestedListView extends React.PureComponent<Props, State> {
   props: {
     data: any,
@@ -60,38 +82,38 @@ export default class NestedListView extends React.PureComponent<Props, State> {
       : 'items'
   }
 
+  renderErrorMessage(prop: string) {
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>prop {prop} has not been passed</Text>
+      </View>
+    )
+  }
+
   render = () => {
-    const {
-      data,
-      getChildrenName,
-      onNodePressed,
-      renderNode,
-      style
-    } = this.props
-    
+    const {data, getChildrenName, onNodePressed, renderNode, style} = this.props
+
     if (!getChildrenName) {
-      return <Text>getChildrenName has been passed</Text>
+      return this.renderErrorMessage('getChildrenName')
     }
 
     if (!renderNode) {
-      return <Text>renderNode has been passed</Text>
+      return this.renderErrorMessage('renderNode')
     }
 
     if (!data) {
-      return <Text>No data has been passed</Text>
+      return this.renderErrorMessage('data')
     }
 
     return (
-      <View style={style}>
-        <NodeView
-          getChildrenName={this.getChildrenName}
-          node={this.state.root}
-          onNodePressed={onNodePressed}
-          generateIds={this.generateIds}
-          level={0}
-          renderNode={renderNode}
-        />
-      </View>
+      <NodeView
+        getChildrenName={this.getChildrenName}
+        node={this.state.root}
+        onNodePressed={onNodePressed}
+        generateIds={this.generateIds}
+        level={0}
+        renderNode={renderNode}
+      />
     )
   }
 }
