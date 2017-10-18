@@ -80,14 +80,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -113,14 +115,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -146,14 +150,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -242,14 +248,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -275,14 +283,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -308,14 +318,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -403,14 +415,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -436,14 +450,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -469,14 +485,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -549,14 +567,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -582,14 +602,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -615,14 +637,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -695,14 +719,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -728,14 +754,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -761,14 +789,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
