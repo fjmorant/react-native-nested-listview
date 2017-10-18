@@ -10,4 +10,4 @@ jobs:
        - run: yarn flow
        - run: yarn add react@16.0.0
        - run: yarn add react-native@0.49.3
-       - run: yarn flow test
+       - run: yarn test
