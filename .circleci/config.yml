@@ -8,4 +8,3 @@ jobs:
        - run: yarn install
        - run: yarn lint
        - run: yarn flow
-       - run: yarn test
