@@ -9,27 +9,10 @@ import {
   type Props,
   type State,
 } from 'react-native'
-import NestedListView, {type Node} from 'react-native-nested-listview'
-
-class NestedRow extends React.PureComponent<Props, State> {
-  render() {
-    const {height = 50, children, level, style} = this.props
-
-    return (
-      <View
-        style={{
-          ...style,
-          justifyContent: 'center',
-          height,
-          paddingLeft: level * 10,
-        }}
-        pointerEvents="none"
-      >
-        {children}
-      </View>
-    )
-  }
-}
+import NestedListView, {
+  type Node,
+  NestedRow,
+} from 'react-native-nested-listview'
 
 const generateXNumItems = (numItems, prefix) => {
   const items = []

@@ -72,7 +72,9 @@ export default class NodeView extends React.PureComponent<Props, State> {
       <View>
         {!this.state.node.hidden ? (
           <TouchableWithoutFeedback onPress={this.onNodePressed}>
-            {this.props.renderNode(this.state.node, this.props.level)}
+            <View>
+              {this.props.renderNode(this.state.node, this.props.level)}
+            </View>
           </TouchableWithoutFeedback>
         ) : null}
         {this.state.node.opened && rootChildren ? (

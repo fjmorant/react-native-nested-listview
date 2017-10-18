@@ -27,7 +27,33 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
   },
+  nestedRow: {
+    flex: 1,
+    justifyContent: 'center',
+  },
 })
+
+export class NestedRow extends React.PureComponent<Props, State> {
+  render() {
+    const {height = 50, children, level, style} = this.props
+
+    return (
+      <View
+        style={[
+          styles.nestedRow,
+          {
+            ...style,
+            height,
+            paddingLeft: level * 10,
+          },
+        ]}
+      >
+        {children}
+      </View>
+    )
+  }
+}
+
 export default class NestedListView extends React.PureComponent<Props, State> {
   props: {
     data: any,
