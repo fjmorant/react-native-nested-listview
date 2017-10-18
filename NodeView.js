@@ -44,7 +44,9 @@ export default class NodeView extends React.PureComponent<Props, State> {
       },
     })
 
-    this.props.onNodePressed(this.state.node)
+    if (this.props.onNodePressed) {
+      this.props.onNodePressed(this.state.node)
+    }
   }
 
   renderChildren = (item: Node, level: number) => {
