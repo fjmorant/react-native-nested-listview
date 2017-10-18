@@ -1,0 +1,13 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: circleci/node:7.10.0
+     steps:
+       - checkout
+       - run: yarn install
+       - run: yarn lint
+       - run: yarn flow
+       - run: yarn add react@16.0.0
+       - run: yarn add react-native@0.49.3
+       - run: yarn test
