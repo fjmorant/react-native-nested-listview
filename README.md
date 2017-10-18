@@ -1,4 +1,6 @@
 # react-native-nested-listview
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/fjmorant/react-native-nested-listview.svg)](https://greenkeeper.io/)
 UI component for React Native that allows to create a listview with N levels of nesting
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square)
