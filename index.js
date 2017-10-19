@@ -34,6 +34,13 @@ const styles = StyleSheet.create({
 })
 
 export class NestedRow extends React.PureComponent<Props, State> {
+  props: {
+    height?: number,
+    children: any,
+    level: number,
+    style?: any,
+  }
+
   render() {
     const {height = 50, children, level, style} = this.props
 

@@ -49,7 +49,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ## Props
 
-### Required
+### NestedListView
 
 Prop | Description | Type | Default
 ------ | ------ | ------ | ------
