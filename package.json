@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Nested Listview for React native",
   "scripts": {
-    "test": "jest index.test.js",
+    "test": "jest index.test.js && codecov",
     "lint": "eslint --cache .",
     "flow": "flow"
   },
@@ -41,6 +41,8 @@
   "homepage": "https://github.com/fjmorant/react-native-nested-listview#readme",
   "jest": {
     "preset": "react-native",
-    "modulePathIgnorePatterns": ["example"]
+    "modulePathIgnorePatterns": ["example"],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
