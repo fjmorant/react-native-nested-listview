@@ -31,7 +31,7 @@ yarn add react-native-nested-listview
 ```
 
 ```javascript
-import NestedListview from 'react-native-nested-listview'
+import NestedListview, {NestedRow} from 'react-native-nested-listview'
 
 const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}]}]
 
@@ -40,9 +40,12 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
   getChildrenName={(node) => 'items'}
   onNodePressed={(node) => alert('Selected node')}
   renderNode={(node, level) => (
-    <View style={styles.row}>
+    <NestedRow
+      level={level}
+      style={styles.row}
+    >
       <Text>{node.title}</Text>
-    </View>
+    </NestedRow>
   )}
 />
 ```
@@ -58,8 +61,17 @@ Prop | Description | Type | Default
 **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items** | Function | **items**
 **`onNodePressed`** | Function called when a node is pressed by a user | Function | Not required
 
+### NestedRow
+
+Prop | Description | Type | Default
+------ | ------ | ------ | ------
+**`height`** | Height of the row | number | 50
+**`children`** | Content of the NestedRow | Component | **Required**
+**`level`** | Level where a given node is | number | **Required**
+**`style`** | NestedRow container style | Style | Not required
+
 ## Example
-You can find the following example in the [`/example` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
+You can find the following example in the [`/examples` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
 
 ## Roadmap
 
