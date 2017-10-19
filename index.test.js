@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer'
-import NestedListView from './index.js'
+import NestedListView, {NestedRow} from './index.js'
 import React from 'react'
 import {View, Text} from 'react-native'
 
@@ -133,6 +133,22 @@ describe('NestedListView', () => {
           getChildrenName={() => 'items'}
           renderNode={renderNode}
           onNodePressed={() => alert('Node Pressed')}
+          data={data}
+        />
+      )
+      .toJSON()
+    expect(nestedListView).toMatchSnapshot()
+  })
+
+  test('renders with NestedRow', () => {
+    const data = [{title: 'child1'}, {title: 'child2'}, {title: 'child3'}]
+    const nestedListView = renderer
+      .create(
+        <NestedListView
+          getChildrenName={() => 'items'}
+          renderNode={(node, level) => (
+            <NestedRow level={level}>{node.name}</NestedRow>
+          )}
           data={data}
         />
       )
