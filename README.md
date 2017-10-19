@@ -11,16 +11,17 @@ UI component for React Native that allows to create a listview with N levels of 
 [![github release](https://img.shields.io/github/release/fjmorant/react-native-nested-listview.svg?style=flat-square)](https://github.com/fjmorant/react-native-nested-listview/releases)
   
 
-![react-native-nested-listview](https://imgur.com/OqvopyK.gif)
-
-
 ## Table of contents
 
+1. [Show](#show)
 1. [Usage](#usage)
 1. [Props](#props)
 1. [Example](#example)
 1. [Roadmap](#roadmap)
 
+## Show
+![react-native-nested-listview](https://i.imgur.com/Y3VFTry.gif)
+![react-native-nested-listview](https://i.imgur.com/nJvl0ZT.gif)
 
 ## Usage
 
@@ -29,7 +30,7 @@ yarn add react-native-nested-listview
 ```
 
 ```javascript
-import NestedListview from 'react-native-nested-listview'
+import NestedListview, {NestedRow} from 'react-native-nested-listview'
 
 const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}]}]
 
@@ -38,16 +39,19 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
   getChildrenName={(node) => 'items'}
   onNodePressed={(node) => alert('Selected node')}
   renderNode={(node, level) => (
-    <View style={styles.row}>
+    <NestedRow
+      level={level}
+      style={styles.row}
+    >
       <Text>{node.title}</Text>
-    </View>
+    </NestedRow>
   )}
 />
 ```
 
 ## Props
 
-### Required
+### NestedListView
 
 Prop | Description | Type | Default
 ------ | ------ | ------ | ------
@@ -56,12 +60,20 @@ Prop | Description | Type | Default
 **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items** | Function | **items**
 **`onNodePressed`** | Function called when a node is pressed by a user | Function | Not required
 
+### NestedRow
+
+Prop | Description | Type | Default
+------ | ------ | ------ | ------
+**`height`** | Height of the row | number | 50
+**`children`** | Content of the NestedRow | Component | **Required**
+**`level`** | Level where a given node is | number | **Required**
+**`style`** | NestedRow container style | Style | Not required
+
 ## Example
-You can find the following example in the [`/example` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
+You can find the following example in the [`/examples` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
 
 ## Roadmap
 
  - Autoscrolling optionally
  - Expand/contract nodes programatically
  - Support animations
- - Add more examples of usage
