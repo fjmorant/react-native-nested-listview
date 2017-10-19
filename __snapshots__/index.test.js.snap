@@ -1,5 +1,169 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NestedListView renders with NestedRow 1`] = `
+<View>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "id": "1",
+          "title": "child1",
+        },
+        Object {
+          "id": "1",
+          "title": "child2",
+        },
+        Object {
+          "id": "1",
+          "title": "child3",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={undefined}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={undefined}
+            testID={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 50,
+                    "paddingLeft": 10,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={undefined}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={undefined}
+            testID={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 50,
+                    "paddingLeft": 10,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={undefined}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={undefined}
+            testID={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 50,
+                    "paddingLeft": 10,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
 exports[`NestedListView renders with nested arrays 1`] = `
 <View>
   <RCTScrollView
@@ -80,14 +244,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -113,14 +279,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -146,14 +314,16 @@ exports[`NestedListView renders with nested arrays 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -242,14 +412,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -275,14 +447,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -308,14 +482,16 @@ exports[`NestedListView renders with nested arrays and children with different n
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -403,14 +579,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -436,14 +614,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -469,14 +649,16 @@ exports[`NestedListView renders with nested arrays and children with different t
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -549,14 +731,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -582,14 +766,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -615,14 +801,16 @@ exports[`NestedListView renders with onNodePressed 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -695,14 +883,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -728,14 +918,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -761,14 +953,16 @@ exports[`NestedListView renders with simple array 1`] = `
             style={undefined}
             testID={undefined}
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-            >
-              node.name
-            </Text>
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+              >
+                node.name
+              </Text>
+            </View>
           </View>
         </View>
       </View>

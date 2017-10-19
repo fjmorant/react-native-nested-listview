@@ -44,7 +44,9 @@ export default class NodeView extends React.PureComponent<Props, State> {
       },
     })
 
-    this.props.onNodePressed(this.state.node)
+    if (this.props.onNodePressed) {
+      this.props.onNodePressed(this.state.node)
+    }
   }
 
   renderChildren = (item: Node, level: number) => {
@@ -70,7 +72,9 @@ export default class NodeView extends React.PureComponent<Props, State> {
       <View>
         {!this.state.node.hidden ? (
           <TouchableWithoutFeedback onPress={this.onNodePressed}>
-            {this.props.renderNode(this.state.node, this.props.level)}
+            <View>
+              {this.props.renderNode(this.state.node, this.props.level)}
+            </View>
           </TouchableWithoutFeedback>
         ) : null}
         {this.state.node.opened && rootChildren ? (

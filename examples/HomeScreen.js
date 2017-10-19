@@ -15,6 +15,10 @@ const options = [
     screen: 'ErrorMessageExample',
     title: 'Error Messages',
   },
+  {
+    screen: 'NestedRowExample',
+    title: 'NestedRow',
+  },
 ]
 
 export default class HomeScreen extends React.Component {
