@@ -30,7 +30,7 @@
     "jest": "^21.2.0",
     "prettier": "^1.7.0",
     "prettier-eslint": "^8.2.1",
-    "react-test-renderer": "16.1.0"
+    "react-test-renderer": "16.1.1"
   },
   "keywords": ["react", "native", "list", "nested"],
   "author": "Javier Morant",
