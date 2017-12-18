@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.0.0",
     "babel-preset-react-native": "^4.0.0",
     "eslint": "^4.9.0",
     "eslint-plugin-flowtype": "^2.36.0",
