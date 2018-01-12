@@ -77,4 +77,6 @@ You can find the following example in the [`/examples` folder](https://github.co
  - Expand/contract nodes programatically
  - Support animations
  
- [![Bitcoin Donate Button](https://www.drupal.org/files/project-images/bitcoindonate.png)](bitcoin:18k2SwgacLR3fkMFddq78fJf5FHMsf8t4c?label=Improve%20library&amount=0.0007)
+
+
+<a href="bitcoin:18k2SwgacLR3fkMFddq78fJf5FHMsf8t4c?label=Improve%20library&amount=0.0007">![Bitcoin Donate Button](https://www.drupal.org/files/project-images/bitcoindonate.png)</a>
