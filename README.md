@@ -3,6 +3,7 @@
 
 UI component for React Native that allows to create a listview with N levels of nesting
 
+[![Donatecoins](http://donatecoins.org/btc/1HeMeMU2qUFDRZpRQMJ2v27Dw3h3gShJ5b.svg)](http://donatecoins.org/btc/1HeMeMU2qUFDRZpRQMJ2v27Dw3h3gShJ5b)
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square)
 [![Greenkeeper badge](https://badges.greenkeeper.io/fjmorant/react-native-nested-listview.svg)](https://greenkeeper.io/)
 [![CircleCI](https://circleci.com/gh/fjmorant/react-native-nested-listview.svg?style=shield)](https://circleci.com/gh/fjmorant/react-native-nested-listview)
@@ -76,4 +77,4 @@ You can find the following example in the [`/examples` folder](https://github.co
  - Autoscrolling optionally
  - Expand/contract nodes programatically
  - Support animations
- 
+
