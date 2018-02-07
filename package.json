@@ -26,7 +26,7 @@
     "eslint-plugin-flowtype": "^2.36.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^3.1.0",
-    "flow-bin": "^0.64.0",
+    "flow-bin": "^0.65.0",
     "jest": "^22.0.0",
     "prettier": "^1.7.0",
     "prettier-eslint": "^8.2.1",
