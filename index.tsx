@@ -1,17 +1,9 @@
 /* @flow */
 
-import React from 'react'
-import {
-  FlatList,
-  type Props,
-  type State,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native'
-import NodeView, {type Node} from './NodeView'
+import * as React from 'react'
+import {Text, View, StyleSheet} from 'react-native'
+import NodeView, {Node} from './NodeView'
 import shortid from 'shortid'
-export type {Node}
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -33,14 +25,14 @@ const styles = StyleSheet.create({
   },
 })
 
-export class NestedRow extends React.PureComponent<Props, State> {
-  props: {
-    height?: number,
-    children: any,
-    level: number,
-    style?: any,
-  }
+export interface IProps {
+  height?: number
+  children: any
+  level: number
+  style?: any
+}
 
+export class NestedRow extends React.PureComponent<IProps> {
   render() {
     const {height = 50, children, level, style} = this.props
 
@@ -53,28 +45,28 @@ export class NestedRow extends React.PureComponent<Props, State> {
             height,
             paddingLeft: level * 10,
           },
-        ]}
-      >
+        ]}>
         {children}
       </View>
     )
   }
 }
 
-export default class NestedListView extends React.PureComponent<Props, State> {
-  props: {
-    data: any,
-    renderNode: Function,
-    onNodePressed: Function,
-    getChildrenName: Function,
-    style: any,
-  }
-
-  componentWillMount = () => {
+export default class NestedListView extends React.PureComponent<
+  {
+    data: any
+    renderNode: Function
+    onNodePressed: Function
+    getChildrenName: Function
+    style: any
+  },
+  {root: any}
+> {
+  componentWillMount() {
     const root: Node = {
       id: shortid.generate(),
       items: this.props.data
-        ? this.props.data.map((child: Node, index: number) =>
+        ? this.props.data.map((_: Node, index: number) =>
             this.generateIds(this.props.data[index])
           )
         : [],
@@ -95,7 +87,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     const children = node[childrenName]
 
     if (children) {
-      node[childrenName] = children.map((child, index) =>
+      node[childrenName] = children.map((_: Node, index: number) =>
         this.generateIds(children[index])
       )
     }
@@ -123,7 +115,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     )
   }
 
-  render = () => {
+  render() {
     const {data, getChildrenName, onNodePressed, renderNode, style} = this.props
 
     if (!getChildrenName) {

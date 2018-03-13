@@ -1,33 +1,32 @@
 /* @flow */
 
-import React from 'react'
-import {
-  TouchableWithoutFeedback,
-  View,
-  FlatList,
-  type Props,
-  type State,
-} from 'react-native'
+import * as React from 'react'
+import {TouchableWithoutFeedback, View, FlatList} from 'react-native'
 
 export type Node = {
-  id: string,
-  hidden: boolean,
-  opened: boolean,
+  id: string
+  hidden: boolean
+  opened: boolean
+  [key: string]: any
 }
 
-export default class NodeView extends React.PureComponent<Props, State> {
-  props: {
-    generateIds: Function,
-    getChildren: Function,
-    getChildrenName: Function,
-    node: Node,
-    level: number,
-    onNodePressed: Function,
-    renderNode: Function,
-    renderChildrenNode: Function,
-  }
+export interface IProps {
+  generateIds?: Function
+  getChildren?: Function
+  getChildrenName: Function
+  node: Node
+  level: number
+  onNodePressed: Function
+  renderNode: Function
+  renderChildrenNode?: Function
+}
 
-  componentWillMount = () => {
+export interface IState {
+  node: Node
+}
+
+export default class NodeView extends React.PureComponent<IProps, IState> {
+  componentWillMount() {
     this.setState({
       node: {
         opened: false,
@@ -49,7 +48,7 @@ export default class NodeView extends React.PureComponent<Props, State> {
     }
   }
 
-  renderChildren = (item: Node, level: number) => {
+  renderChildren = (item: Node, level: number): any => {
     return (
       <NodeView
         getChildrenName={this.props.getChildrenName}
