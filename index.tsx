@@ -56,9 +56,9 @@ export default class NestedListView extends React.PureComponent<
   {
     data: any
     renderNode: Function
-    onNodePressed: Function
+    onNodePressed?: Function
     getChildrenName: Function
-    style: any
+    style?: any
   },
   {root: any}
 > {

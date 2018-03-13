@@ -1,2 +1,10 @@
 
 coverage/
+
+# TypeScript
+#
+lib/
+
+# Jest
+#
+.jest/

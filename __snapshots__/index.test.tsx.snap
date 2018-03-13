@@ -34,11 +34,11 @@ exports[`NestedListView renders with NestedRow 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -214,11 +214,11 @@ exports[`NestedListView renders with nested arrays 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -248,10 +248,9 @@ exports[`NestedListView renders with nested arrays 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -282,10 +281,9 @@ exports[`NestedListView renders with nested arrays 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -316,10 +314,9 @@ exports[`NestedListView renders with nested arrays 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -379,11 +376,11 @@ exports[`NestedListView renders with nested arrays and children with different n
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -413,10 +410,9 @@ exports[`NestedListView renders with nested arrays and children with different n
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -447,10 +443,9 @@ exports[`NestedListView renders with nested arrays and children with different n
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -481,10 +476,9 @@ exports[`NestedListView renders with nested arrays and children with different n
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -543,11 +537,11 @@ exports[`NestedListView renders with nested arrays and children with different t
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -577,10 +571,9 @@ exports[`NestedListView renders with nested arrays and children with different t
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -611,10 +604,9 @@ exports[`NestedListView renders with nested arrays and children with different t
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -645,10 +637,9 @@ exports[`NestedListView renders with nested arrays and children with different t
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -692,11 +683,11 @@ exports[`NestedListView renders with onNodePressed 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -726,10 +717,9 @@ exports[`NestedListView renders with onNodePressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -760,10 +750,9 @@ exports[`NestedListView renders with onNodePressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -794,10 +783,9 @@ exports[`NestedListView renders with onNodePressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -841,11 +829,11 @@ exports[`NestedListView renders with simple array 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -875,10 +863,9 @@ exports[`NestedListView renders with simple array 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -909,10 +896,9 @@ exports[`NestedListView renders with simple array 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -943,111 +929,14 @@ exports[`NestedListView renders with simple array 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
-              >
-                node.name
-              </Text>
+              />
             </View>
           </View>
         </View>
       </View>
     </View>
   </RCTScrollView>
-</View>
-`;
-
-exports[`NestedListView renders without data 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "rgb(237, 57, 40)",
-      "borderColor": "rgb(84, 85, 86)",
-      "borderWidth": 1,
-      "height": 60,
-      "justifyContent": "center",
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "color": "rgb(255, 255, 255)",
-        "fontSize": 17,
-        "fontWeight": "bold",
-      }
-    }
-  >
-    prop 
-    data
-     has not been passed
-  </Text>
-</View>
-`;
-
-exports[`NestedListView renders without getChildrenName 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "rgb(237, 57, 40)",
-      "borderColor": "rgb(84, 85, 86)",
-      "borderWidth": 1,
-      "height": 60,
-      "justifyContent": "center",
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "color": "rgb(255, 255, 255)",
-        "fontSize": 17,
-        "fontWeight": "bold",
-      }
-    }
-  >
-    prop 
-    getChildrenName
-     has not been passed
-  </Text>
-</View>
-`;
-
-exports[`NestedListView renders without renderNode 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "rgb(237, 57, 40)",
-      "borderColor": "rgb(84, 85, 86)",
-      "borderWidth": 1,
-      "height": 60,
-      "justifyContent": "center",
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "color": "rgb(255, 255, 255)",
-        "fontSize": 17,
-        "fontWeight": "bold",
-      }
-    }
-  >
-    prop 
-    renderNode
-     has not been passed
-  </Text>
 </View>
 `;
