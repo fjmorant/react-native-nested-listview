@@ -3,8 +3,8 @@ jobs:
    build:
      docker:
        - image: circleci/node:8.8.1
+     working_directory: /home/circleci/rosetta
      steps:
-        working_directory: /home/circleci/rosetta
        - checkout
        - run: yarn install
        - run: yarn add react@16.2.0
