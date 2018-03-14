@@ -1,6 +1,7 @@
 version: 2
 jobs:
    build:
+      working_directory: /home/circleci/rosetta
      docker:
        - image: circleci/node:8.8.1
      steps:

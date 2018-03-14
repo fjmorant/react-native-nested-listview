@@ -60,7 +60,7 @@
       "node_modules/(?!(jest-)|react-native|react-navigation|react-clone-referenced-element|mobx-react)"
     ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "modulePathIgnorePatterns": ["<rootDir>/node_modules/react-native/"],
+    "modulePathIgnorePatterns": ["<rootDir>/node_modules"],
     "testPathIgnorePatterns": [
       "\\.snap$",
       "<rootDir>/node_modules/",
