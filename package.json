@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Nested Listview for React native",
   "scripts": {
-    "test": "jest --ci --testResultsProcessor="jest-junit" && codecov",
+    "test": "jest --ci --testResultsProcessor=\"jest-junit\" && codecov",
     "lint": "eslint --cache .",
     "flow": "flow"
   },
