@@ -42,12 +42,7 @@
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
   },
-  "keywords": [
-    "react",
-    "native",
-    "list",
-    "nested"
-  ],
+  "keywords": ["react", "native", "list", "nested"],
   "author": "Javier Morant",
   "license": "MIT",
   "bugs": {
@@ -56,11 +51,7 @@
   "homepage": "https://github.com/fjmorant/react-native-nested-listview#readme",
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
     "transform": {
       "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
@@ -69,9 +60,7 @@
       "node_modules/(?!(jest-)|react-native|react-navigation|react-clone-referenced-element|mobx-react)"
     ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/node_modules/react-native"
-    ],
+    "modulePathIgnorePatterns": ["<rootDir>/node_modules"],
     "testPathIgnorePatterns": [
       "\\.snap$",
       "<rootDir>/node_modules/",
