@@ -4,13 +4,9 @@ import {Text, View} from 'react-native'
 import * as renderer from 'react-test-renderer'
 import NestedListView, {NestedRow} from './index'
 
-jest.mock('shortid', () => {
-  return {
-    default: {
-      generate: () => '1',
-    },
-  }
-})
+jest.mock('shortid', () => ({
+  generate: () => '1',
+}))
 
 const renderNode = (node: any) => (
   <View>
