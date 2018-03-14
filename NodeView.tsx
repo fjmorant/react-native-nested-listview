@@ -1,33 +1,32 @@
 /* @flow */
 
-import React from 'react'
-import {
-  TouchableWithoutFeedback,
-  View,
-  FlatList,
-  type Props,
-  type State,
-} from 'react-native'
+import * as React from 'react'
+import {FlatList, TouchableWithoutFeedback, View} from 'react-native'
 
-export type Node = {
-  id: string,
-  hidden: boolean,
-  opened: boolean,
+export interface INode {
+  id: string
+  hidden: boolean
+  opened: boolean
+  [key: string]: any
 }
 
-export default class NodeView extends React.PureComponent<Props, State> {
-  props: {
-    generateIds: Function,
-    getChildren: Function,
-    getChildrenName: Function,
-    node: Node,
-    level: number,
-    onNodePressed: Function,
-    renderNode: Function,
-    renderChildrenNode: Function,
-  }
+export interface IProps {
+  generateIds?: (node?: INode) => any
+  getChildren?: () => any
+  getChildrenName: (item: INode) => any
+  node: INode
+  level: number
+  onNodePressed?: (item: any) => any
+  renderNode: (item: any, level: number) => any
+  renderChildrenNode?: (item: any) => any
+}
 
-  componentWillMount = () => {
+export interface IState {
+  node: INode
+}
+
+export default class NodeView extends React.PureComponent<IProps, IState> {
+  public componentWillMount() {
     this.setState({
       node: {
         opened: false,
@@ -36,7 +35,7 @@ export default class NodeView extends React.PureComponent<Props, State> {
     })
   }
 
-  onNodePressed = () => {
+  public onNodePressed = () => {
     this.setState({
       node: {
         ...this.state.node,
@@ -49,7 +48,7 @@ export default class NodeView extends React.PureComponent<Props, State> {
     }
   }
 
-  renderChildren = (item: Node, level: number) => {
+  public renderChildren = (item: INode, level: number): any => {
     return (
       <NodeView
         getChildrenName={this.props.getChildrenName}
@@ -61,10 +60,10 @@ export default class NodeView extends React.PureComponent<Props, State> {
     )
   }
 
-  renderItem = ({item}: {item: Node}) =>
+  public renderItem = ({item}: {item: INode}) =>
     this.renderChildren(item, this.props.level)
 
-  render() {
+  public render() {
     const rootChildrenName = this.props.getChildrenName(this.state.node)
     const rootChildren = this.state.node[rootChildrenName]
 
@@ -81,7 +80,7 @@ export default class NodeView extends React.PureComponent<Props, State> {
           <FlatList
             data={rootChildren}
             renderItem={this.renderItem}
-            keyExtractor={item => item.id}
+            keyExtractor={(item: INode) => item.id}
           />
         ) : null}
       </View>

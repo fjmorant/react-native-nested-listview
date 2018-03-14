@@ -1,43 +1,20 @@
-import renderer from 'react-test-renderer'
-import NestedListView, {NestedRow} from './index.js'
-import React from 'react'
-import {View, Text} from 'react-native'
+import * as React from 'react'
+import {Text, View} from 'react-native'
+// tslint:disable-next-line:no-implicit-dependencies
+import * as renderer from 'react-test-renderer'
+import NestedListView, {NestedRow} from './index'
 
 jest.mock('shortid', () => ({
   generate: () => '1',
 }))
 
-const renderNode = node => (
+const renderNode = (node: any) => (
   <View>
-    <Text>node.name</Text>
+    <Text>{node.name}</Text>
   </View>
 )
 
 describe('NestedListView', () => {
-  test('renders without getChildrenName', () => {
-    const nestedListView = renderer.create(<NestedListView />).toJSON()
-    expect(nestedListView).toMatchSnapshot()
-  })
-
-  test('renders without renderNode', () => {
-    const nestedListView = renderer
-      .create(<NestedListView getChildrenName={() => 'items'} />)
-      .toJSON()
-    expect(nestedListView).toMatchSnapshot()
-  })
-
-  test('renders without data', () => {
-    const nestedListView = renderer
-      .create(
-        <NestedListView
-          getChildrenName={() => 'items'}
-          renderNode={node => node.name}
-        />
-      )
-      .toJSON()
-    expect(nestedListView).toMatchSnapshot()
-  })
-
   test('renders with simple array', () => {
     const data = [{title: 'child1'}, {title: 'child2'}, {title: 'child3'}]
     const nestedListView = renderer
@@ -85,7 +62,7 @@ describe('NestedListView', () => {
     const nestedListView = renderer
       .create(
         <NestedListView
-          getChildrenName={node => {
+          getChildrenName={(node: any) => {
             if (node.title === 'child2') {
               return 'descendants'
             }
@@ -111,7 +88,7 @@ describe('NestedListView', () => {
     const nestedListView = renderer
       .create(
         <NestedListView
-          getChildrenName={node => {
+          getChildrenName={(node: any) => {
             if (node.title === 'child2') {
               return 'children'
             }
@@ -146,7 +123,7 @@ describe('NestedListView', () => {
       .create(
         <NestedListView
           getChildrenName={() => 'items'}
-          renderNode={(node, level) => (
+          renderNode={(node: any, level?: number) => (
             <NestedRow level={level}>{node.name}</NestedRow>
           )}
           data={data}

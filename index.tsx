@@ -1,17 +1,9 @@
 /* @flow */
 
-import React from 'react'
-import {
-  FlatList,
-  type Props,
-  type State,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native'
-import NodeView, {type Node} from './NodeView'
-import shortid from 'shortid'
-export type {Node}
+import * as React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import * as shortid from 'shortid'
+import NodeView, {INode} from './NodeView'
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -33,16 +25,16 @@ const styles = StyleSheet.create({
   },
 })
 
-export class NestedRow extends React.PureComponent<Props, State> {
-  props: {
-    height?: number,
-    children: any,
-    level: number,
-    style?: any,
-  }
+export interface IProps {
+  height?: number
+  children: any
+  level?: number
+  style?: any
+}
 
-  render() {
-    const {height = 50, children, level, style} = this.props
+export class NestedRow extends React.PureComponent<IProps> {
+  public render() {
+    const {height = 50, children, level = 0, style} = this.props
 
     return (
       <View
@@ -53,28 +45,29 @@ export class NestedRow extends React.PureComponent<Props, State> {
             height,
             paddingLeft: level * 10,
           },
-        ]}
-      >
+        ]}>
         {children}
       </View>
     )
   }
 }
 
-export default class NestedListView extends React.PureComponent<Props, State> {
-  props: {
-    data: any,
-    renderNode: Function,
-    onNodePressed: Function,
-    getChildrenName: Function,
-    style: any,
-  }
-
-  componentWillMount = () => {
-    const root: Node = {
+// tslint:disable-next-line:max-classes-per-file
+export default class NestedListView extends React.PureComponent<
+  {
+    data: any
+    renderNode: (elem: any, level?: number) => any
+    onNodePressed?: () => any
+    getChildrenName: (elem: any) => any
+    style?: any
+  },
+  {root: any}
+> {
+  public componentWillMount() {
+    const root: INode = {
       id: shortid.generate(),
       items: this.props.data
-        ? this.props.data.map((child: Node, index: number) =>
+        ? this.props.data.map((_: INode, index: number) =>
             this.generateIds(this.props.data[index])
           )
         : [],
@@ -86,7 +79,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     this.setState({root})
   }
 
-  generateIds = (node: Node) => {
+  public generateIds = (node?: INode) => {
     if (!node) {
       return
     }
@@ -95,7 +88,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     const children = node[childrenName]
 
     if (children) {
-      node[childrenName] = children.map((child, index) =>
+      node[childrenName] = children.map((_: INode, index: number) =>
         this.generateIds(children[index])
       )
     }
@@ -105,7 +98,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     return node
   }
 
-  getChildrenName = (node: Node) => {
+  public getChildrenName = (node: INode) => {
     if (node.name === 'root') {
       return 'items'
     }
@@ -115,7 +108,7 @@ export default class NestedListView extends React.PureComponent<Props, State> {
       : 'items'
   }
 
-  renderErrorMessage(prop: string) {
+  public renderErrorMessage(prop: string) {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>prop {prop} has not been passed</Text>
@@ -123,8 +116,8 @@ export default class NestedListView extends React.PureComponent<Props, State> {
     )
   }
 
-  render = () => {
-    const {data, getChildrenName, onNodePressed, renderNode, style} = this.props
+  public render() {
+    const {data, getChildrenName, onNodePressed, renderNode} = this.props
 
     if (!getChildrenName) {
       return this.renderErrorMessage('getChildrenName')
