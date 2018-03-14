@@ -79,7 +79,7 @@ export default class NestedListView extends React.PureComponent<
     this.setState({root})
   }
 
-  public generateIds = (node: INode) => {
+  public generateIds = (node?: INode) => {
     if (!node) {
       return
     }
