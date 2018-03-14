@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Nested Listview for React native",
   "scripts": {
-    "test": "jest --ci && codecov",
+    "test": "jest && codecov",
     "lint": "eslint --cache .",
     "flow": "flow"
   },
@@ -60,10 +60,7 @@
       "node_modules/(?!(jest-)|react-native|react-navigation|react-clone-referenced-element|mobx-react)"
     ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/node_modules",
-      "<rootDir>/examples/"
-    ],
+    "modulePathIgnorePatterns": ["<rootDir>/examples/"],
     "testPathIgnorePatterns": [
       "\\.snap$",
       "<rootDir>/node_modules/",
