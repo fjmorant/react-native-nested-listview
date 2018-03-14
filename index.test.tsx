@@ -1,7 +1,8 @@
+import * as React from 'react'
+import {Text, View} from 'react-native'
+// tslint:disable-next-line:no-implicit-dependencies
 import * as renderer from 'react-test-renderer'
 import NestedListView, {NestedRow} from './index'
-import * as React from 'react'
-import {View, Text} from 'react-native'
 
 jest.mock('shortid', () => {
   return {
@@ -126,7 +127,7 @@ describe('NestedListView', () => {
       .create(
         <NestedListView
           getChildrenName={() => 'items'}
-          renderNode={(node: any, level: number) => (
+          renderNode={(node: any, level?: number) => (
             <NestedRow level={level}>{node.name}</NestedRow>
           )}
           data={data}
