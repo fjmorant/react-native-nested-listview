@@ -8,3 +8,4 @@ lib/
 # Jest
 #
 .jest/
+build/

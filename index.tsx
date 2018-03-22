@@ -79,6 +79,23 @@ export default class NestedListView extends React.PureComponent<
     this.setState({root})
   }
 
+  public componentWillReceiveProps(nextProps: any) {
+    alert('componentWillReceiveProps')
+    const root: INode = {
+      id: shortid.generate(),
+      items: nextProps.data
+        ? nextProps.data.map((_: INode, index: number) =>
+            this.generateIds(nextProps.data[index])
+          )
+        : [],
+      name: 'root',
+      opened: true,
+      hidden: true,
+    }
+
+    this.setState({root})
+  }
+
   public generateIds = (node?: INode) => {
     if (!node) {
       return
