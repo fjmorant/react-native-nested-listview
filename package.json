@@ -6,10 +6,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest && codecov",
-    "lint": "eslint --cache .",
-    "tslint": "tslint -p .",
+    "lint": "eslint --cache ./src",
+    "tslint": "tslint -p ./src",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
+    "prepublishOnly": "tsc -p ./src --outDir dist/"
   },
   "repository": {
     "type": "git",

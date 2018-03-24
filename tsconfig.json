@@ -4,7 +4,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "jsx": "react-native",
-    "outDir": "build",
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
@@ -14,6 +14,6 @@
     "declaration": true
   },
   "filesGlob": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["build", "node_modules"],
+  "exclude": ["dist/", "node_modules"],
   "compileOnSave": false
 }
