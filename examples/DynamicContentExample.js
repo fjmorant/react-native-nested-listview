@@ -12,20 +12,6 @@ import {
 } from 'react-native'
 import NestedListView from 'react-native-nested-listview'
 
-const generateXNumItems = (numItems, prefix) => {
-  const items = []
-
-  let i
-
-  for (i = 0; i < numItems; i++) {
-    items.push({
-      name: `${prefix}.${i}`,
-    })
-  }
-
-  return items
-}
-
 const data = [
   {
     name: 'Books Genders',
