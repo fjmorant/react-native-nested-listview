@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Text} from 'react-native'
+// tslint:disable-next-line:no-implicit-dependencies
 import * as renderer from 'react-test-renderer'
 import NestedRow from './NestedRow'
 
