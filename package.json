@@ -2,13 +2,14 @@
   "name": "react-native-nested-listview",
   "version": "0.3.0",
   "description": "Nested Listview for React native",
-  "main": "build/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest && codecov",
     "lint": "eslint --cache .",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
-    "build": "tsc --pretty"
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "repository": {
     "type": "git",
