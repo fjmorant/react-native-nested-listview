@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest && codecov",
     "lint": "eslint --cache ./src",
-    "tslint": "tslint -p ./src",
+    "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./src --outDir dist/"
   },
