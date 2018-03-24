@@ -9,7 +9,7 @@
     "lint": "eslint --cache ./src",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p ./src --outDir dist/"
+    "prepublishOnly": "tsc -p . --outDir dist/"
   },
   "repository": {
     "type": "git",
@@ -73,7 +73,8 @@
       "\\.snap$",
       "<rootDir>/node_modules/",
       "<rootDir>/examples/",
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/dist/"
     ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
