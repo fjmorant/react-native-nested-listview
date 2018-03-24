@@ -1,3 +1,4 @@
 examples
 flow-typed
 node_modules
+./*.tsx
