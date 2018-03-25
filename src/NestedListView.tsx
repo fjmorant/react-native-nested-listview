@@ -19,64 +19,30 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
   },
-  nestedRow: {
-    flex: 1,
-    justifyContent: 'center',
-  },
 })
 
 export interface IProps {
-  height?: number
-  children: any
-  level?: number
+  data: any
+  renderNode: (elem: any, level?: number) => any
+  onNodePressed?: () => any
+  getChildrenName: (elem: any) => any
   style?: any
 }
 
-export class NestedRow extends React.PureComponent<IProps> {
-  public render() {
-    const {height = 50, children, level = 0, style} = this.props
-
-    return (
-      <View
-        style={[
-          styles.nestedRow,
-          {
-            ...style,
-            height,
-            paddingLeft: level * 10,
-          },
-        ]}>
-        {children}
-      </View>
-    )
-  }
+export interface IState {
+  root: any
 }
 
-// tslint:disable-next-line:max-classes-per-file
 export default class NestedListView extends React.PureComponent<
-  {
-    data: any
-    renderNode: (elem: any, level?: number) => any
-    onNodePressed?: () => any
-    getChildrenName: (elem: any) => any
-    style?: any
-  },
-  {root: any}
+  IProps,
+  IState
 > {
   public componentWillMount() {
-    const root: INode = {
-      id: shortid.generate(),
-      items: this.props.data
-        ? this.props.data.map((_: INode, index: number) =>
-            this.generateIds(this.props.data[index])
-          )
-        : [],
-      name: 'root',
-      opened: true,
-      hidden: true,
-    }
+    this.setState({root: this.generateRootNode(this.props)})
+  }
 
-    this.setState({root})
+  public componentWillReceiveProps(nextProps: any) {
+    this.setState({root: this.generateRootNode(nextProps)})
   }
 
   public generateIds = (node?: INode) => {
@@ -141,5 +107,19 @@ export default class NestedListView extends React.PureComponent<
         renderNode={renderNode}
       />
     )
+  }
+
+  private generateRootNode = (props: any): INode => {
+    return {
+      id: shortid.generate(),
+      items: props.data
+        ? props.data.map((_: INode, index: number) =>
+            this.generateIds(props.data[index])
+          )
+        : [],
+      name: 'root',
+      opened: true,
+      hidden: true,
+    }
   }
 }

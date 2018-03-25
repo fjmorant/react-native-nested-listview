@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NestedListView renders with simple array 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "borderColor": "black",
+        "borderWidth": 1,
+        "height": 50,
+        "paddingLeft": 10,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Test
+  </Text>
+</View>
+`;

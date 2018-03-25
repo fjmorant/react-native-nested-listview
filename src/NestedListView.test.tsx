@@ -2,7 +2,8 @@ import * as React from 'react'
 import {Text, View} from 'react-native'
 // tslint:disable-next-line:no-implicit-dependencies
 import * as renderer from 'react-test-renderer'
-import NestedListView, {NestedRow} from './index'
+import NestedListView from './NestedListView'
+import NestedRow from './NestedRow'
 
 jest.mock('shortid', () => ({
   generate: () => '1',

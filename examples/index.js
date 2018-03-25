@@ -4,6 +4,7 @@ import CustomNodeExample from './CustomNodeExample'
 import StateChangeNodeExample from './StateChangeNodeExample'
 import ErrorMessageExample from './ErrorMessageExample'
 import NestedRowExample from './NestedRowExample'
+import DynamicContentExample from './DynamicContentExample'
 
 import HomeScreen from './HomeScreen'
 
@@ -15,6 +16,7 @@ const SimpleApp = StackNavigator({
   StateChangeNodeExample: {screen: StateChangeNodeExample},
   ErrorMessageExample: {screen: ErrorMessageExample},
   NestedRowExample: {screen: NestedRowExample},
+  DynamicContentExample: {screen: DynamicContentExample},
 })
 
 AppRegistry.registerComponent('example', () => SimpleApp)

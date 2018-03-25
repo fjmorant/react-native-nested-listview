@@ -19,6 +19,10 @@ const options = [
     screen: 'NestedRowExample',
     title: 'NestedRow',
   },
+  {
+    screen: 'DynamicContentExample',
+    title: 'Dynamic Content',
+  },
 ]
 
 export default class HomeScreen extends React.Component {
@@ -38,8 +42,7 @@ export default class HomeScreen extends React.Component {
               borderWidth: 1,
               borderColor: 'rgb(0, 0, 0)',
             }}
-            onPress={() => this.props.navigation.navigate(option.screen)}
-          >
+            onPress={() => this.props.navigation.navigate(option.screen)}>
             <Text style={{color: 'rgb(0, 0, 0)'}}>{option.title}</Text>
           </TouchableOpacity>
         ))}
