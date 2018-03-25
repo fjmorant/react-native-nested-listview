@@ -16,14 +16,11 @@
     "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
   },
   "dependencies": {
-    "codecov": "^3.0.0",
-    "react": "16.2.0",
-    "react-native": "0.52.0",
     "shortid": "^2.2.8"
   },
   "peerDependencies": {
     "react": "16.2.0",
-    "react-native": "~0.52.0"
+    "react-native": "~0.54.2"
   },
   "devDependencies": {
     "@types/jest": "^22.2.0",
