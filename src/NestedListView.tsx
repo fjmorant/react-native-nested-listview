@@ -1,5 +1,6 @@
 /* @flow */
 
+import isEqual from 'lodash.isequal'
 import * as React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 import * as shortid from 'shortid'
@@ -42,7 +43,9 @@ export default class NestedListView extends React.PureComponent<
   }
 
   public componentWillReceiveProps(nextProps: any) {
-    this.setState({root: this.generateRootNode(nextProps)})
+    if (!isEqual(this.props.data, nextProps.data)) {
+      this.setState({root: this.generateRootNode(nextProps)})
+    }
   }
 
   public generateIds = (node?: INode) => {
