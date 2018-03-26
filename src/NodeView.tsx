@@ -1,5 +1,6 @@
 /* @flow */
 
+import isEqual from 'lodash.isequal'
 import * as React from 'react'
 import {FlatList, TouchableWithoutFeedback, View} from 'react-native'
 
@@ -36,12 +37,14 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
   }
 
   public componentWillReceiveProps(nextProps: IProps) {
-    this.setState({
-      node: {
-        opened: false,
-        ...nextProps.node,
-      },
-    })
+    if (!isEqual(this.props.node, nextProps.node)) {
+      this.setState({
+        node: {
+          opened: false,
+          ...nextProps.node,
+        },
+      })
+    }
   }
 
   public onNodePressed = () => {
