@@ -2,3 +2,10 @@ examples
 flow-typed
 node_modules
 src
+.circleci
+.github
+coverage
+.babelrc
+.eslintcache
+.flowconfig
+.eslintignore
