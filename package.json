@@ -9,7 +9,7 @@
     "lint": "eslint --cache ./src",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p . --outDir dist/"
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "repository": {
     "type": "git",
