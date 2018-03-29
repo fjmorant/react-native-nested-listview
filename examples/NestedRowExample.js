@@ -80,8 +80,8 @@ export default class ExampleApp extends React.Component<Props, State> {
           renderNode={(node: Node, level: number) => (
             <NestedRow
               level={level}
-              style={{borderColor: 'black', borderWidth: 1}}
-            >
+              paddingLeftIncrement={20}
+              style={{borderColor: 'black', borderWidth: 1}}>
               <Text>{node.name}</Text>
             </NestedRow>
           )}

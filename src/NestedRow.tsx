@@ -14,12 +14,13 @@ export interface IProps {
   height?: number
   children: any
   level?: number
+  paddingLeftIncrement?: number,
   style?: any
 }
 
 export default class NestedRow extends React.PureComponent<IProps> {
   public render() {
-    const {height = 50, children, level = 0, style} = this.props
+    const {height = 50, children, level = 0, paddingLeftIncrement = 10, style} = this.props
 
     return (
       <View
@@ -28,7 +29,7 @@ export default class NestedRow extends React.PureComponent<IProps> {
           {
             ...style,
             height,
-            paddingLeft: level * 10,
+            paddingLeft: level * paddingLeftIncrement,
           },
         ]}>
         {children}
