@@ -54,9 +54,12 @@ export default class NestedListView extends React.PureComponent<
     }
 
     const childrenName: string = this.props.getChildrenName(node) || 'items'
-    const children = node[childrenName]
+    let children = node[childrenName]
 
     if (children) {
+      if (!Array.isArray(children)) {
+        children = Object.keys(children).map((key: string) => children[key])
+      }
       node[childrenName] = children.map((_: INode, index: number) =>
         this.generateIds(children[index])
       )

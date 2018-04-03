@@ -23,6 +23,10 @@ const options = [
     screen: 'DynamicContentExample',
     title: 'Dynamic Content',
   },
+  {
+    screen: 'ChildrenAsObjectExample',
+    title: 'Children as Object',
+  },
 ]
 
 export default class HomeScreen extends React.Component {

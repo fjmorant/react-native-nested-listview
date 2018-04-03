@@ -165,6 +165,111 @@ exports[`NestedListView renders with NestedRow 1`] = `
 </View>
 `;
 
+exports[`NestedListView renders with children as objects 1`] = `
+<View>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "children": Object {
+            "child1": Object {
+              "children": Object {
+                "child1": Object {
+                  "children": Object {},
+                  "name": "Sub Child 1",
+                },
+                "child2": Object {
+                  "children": Object {
+                    "children": Object {},
+                    "name": "Sample",
+                  },
+                  "name": "Sub Child 2",
+                },
+              },
+              "name": "Main Child 1",
+            },
+            "child2": Object {
+              "children": Object {
+                "child1": Object {
+                  "children": Object {},
+                  "name": "Sub Child 1",
+                },
+                "child2": Object {
+                  "children": Object {},
+                  "name": "Sub Child 2",
+                },
+              },
+              "name": "Main Child 2",
+            },
+          },
+          "id": "1",
+          "name": "Main Parent",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    invertStickyHeaders={undefined}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={undefined}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={undefined}
+            testID={undefined}
+          >
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+              >
+                Main Parent
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
 exports[`NestedListView renders with nested arrays 1`] = `
 <View>
   <RCTScrollView
