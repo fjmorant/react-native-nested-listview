@@ -118,8 +118,10 @@ describe('NestedListView', () => {
               child2: {
                 name: 'Sub Child 2',
                 children: {
-                  name: 'Sample',
-                  children: {},
+                  subChild1: {
+                    name: 'Sample',
+                    children: {},
+                  },
                 },
               },
             },
@@ -143,12 +145,7 @@ describe('NestedListView', () => {
     const nestedListView = renderer
       .create(
         <NestedListView
-          getChildrenName={(node: any) => {
-            if (node.title === 'child2') {
-              return 'children'
-            }
-            return 'items'
-          }}
+          getChildrenName={(node: any) => 'children'}
           renderNode={renderNode}
           data={data}
         />

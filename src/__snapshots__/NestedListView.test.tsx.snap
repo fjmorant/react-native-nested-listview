@@ -171,37 +171,46 @@ exports[`NestedListView renders with children as objects 1`] = `
     data={
       Array [
         Object {
-          "children": Object {
-            "child1": Object {
-              "children": Object {
-                "child1": Object {
-                  "children": Object {},
+          "children": Array [
+            Object {
+              "children": Array [
+                Object {
+                  "children": Array [],
+                  "id": "1",
                   "name": "Sub Child 1",
                 },
-                "child2": Object {
-                  "children": Object {
-                    "children": Object {},
-                    "name": "Sample",
-                  },
+                Object {
+                  "children": Array [
+                    Object {
+                      "children": Array [],
+                      "id": "1",
+                      "name": "Sample",
+                    },
+                  ],
+                  "id": "1",
                   "name": "Sub Child 2",
                 },
-              },
+              ],
+              "id": "1",
               "name": "Main Child 1",
             },
-            "child2": Object {
-              "children": Object {
-                "child1": Object {
-                  "children": Object {},
+            Object {
+              "children": Array [
+                Object {
+                  "children": Array [],
+                  "id": "1",
                   "name": "Sub Child 1",
                 },
-                "child2": Object {
-                  "children": Object {},
+                Object {
+                  "children": Array [],
+                  "id": "1",
                   "name": "Sub Child 2",
                 },
-              },
+              ],
+              "id": "1",
               "name": "Main Child 2",
             },
-          },
+          ],
           "id": "1",
           "name": "Main Parent",
         },

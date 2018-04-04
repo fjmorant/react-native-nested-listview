@@ -25,8 +25,10 @@ const data = [
           child2: {
             name: 'Sub Child 2',
             children: {
-              name: 'Sample',
-              children: {},
+              subChild: {
+                name: 'Sample',
+                children: {},
+              },
             },
           },
         },
