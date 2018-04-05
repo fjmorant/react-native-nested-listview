@@ -103,6 +103,57 @@ describe('NestedListView', () => {
     expect(nestedListView).toMatchSnapshot()
   })
 
+  test('renders with children as objects', () => {
+    const data = [
+      {
+        name: 'Main Parent',
+        children: {
+          child1: {
+            name: 'Main Child 1',
+            children: {
+              child1: {
+                name: 'Sub Child 1',
+                children: {},
+              },
+              child2: {
+                name: 'Sub Child 2',
+                children: {
+                  subChild1: {
+                    name: 'Sample',
+                    children: {},
+                  },
+                },
+              },
+            },
+          },
+          child2: {
+            name: 'Main Child 2',
+            children: {
+              child1: {
+                name: 'Sub Child 1',
+                children: {},
+              },
+              child2: {
+                name: 'Sub Child 2',
+                children: {},
+              },
+            },
+          },
+        },
+      },
+    ]
+    const nestedListView = renderer
+      .create(
+        <NestedListView
+          getChildrenName={(node: any) => 'children'}
+          renderNode={renderNode}
+          data={data}
+        />
+      )
+      .toJSON()
+    expect(nestedListView).toMatchSnapshot()
+  })
+
   test('renders with onNodePressed', () => {
     const data = [{title: 'child1'}, {title: 'child2'}, {title: 'child3'}]
     const nestedListView = renderer
