@@ -51,6 +51,28 @@ describe('NestedListView', () => {
     expect(nestedListView).toMatchSnapshot()
   })
 
+  test('renders with custom id', () => {
+    const data = [
+      {
+        title: 'child1',
+        items: [{name: 'subchild 1.1'}, {name: 'subchild 1.2'}],
+      },
+      {title: 'child2', items: [{key: 'subchild 2.1'}]},
+      {title: 'child3'},
+    ]
+    const nestedListView = renderer
+      .create(
+        <NestedListView
+          getChildrenName={() => 'items'}
+          getNodeIdName={() => 'nodeId'}
+          renderNode={renderNode}
+          data={data}
+        />
+      )
+      .toJSON()
+    expect(nestedListView).toMatchSnapshot()
+  })
+
   test('renders with nested arrays and children with different name', () => {
     const data = [
       {

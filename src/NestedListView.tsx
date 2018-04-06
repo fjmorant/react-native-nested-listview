@@ -27,6 +27,7 @@ export interface IProps {
   renderNode: (elem: any, level?: number) => any
   onNodePressed?: () => any
   getChildrenName: (elem: any) => any
+  getNodeIdName?: (elem: any) => any
   style?: any
 }
 
@@ -65,7 +66,10 @@ export default class NestedListView extends React.PureComponent<
       )
     }
 
-    node.id = shortid.generate()
+    const idName = this.props.getNodeIdName
+      ? this.props.getNodeIdName(node) || 'id'
+      : 'id'
+    node[idName] = shortid.generate()
 
     return node
   }
