@@ -6,15 +6,15 @@ exports[`NestedListView renders with NestedRow 1`] = `
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child1",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
@@ -171,47 +171,47 @@ exports[`NestedListView renders with children as objects 1`] = `
     data={
       Array [
         Object {
+          "_internalId": "1",
           "children": Array [
             Object {
+              "_internalId": "1",
               "children": Array [
                 Object {
+                  "_internalId": "1",
                   "children": Array [],
-                  "id": "1",
                   "name": "Sub Child 1",
                 },
                 Object {
+                  "_internalId": "1",
                   "children": Array [
                     Object {
+                      "_internalId": "1",
                       "children": Array [],
-                      "id": "1",
                       "name": "Sample",
                     },
                   ],
-                  "id": "1",
                   "name": "Sub Child 2",
                 },
               ],
-              "id": "1",
               "name": "Main Child 1",
             },
             Object {
+              "_internalId": "1",
               "children": Array [
                 Object {
+                  "_internalId": "1",
                   "children": Array [],
-                  "id": "1",
                   "name": "Sub Child 1",
                 },
                 Object {
+                  "_internalId": "1",
                   "children": Array [],
-                  "id": "1",
                   "name": "Sub Child 2",
                 },
               ],
-              "id": "1",
               "name": "Main Child 2",
             },
           ],
-          "id": "1",
           "name": "Main Parent",
         },
       ]
@@ -285,31 +285,36 @@ exports[`NestedListView renders with custom id 1`] = `
     data={
       Array [
         Object {
+          "_internalId": "1",
+          "id": "1",
           "items": Array [
             Object {
+              "_internalId": "1",
+              "id": "2",
               "name": "subchild 1.1",
-              "nodeId": "1",
             },
             Object {
+              "_internalId": "1",
+              "id": "3",
               "name": "subchild 1.2",
-              "nodeId": "1",
             },
           ],
-          "nodeId": "1",
           "title": "child1",
         },
         Object {
+          "_internalId": "1",
+          "id": "4",
           "items": Array [
             Object {
-              "key": "subchild 2.1",
-              "nodeId": "1",
+              "_internalId": "1",
+              "id": "subchild 2.1",
             },
           ],
-          "nodeId": "1",
           "title": "child2",
         },
         Object {
-          "nodeId": "1",
+          "_internalId": "1",
+          "id": "5",
           "title": "child3",
         },
       ]
@@ -445,31 +450,31 @@ exports[`NestedListView renders with nested arrays 1`] = `
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "items": Array [
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.1",
             },
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.2",
             },
           ],
           "title": "child1",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "items": Array [
             Object {
-              "id": "1",
+              "_internalId": "1",
               "key": "subchild 2.1",
             },
           ],
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
@@ -605,31 +610,31 @@ exports[`NestedListView renders with nested arrays and children with different n
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "items": Array [
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.1",
             },
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.2",
             },
           ],
           "title": "child1",
         },
         Object {
+          "_internalId": "1",
           "descendants": Array [
             Object {
-              "id": "1",
+              "_internalId": "1",
               "key": "subchild 2.1",
             },
           ],
-          "id": "1",
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
@@ -765,30 +770,30 @@ exports[`NestedListView renders with nested arrays and children with different t
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "items": Array [
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.1",
             },
             Object {
-              "id": "1",
+              "_internalId": "1",
               "name": "subchild 1.2",
             },
           ],
           "title": "child1",
         },
         Object {
+          "_internalId": "1",
           "descendants": Array [
             Object {
               "key": "subchild 2.1",
             },
           ],
-          "id": "1",
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
@@ -924,15 +929,15 @@ exports[`NestedListView renders with onNodePressed 1`] = `
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child1",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
@@ -1068,15 +1073,15 @@ exports[`NestedListView renders with simple array 1`] = `
     data={
       Array [
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child1",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child2",
         },
         Object {
-          "id": "1",
+          "_internalId": "1",
           "title": "child3",
         },
       ]
