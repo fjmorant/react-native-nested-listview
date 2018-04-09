@@ -5,7 +5,7 @@ import * as React from 'react'
 import {FlatList, TouchableWithoutFeedback, View} from 'react-native'
 
 export interface INode {
-  id: string
+  _internalId: string
   hidden: boolean
   opened: boolean
   [key: string]: any
@@ -92,7 +92,7 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
           <FlatList
             data={rootChildren}
             renderItem={this.renderItem}
-            keyExtractor={(item: INode) => item.id}
+            keyExtractor={(item: INode) => item._internalId}
           />
         ) : null}
       </View>

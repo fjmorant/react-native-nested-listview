@@ -65,7 +65,7 @@ export default class NestedListView extends React.PureComponent<
       )
     }
 
-    node.id = shortid.generate()
+    node._internalId = shortid.generate()
 
     return node
   }
@@ -117,7 +117,7 @@ export default class NestedListView extends React.PureComponent<
 
   private generateRootNode = (props: any): INode => {
     return {
-      id: shortid.generate(),
+      _internalId: shortid.generate(),
       items: props.data
         ? props.data.map((_: INode, index: number) =>
             this.generateIds(props.data[index])

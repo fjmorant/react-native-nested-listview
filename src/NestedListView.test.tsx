@@ -50,7 +50,6 @@ describe('NestedListView', () => {
       .toJSON()
     expect(nestedListView).toMatchSnapshot()
   })
-
   test('renders with nested arrays and children with different name', () => {
     const data = [
       {
