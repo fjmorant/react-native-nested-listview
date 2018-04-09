@@ -27,7 +27,6 @@ export interface IProps {
   renderNode: (elem: any, level?: number) => any
   onNodePressed?: () => any
   getChildrenName: (elem: any) => any
-  getNodeIdName?: (elem: any) => any
   style?: any
 }
 
