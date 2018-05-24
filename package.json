@@ -31,7 +31,7 @@
     "@types/react-test-renderer": "^16.0.1",
     "@types/shortid": "^0.0.29",
     "babel-eslint": "^8.0.1",
-    "babel-jest": "^22.4.1",
+    "babel-jest": "^23.0.0",
     "babel-preset-react-native": "^4.0.0",
     "eslint": "^4.9.0",
     "eslint-plugin-flowtype": "^2.36.0",
