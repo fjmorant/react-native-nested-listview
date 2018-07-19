@@ -20,6 +20,10 @@ const options = [
     title: 'NestedRow',
   },
   {
+    screen: 'ExtraDataExample',
+    title: 'ExtraDataExample',
+  },
+  {
     screen: 'DynamicContentExample',
     title: 'Dynamic Content',
   },

@@ -6,6 +6,7 @@ import ErrorMessageExample from './ErrorMessageExample'
 import NestedRowExample from './NestedRowExample'
 import DynamicContentExample from './DynamicContentExample'
 import ChildrenAsObjectExample from './ChildrenAsObjectExample'
+import ExtraDataExample from './ExtraDataExample'
 
 import HomeScreen from './HomeScreen'
 
@@ -17,6 +18,7 @@ const SimpleApp = StackNavigator({
   StateChangeNodeExample: {screen: StateChangeNodeExample},
   ErrorMessageExample: {screen: ErrorMessageExample},
   NestedRowExample: {screen: NestedRowExample},
+  ExtraDataExample: {screen: ExtraDataExample},
   DynamicContentExample: {screen: DynamicContentExample},
   ChildrenAsObjectExample: {screen: ChildrenAsObjectExample},
 })
