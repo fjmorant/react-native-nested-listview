@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
 export interface IProps {
   data: any
+  extraData?: any
   renderNode: (elem: any, level?: number) => any
   onNodePressed?: () => any
   getChildrenName: (elem: any) => any
@@ -111,6 +112,7 @@ export default class NestedListView extends React.PureComponent<
         generateIds={this.generateIds}
         level={0}
         renderNode={renderNode}
+        extraData={this.props.extraData}
       />
     )
   }

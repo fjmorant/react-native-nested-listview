@@ -20,6 +20,7 @@ exports[`NestedListView renders with NestedRow 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -217,6 +218,7 @@ exports[`NestedListView renders with children as objects 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -315,6 +317,7 @@ exports[`NestedListView renders with nested arrays 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -475,6 +478,7 @@ exports[`NestedListView renders with nested arrays and children with different n
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -634,6 +638,7 @@ exports[`NestedListView renders with nested arrays and children with different t
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -778,6 +783,7 @@ exports[`NestedListView renders with onNodePressed 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -922,6 +928,7 @@ exports[`NestedListView renders with simple array 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={undefined}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}

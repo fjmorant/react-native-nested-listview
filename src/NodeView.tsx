@@ -20,10 +20,12 @@ export interface IProps {
   onNodePressed?: (item: any) => any
   renderNode: (item: any, level: number) => any
   renderChildrenNode?: (item: any) => any
+  extraData?: any
 }
 
 export interface IState {
   node: INode
+  extraData?: any
 }
 
 export default class NodeView extends React.PureComponent<IProps, IState> {
@@ -66,6 +68,7 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
         getChildrenName={this.props.getChildrenName}
         node={item}
         level={level + 1}
+        extraData={this.props.extraData}
         onNodePressed={this.props.onNodePressed}
         renderNode={this.props.renderNode}
       />
@@ -92,6 +95,7 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
           <FlatList
             data={rootChildren}
             renderItem={this.renderItem}
+            extraData={this.props.extraData}
             keyExtractor={(item: INode) => item._internalId}
           />
         ) : null}
