@@ -58,6 +58,7 @@ Prop | Description | Type | Default
 **`renderNode`** | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level}` (see [Usage](#usage)) and must return a React element. | Function | **Required**
 **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items** | Function | **items**
 **`onNodePressed`** | Function called when a node is pressed by a user | Function | Not required
+**`extraData`** | A marker property for telling the list to re-render | Object or Array | Not required
 
 ### NestedRow
 
