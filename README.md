@@ -29,7 +29,7 @@ yarn add react-native-nested-listview
 ```
 
 ```javascript
-import NestedListview, {NestedRow} from 'react-native-nested-listview'
+import NestedListView, {NestedRow} from 'react-native-nested-listview'
 
 const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}]}]
 
