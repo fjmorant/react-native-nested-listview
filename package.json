@@ -6,7 +6,6 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest -u && codecov",
-    "lint": "eslint --cache ./src",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
@@ -33,10 +32,6 @@
     "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
     "babel-preset-react-native": "4.0.1",
-    "eslint": "6.1.0",
-    "eslint-plugin-flowtype": "3.12.2",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-native": "3.7.0",
     "flow-bin": "0.104.0",
     "istanbul": "0.4.5",
     "istanbul-api": "2.1.6",

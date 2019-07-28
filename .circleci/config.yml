@@ -10,7 +10,6 @@ jobs:
       - run: yarn add react@16.2.0
       - run: yarn add react-native@0.54.2
       - run: yarn add codecov
-      - run: yarn lint
       - run: yarn tslint
       - run: yarn type-check
       - run: yarn test
