@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "lodash.isequal": "4.5.0",
-    "shortid": "2.2.14",
+    "shortid": "2.2.14"
+  },
+  "peerDependencies": {
     "react": "16.8.6",
-    "react-native": "0.60.4"
+    "react-native": "~0.60.4"
   },
   "devDependencies": {
     "@types/lodash.isequal": "4.5.5",
