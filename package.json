@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "jest -u && codecov",
+    "test": "jest",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
@@ -15,23 +15,22 @@
     "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
   },
   "dependencies": {
-    "@types/lodash.isequal": "4.5.5",
     "lodash.isequal": "4.5.0",
-    "shortid": "2.2.14"
-  },
-  "peerDependencies": {
-    "react": "16.2.0",
-    "react-native": "~0.54.2"
+    "shortid": "2.2.14",
+    "react": "16.8.6",
+    "react-native": "0.60.4"
   },
   "devDependencies": {
+    "@types/lodash.isequal": "4.5.5",
     "@types/jest": "24.0.15",
     "@types/react": "16.0.40",
     "@types/react-native": "0.55.0",
     "@types/react-test-renderer": "16.8.3",
     "@types/shortid": "0.0.29",
-    "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
-    "babel-preset-react-native": "4.0.1",
+    "@babel/core": "7.5.5",
+    "@babel/runtime": "7.5.5",
+    "metro-react-native-babel-preset": "0.55.0",
     "flow-bin": "0.104.0",
     "istanbul": "0.4.5",
     "istanbul-api": "2.1.6",
@@ -85,7 +84,7 @@
     "collectCoverage": true,
     "globals": {
       "ts-jest": {
-        "useBabelrc": true
+        "babelConfig": true
       }
     }
   }
