@@ -3,28 +3,29 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "eslint --cache .",
-    "flow": "flow",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
     "postinstall": "rm -rf node_modules/react-native-nested-listview/{node_modules,examples}"
   },
   "dependencies": {
-    "react": "^16.3.0-alpha.1",
-    "react-native": "0.54.2",
+    "react": "16.8.6",
+    "react-native": "0.60.4",
     "react-native-nested-listview": "file:../",
     "react-navigation": "1.5.8",
-    "shortid": "^2.2.8"
+    "shortid": "2.2.8"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
-    "babel-preset-react-native": "^4.0.0",
-    "eslint": "^4.9.0",
-    "eslint-plugin-flowtype": "^2.39.1",
-    "eslint-plugin-react": "^7.4.0",
-    "eslint-plugin-react-native": "^3.1.0",
-    "flow-bin": "^0.55.0",
-    "prettier": "^1.7.4",
-    "prettier-eslint": "^8.2.1"
+    "@babel/core": "7.5.5",
+    "@babel/runtime": "7.5.5",
+    "@react-native-community/eslint-config": "0.0.5",
+    "babel-jest": "24.8.0",
+    "eslint": "6.1.0",
+    "jest": "24.8.0",
+    "metro-react-native-babel-preset": "0.55.0",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

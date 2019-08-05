@@ -1,16 +1,15 @@
 version: 2
 jobs:
-   build:
-     docker:
-       - image: circleci/node:8.8.1
-     working_directory: /home/circleci/rosetta
-     steps:
-       - checkout
-       - run: yarn install
-       - run: yarn add react@16.2.0
-       - run: yarn add react-native@0.54.2
-       - run: yarn add codecov
-       - run: yarn lint
-       - run: yarn tslint
-       - run: yarn type-check
-       - run: yarn test
+  build:
+    docker:
+      - image: circleci/node:12.7.0
+    working_directory: /home/circleci/rosetta
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn add react@16.8.6
+      - run: yarn add react-native@0.60.4
+      - run: yarn add codecov
+      - run: yarn tslint
+      - run: yarn type-check
+      - run: yarn test

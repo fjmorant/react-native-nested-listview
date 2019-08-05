@@ -17,11 +17,7 @@ exports[`NestedListView renders with simple array 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     Test
   </Text>
 </View>
