@@ -68,7 +68,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | **`level`**    | Level where a given node is | number    | **Required** |
 | **`style`**    | NestedRow container style   | Style     | Not required |
 
-## Example
+## Examples
 
 You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples).
 
