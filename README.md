@@ -1,6 +1,5 @@
 # react-native-nested-listview
 
-
 UI component for React Native that allows to create a listview with N levels of nesting
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square)
@@ -18,6 +17,7 @@ UI component for React Native that allows to create a listview with N levels of 
 1. [Roadmap](#roadmap)
 
 ## Show
+
 ![react-native-nested-listview](https://i.imgur.com/Y3VFTry.gif)
 ![react-native-nested-listview](https://i.imgur.com/nJvl0ZT.gif)
 
@@ -51,29 +51,29 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ### NestedListView
 
-Prop | Description | Type | Default
------- | ------ | ------ | ------
-**`data`** | Array of nested items | Array | **Required**
-**`renderNode`** | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level}` (see [Usage](#usage)) and must return a React element. | Function | **Required**
-**`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items** | Function | **items**
-**`onNodePressed`** | Function called when a node is pressed by a user | Function | Not required
-**`extraData`** | A marker property for telling the list to re-render | Object or Array | Not required
+| Prop                  | Description                                                                                                                                                 | Type            | Default      |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------------ |
+| **`data`**            | Array of nested items                                                                                                                                       | Array           | **Required** |
+| **`renderNode`**      | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level}` (see [Usage](#usage)) and must return a React element. | Function        | **Required** |
+| **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                        | Function        | **items**    |
+| **`onNodePressed`**   | Function called when a node is pressed by a user                                                                                                            | Function        | Not required |
+| **`extraData`**       | A marker property for telling the list to re-render                                                                                                         | Object or Array | Not required |
 
 ### NestedRow
 
-Prop | Description | Type | Default
------- | ------ | ------ | ------
-**`height`** | Height of the row | number | 50
-**`children`** | Content of the NestedRow | Component | **Required**
-**`level`** | Level where a given node is | number | **Required**
-**`style`** | NestedRow container style | Style | Not required
+| Prop           | Description                 | Type      | Default      |
+| -------------- | --------------------------- | --------- | ------------ |
+| **`height`**   | Height of the row           | number    | 50           |
+| **`children`** | Content of the NestedRow    | Component | **Required** |
+| **`level`**    | Level where a given node is | number    | **Required** |
+| **`style`**    | NestedRow container style   | Style     | Not required |
 
 ## Example
-You can find the following example in the [`/examples` folder](https://github.com/fjmorant/react-native-nested-listview/tree/master/example).
+
+You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples).
 
 ## Roadmap
 
- - Autoscrolling optionally
- - Expand/contract nodes programatically
- - Support animations
-
+- Autoscrolling optionally
+- Expand/contract nodes programatically
+- Support animations
