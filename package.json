@@ -5,10 +5,11 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "jest && codecov",
+    "test": "jest",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
+    "prepublishOnly": "tsc -p ./ --outDir dist/",
+    "add-react": "yarn add react@16.9.0 && yarn add react-native@0.60.5"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,9 @@
   },
   "dependencies": {
     "lodash.isequal": "4.5.0",
+    "react": "16.9.0",
+    "react-fast-compare": "^2.0.4",
+    "react-native": "0.60.5",
     "shortid": "2.2.14"
   },
   "peerDependencies": {
