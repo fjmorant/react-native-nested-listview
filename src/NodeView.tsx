@@ -1,8 +1,8 @@
 /* @flow */
 
 import * as React from 'react'
-import { FlatList, TouchableWithoutFeedback, View } from 'react-native'
 import isEqual from 'react-fast-compare'
+import { FlatList, TouchableWithoutFeedback, View } from 'react-native'
 
 export interface INode {
   _internalId: string
@@ -33,8 +33,8 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
     this.setState({
       node: {
         opened: false,
-        ...this.props.node
-      }
+        ...this.props.node,
+      },
     })
   }
 
@@ -43,8 +43,8 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
       this.setState({
         node: {
           opened: false,
-          ...nextProps.node
-        }
+          ...nextProps.node,
+        },
       })
     }
   }
@@ -53,8 +53,8 @@ export default class NodeView extends React.PureComponent<IProps, IState> {
     this.setState({
       node: {
         ...this.state.node,
-        opened: !this.state.node.opened
-      }
+        opened: !this.state.node.opened,
+      },
     })
 
     if (this.props.onNodePressed) {
