@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run: yarn add react@16.8.6
-      - run: yarn add react-native@0.60.4
+      - run: yarn add react@16.9.0
+      - run: yarn add react-native@0.60.5
       - run: yarn add codecov
       - run: yarn tslint
       - run: yarn type-check
