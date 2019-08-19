@@ -4,6 +4,8 @@ import * as React from 'react'
 import isEqual from 'react-fast-compare'
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native'
 
+const { useState, useEffect } = React
+
 export interface INode {
   _internalId: string
   hidden: boolean
@@ -26,80 +28,79 @@ export interface IProps {
 export interface IState {
   node: INode
   extraData?: any
+  opened: boolean
 }
 
-export default class NodeView extends React.PureComponent<IProps, IState> {
-  public componentWillMount() {
-    this.setState({
-      node: {
+const NodeView = React.memo(
+  ({
+    renderNode,
+    extraData,
+    level,
+    getChildrenName,
+    node,
+    onNodePressed,
+  }: IProps) => {
+    const [_node, setNode] = useState({
+      opened: false,
+      ...node,
+    })
+
+    useEffect(() => {
+      setNode({
+        ...node,
         opened: false,
-        ...this.props.node,
-      },
-    })
-  }
-
-  public componentWillReceiveProps(nextProps: IProps) {
-    if (!isEqual(this.props.node, nextProps.node)) {
-      this.setState({
-        node: {
-          opened: false,
-          ...nextProps.node,
-        },
       })
-    }
-  }
-
-  public onNodePressed = () => {
-    this.setState({
-      node: {
-        ...this.state.node,
-        opened: !this.state.node.opened,
-      },
     })
 
-    if (this.props.onNodePressed) {
-      this.props.onNodePressed(this.state.node)
+    const rootChildrenName = getChildrenName(_node)
+    const rootChildren = node[rootChildrenName]
+
+    const _onNodePressed = () => {
+      setNode({
+        ..._node,
+        opened: !_node.opened,
+      })
+
+      if (onNodePressed) {
+        onNodePressed(_node)
+      }
     }
-  }
 
-  public renderChildren = (item: INode, level: number): any => {
-    return (
-      <NodeView
-        getChildrenName={this.props.getChildrenName}
-        node={item}
-        level={level + 1}
-        extraData={this.props.extraData}
-        onNodePressed={this.props.onNodePressed}
-        renderNode={this.props.renderNode}
-      />
-    )
-  }
+    const renderChildren = (item: INode, _level: number): any => {
+      return (
+        <NodeView
+          getChildrenName={getChildrenName}
+          node={item}
+          level={_level + 1}
+          extraData={extraData}
+          onNodePressed={onNodePressed}
+          renderNode={renderNode}
+        />
+      )
+    }
 
-  public renderItem = ({ item }: { item: INode }) =>
-    this.renderChildren(item, this.props.level)
-
-  public render() {
-    const rootChildrenName = this.props.getChildrenName(this.state.node)
-    const rootChildren = this.state.node[rootChildrenName]
+    const renderItem = ({ item }: { item: INode }) =>
+      renderChildren(item, level)
 
     return (
-      <View>
-        {!this.state.node.hidden ? (
-          <TouchableWithoutFeedback onPress={this.onNodePressed}>
-            <View>
-              {this.props.renderNode(this.state.node, this.props.level)}
-            </View>
+      <>
+        {!_node.hidden ? (
+          <TouchableWithoutFeedback onPress={_onNodePressed}>
+            <View>{renderNode(_node, level)}</View>
           </TouchableWithoutFeedback>
         ) : null}
-        {this.state.node.opened && rootChildren ? (
+        {_node.opened && rootChildren ? (
           <FlatList
             data={rootChildren}
-            renderItem={this.renderItem}
-            extraData={this.props.extraData}
+            renderItem={renderItem}
+            extraData={extraData}
             keyExtractor={(item: INode) => item._internalId}
           />
         ) : null}
-      </View>
+      </>
     )
-  }
-}
+  },
+  isEqual
+)
+
+export default NodeView
