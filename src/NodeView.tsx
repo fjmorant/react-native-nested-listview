@@ -17,7 +17,7 @@ export interface IProps {
   getChildrenName: (item: INode) => any
   node: INode
   level: number
-  onNodePressed?: (item: any) => any
+  onNodePressed?: (node?: INode) => void
   renderNode: (item: any, level: number) => any
   renderChildrenNode?: (item: any) => any
   extraData?: any
