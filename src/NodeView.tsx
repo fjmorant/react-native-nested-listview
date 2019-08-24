@@ -38,16 +38,16 @@ const NodeView = ({
   onNodePressed
 }: IProps) => {
   const [_node, setNode]: [INode, any] = useState({
-    opened: false,
-    ...node
+    ...node,
+    opened: false
   });
 
   useEffect(() => {
     setNode({
       ...node,
-      opened: false
+      opened: _node.opened
     });
-  });
+  }, [node]);
 
   const _onNodePressed = () => {
     setNode({
@@ -79,7 +79,7 @@ const NodeView = ({
   const rootChildren = _node[rootChildrenName];
 
   return (
-    <View>
+    <>
       {!_node.hidden ? (
         <TouchableWithoutFeedback onPress={_onNodePressed}>
           <View>{renderNode(_node, level)}</View>
@@ -93,7 +93,7 @@ const NodeView = ({
           keyExtractor={(item: INode) => item._internalId}
         />
       ) : null}
-    </View>
+    </>
   );
 };
 
