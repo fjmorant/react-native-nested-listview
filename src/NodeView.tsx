@@ -38,8 +38,8 @@ const NodeView = ({
   onNodePressed
 }: IProps) => {
   const [_node, setNode]: [INode, any] = useState({
-    ...node,
-    opened: false
+    opened: false,
+    ...node
   });
 
   useEffect(() => {
