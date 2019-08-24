@@ -31,76 +31,72 @@ export interface IState {
   opened: boolean
 }
 
-const NodeView = React.memo(
-  ({
-    renderNode,
-    extraData,
-    level,
-    getChildrenName,
-    node,
-    onNodePressed,
-  }: IProps) => {
-    const [_node, setNode] = useState({
-      opened: false,
+const NodeView = ({
+  renderNode,
+  extraData,
+  level,
+  getChildrenName,
+  node,
+  onNodePressed,
+}: IProps) => {
+  const [_node, setNode] = useState({
+    opened: false,
+    ...node,
+  })
+
+  useEffect(() => {
+    setNode({
       ...node,
+      opened: false,
+    })
+  })
+
+  const _onNodePressed = () => {
+    setNode({
+      ..._node,
+      opened: !_node.opened,
     })
 
-    useEffect(() => {
-      setNode({
-        ...node,
-        opened: false,
-      })
-    })
-
-    const rootChildrenName = getChildrenName(_node)
-    const rootChildren = node[rootChildrenName]
-
-    const _onNodePressed = () => {
-      setNode({
-        ..._node,
-        opened: !_node.opened,
-      })
-
-      if (onNodePressed) {
-        onNodePressed(_node)
-      }
+    if (onNodePressed) {
+      onNodePressed(_node)
     }
+  }
 
-    const renderChildren = (item: INode, _level: number): any => {
-      return (
-        <NodeView
-          getChildrenName={getChildrenName}
-          node={item}
-          level={_level + 1}
-          extraData={extraData}
-          onNodePressed={onNodePressed}
-          renderNode={renderNode}
-        />
-      )
-    }
-
-    const renderItem = ({ item }: { item: INode }) =>
-      renderChildren(item, level)
-
+  const renderChildren = (item: INode, _level: number): any => {
     return (
-      <>
-        {!_node.hidden ? (
-          <TouchableWithoutFeedback onPress={_onNodePressed}>
-            <View>{renderNode(_node, level)}</View>
-          </TouchableWithoutFeedback>
-        ) : null}
-        {_node.opened && rootChildren ? (
-          <FlatList
-            data={rootChildren}
-            renderItem={renderItem}
-            extraData={extraData}
-            keyExtractor={(item: INode) => item._internalId}
-          />
-        ) : null}
-      </>
+      <NodeView
+        getChildrenName={getChildrenName}
+        node={item}
+        level={_level + 1}
+        extraData={extraData}
+        onNodePressed={onNodePressed}
+        renderNode={renderNode}
+      />
     )
-  },
-  isEqual
-)
+  }
+
+  const renderItem = ({ item }: { item: INode }) => renderChildren(item, level)
+
+  const rootChildrenName = getChildrenName(_node)
+  const rootChildren = _node[rootChildrenName]
+
+  return (
+    <View>
+      {!_node.hidden ? (
+        <TouchableWithoutFeedback onPress={_onNodePressed}>
+          <View>{renderNode(_node, level)}</View>
+        </TouchableWithoutFeedback>
+      ) : null}
+      {_node.opened && rootChildren ? (
+        <FlatList
+          data={rootChildren}
+          renderItem={renderItem}
+          extraData={extraData}
+          keyExtractor={(item: INode) => item._internalId}
+        />
+      ) : null}
+    </View>
+  )
+}
 
 export default NodeView
