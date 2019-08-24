@@ -39,7 +39,7 @@ const NodeView = ({
   node,
   onNodePressed,
 }: IProps) => {
-  const [_node, setNode] = useState({
+  const [_node, setNode]: [INode, any] = useState({
     opened: false,
     ...node,
   })
