@@ -1,34 +1,32 @@
 /* @flow */
 
-import * as React from 'react'
-import isEqual from 'react-fast-compare'
-import { FlatList, TouchableWithoutFeedback, View } from 'react-native'
-
-const { useState, useEffect } = React
+import React, { useState, useEffect } from "react";
+import isEqual from "react-fast-compare";
+import { FlatList, TouchableWithoutFeedback, View } from "react-native";
 
 export interface INode {
-  _internalId: string
-  hidden: boolean
-  opened: boolean
-  [key: string]: any
+  _internalId: string;
+  hidden: boolean;
+  opened: boolean;
+  [key: string]: any;
 }
 
 export interface IProps {
-  generateIds?: (node?: INode) => any
-  getChildren?: () => any
-  getChildrenName: (item: INode) => any
-  node: INode
-  level: number
-  onNodePressed?: (item: any) => any
-  renderNode: (item: any, level: number) => any
-  renderChildrenNode?: (item: any) => any
-  extraData?: any
+  generateIds?: (node?: INode) => any;
+  getChildren?: () => any;
+  getChildrenName: (item: INode) => any;
+  node: INode;
+  level: number;
+  onNodePressed?: (item: any) => any;
+  renderNode: (item: any, level: number) => any;
+  renderChildrenNode?: (item: any) => any;
+  extraData?: any;
 }
 
 export interface IState {
-  node: INode
-  extraData?: any
-  opened: boolean
+  node: INode;
+  extraData?: any;
+  opened: boolean;
 }
 
 const NodeView = ({
@@ -37,30 +35,30 @@ const NodeView = ({
   level,
   getChildrenName,
   node,
-  onNodePressed,
+  onNodePressed
 }: IProps) => {
   const [_node, setNode]: [INode, any] = useState({
     opened: false,
-    ...node,
-  })
+    ...node
+  });
 
   useEffect(() => {
     setNode({
       ...node,
-      opened: false,
-    })
-  })
+      opened: false
+    });
+  });
 
   const _onNodePressed = () => {
     setNode({
       ..._node,
-      opened: !_node.opened,
-    })
+      opened: !_node.opened
+    });
 
     if (onNodePressed) {
-      onNodePressed(_node)
+      onNodePressed(_node);
     }
-  }
+  };
 
   const renderChildren = (item: INode, _level: number): any => {
     return (
@@ -72,13 +70,13 @@ const NodeView = ({
         onNodePressed={onNodePressed}
         renderNode={renderNode}
       />
-    )
-  }
+    );
+  };
 
-  const renderItem = ({ item }: { item: INode }) => renderChildren(item, level)
+  const renderItem = ({ item }: { item: INode }) => renderChildren(item, level);
 
-  const rootChildrenName = getChildrenName(_node)
-  const rootChildren = _node[rootChildrenName]
+  const rootChildrenName = getChildrenName(_node);
+  const rootChildren = _node[rootChildrenName];
 
   return (
     <View>
@@ -96,7 +94,7 @@ const NodeView = ({
         />
       ) : null}
     </View>
-  )
-}
+  );
+};
 
-export default NodeView
+export default NodeView;
