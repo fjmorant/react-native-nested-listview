@@ -1,869 +1,817 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NestedListView renders with NestedRow 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "height": 50,
-                    "paddingLeft": 10,
-                  },
-                ]
-              }
-            />
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "height": 50,
-                    "paddingLeft": 10,
-                  },
-                ]
-              }
-            />
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "height": 50,
-                    "paddingLeft": 10,
-                  },
-                ]
-              }
-            />
-          </View>
-        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "justifyContent": "center",
+              },
+              Object {
+                "height": 50,
+                "paddingLeft": 10,
+              },
+            ]
+          }
+        />
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "justifyContent": "center",
+              },
+              Object {
+                "height": 50,
+                "paddingLeft": 10,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "justifyContent": "center",
+              },
+              Object {
+                "height": 50,
+                "paddingLeft": 10,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with children as objects 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "children": Array [
-            Object {
-              "_internalId": "1",
-              "children": Array [
-                Object {
-                  "_internalId": "1",
-                  "children": Array [],
-                  "name": "Sub Child 1",
-                },
-                Object {
-                  "_internalId": "1",
-                  "children": Array [
-                    Object {
-                      "_internalId": "1",
-                      "children": Array [],
-                      "name": "Sample",
-                    },
-                  ],
-                  "name": "Sub Child 2",
-                },
-              ],
-              "name": "Main Child 1",
-            },
-            Object {
-              "_internalId": "1",
-              "children": Array [
-                Object {
-                  "_internalId": "1",
-                  "children": Array [],
-                  "name": "Sub Child 1",
-                },
-                Object {
-                  "_internalId": "1",
-                  "children": Array [],
-                  "name": "Sub Child 2",
-                },
-              ],
-              "name": "Main Child 2",
-            },
-          ],
-          "name": "Main Parent",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "children": Array [
+          Object {
+            "_internalId": "1",
+            "children": Array [
+              Object {
+                "_internalId": "1",
+                "children": Array [],
+                "name": "Sub Child 1",
+              },
+              Object {
+                "_internalId": "1",
+                "children": Array [
+                  Object {
+                    "_internalId": "1",
+                    "children": Array [],
+                    "name": "Sample",
+                  },
+                ],
+                "name": "Sub Child 2",
+              },
+            ],
+            "name": "Main Child 1",
+          },
+          Object {
+            "_internalId": "1",
+            "children": Array [
+              Object {
+                "_internalId": "1",
+                "children": Array [],
+                "name": "Sub Child 1",
+              },
+              Object {
+                "_internalId": "1",
+                "children": Array [],
+                "name": "Sub Child 2",
+              },
+            ],
+            "name": "Main Child 2",
+          },
+        ],
+        "name": "Main Parent",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text>
-                Main Parent
-              </Text>
-            </View>
-          </View>
+          <Text>
+            Main Parent
+          </Text>
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with nested arrays 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "items": Array [
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.1",
-            },
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.2",
-            },
-          ],
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "items": Array [
-            Object {
-              "_internalId": "1",
-              "key": "subchild 2.1",
-            },
-          ],
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "items": Array [
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.1",
+          },
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.2",
+          },
+        ],
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "items": Array [
+          Object {
+            "_internalId": "1",
+            "key": "subchild 2.1",
+          },
+        ],
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
+          <Text />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with nested arrays and children with different name 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "items": Array [
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.1",
-            },
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.2",
-            },
-          ],
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "descendants": Array [
-            Object {
-              "_internalId": "1",
-              "key": "subchild 2.1",
-            },
-          ],
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "items": Array [
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.1",
+          },
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.2",
+          },
+        ],
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "descendants": Array [
+          Object {
+            "_internalId": "1",
+            "key": "subchild 2.1",
+          },
+        ],
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
+          <Text />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with nested arrays and children with different that does not exists 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "items": Array [
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.1",
-            },
-            Object {
-              "_internalId": "1",
-              "name": "subchild 1.2",
-            },
-          ],
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "descendants": Array [
-            Object {
-              "key": "subchild 2.1",
-            },
-          ],
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "items": Array [
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.1",
+          },
+          Object {
+            "_internalId": "1",
+            "name": "subchild 1.2",
+          },
+        ],
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "descendants": Array [
+          Object {
+            "key": "subchild 2.1",
+          },
+        ],
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
+          <Text />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with onNodePressed 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
+          <Text />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
 
 exports[`NestedListView renders with simple array 1`] = `
-<View>
-  <RCTScrollView
-    data={
-      Array [
-        Object {
-          "_internalId": "1",
-          "title": "child1",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child2",
-        },
-        Object {
-          "_internalId": "1",
-          "title": "child3",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View>
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+        "title": "child1",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child2",
+      },
+      Object {
+        "_internalId": "1",
+        "title": "child3",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
       >
         <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessible={true}
-            clickable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View>
-              <Text />
-            </View>
-          </View>
+          <Text />
         </View>
       </View>
     </View>
-  </RCTScrollView>
-</View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
 `;
