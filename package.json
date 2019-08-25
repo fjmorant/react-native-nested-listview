@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest && codecov",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./ --outDir dist/",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
   },
   "dependencies": {
-    "react-fast-compare": "^2.0.4",
+    "react-fast-compare": "2.0.4",
     "shortid": "2.2.14"
   },
   "peerDependencies": {
