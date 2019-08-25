@@ -38,6 +38,7 @@ const NodeView = React.memo(
     node,
     onNodePressed,
   }: IProps) => {
+    // tslint:disable-next-line:variable-name
     const [_node, setNode]: [INode, any] = useState({
       opened: false,
       ...node,
@@ -50,6 +51,7 @@ const NodeView = React.memo(
       })
     }, [node])
 
+    // tslint:disable-next-line:variable-name
     const _onNodePressed = () => {
       setNode({
         ..._node,
@@ -61,6 +63,7 @@ const NodeView = React.memo(
       }
     }
 
+    // tslint:disable-next-line:variable-name
     const renderChildren = (item: INode, _level: number): any => {
       return (
         <NodeView

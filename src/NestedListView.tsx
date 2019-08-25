@@ -72,6 +72,7 @@ const NestedListView = React.memo(
         hidden: true,
       }
     }
+    // tslint:disable-next-line:variable-name
     const [_root, setRoot]: [INode, (_root: INode) => void] = useState(
       generateRootNode({ getChildrenName, renderNode, data, onNodePressed })
     )
@@ -87,7 +88,7 @@ const NestedListView = React.memo(
         })
       )
     }, [data, extraData, getChildrenName, renderNode, onNodePressed])
-
+    // tslint:disable-next-line:variable-name
     const _getChildrenName = (node: INode) => {
       if (node.name === 'root') {
         return 'items'

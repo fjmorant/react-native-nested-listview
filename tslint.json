@@ -4,7 +4,6 @@
     "object-literal-sort-keys": false,
     "quotemark": [true, "single", "jsx-double"],
     "semicolon": [true, "never"],
-    "variable-name": [true, "never"],
     "trailing-comma": [
       true,
       {
