@@ -1,93 +1,96 @@
 {
-  "name": "react-native-nested-listview",
-  "version": "0.7.1",
-  "description": "Nested Listview for React native",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "test": "jest && codecov",
-    "tslint": "tslint -p .",
-    "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
-  },
-  "dependencies": {
-    "lodash.isequal": "4.5.0",
-    "shortid": "2.2.14"
-  },
-  "peerDependencies": {
-    "react": "16.9.0",
-    "react-native": "~0.60.5"
-  },
-  "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@babel/runtime": "7.5.5",
-    "@types/jest": "24.0.17",
-    "@types/lodash.isequal": "4.5.5",
-    "@types/react": "16.9.2",
-    "@types/react-native": "0.60.6",
-    "@types/react-test-renderer": "16.9.0",
-    "@types/shortid": "0.0.29",
-    "babel-jest": "24.9.0",
-    "flow-bin": "0.105.2",
-    "istanbul": "0.4.5",
-    "istanbul-api": "2.1.6",
-    "istanbul-reports": "2.2.6",
-    "jest": "24.9.0",
-    "metro-react-native-babel-preset": "0.56.0",
-    "prettier": "1.18.2",
-    "prettier-eslint": "9.0.0",
-    "react-test-renderer": "16.9.0",
-    "ts-jest": "24.0.2",
-    "tslint": "5.18.0",
-    "typescript": "3.5.3"
-  },
-  "keywords": [
-    "react",
-    "native",
-    "list",
-    "nested"
-  ],
-  "author": "Javier Morant",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fjmorant/react-native-nested-listview/issues"
-  },
-  "homepage": "https://github.com/fjmorant/react-native-nested-listview#readme",
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    "name": "react-native-nested-listview",
+    "version": "0.7.1",
+    "description": "Nested Listview for React native",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "test": "jest && codecov",
+        "tslint": "tslint -p .",
+        "type-check": "tsc --noEmit",
+        "prepublishOnly": "tsc -p ./ --outDir dist/",
+        "add-react": "yarn add react@16.9.0 && yarn add react-native@0.60.5",
+        "remove-react": "yarn remove react && yarn remove react-native",
+        "prettier-check": "prettier --check 'src/**/*.{ts, tsx}'",
+        "prettier-format": "prettier --write 'src/**/*.{ts, tsx}'"
     },
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)|react-native|react-navigation|react-clone-referenced-element|mobx-react)"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
+    },
+    "dependencies": {
+        "react-fast-compare": "2.0.4",
+        "shortid": "2.2.14"
+    },
+    "peerDependencies": {
+        "react": "16.9.0",
+        "react-native": "~0.60.5"
+    },
+    "devDependencies": {
+        "@babel/core": "7.5.5",
+        "@babel/runtime": "7.5.5",
+        "@types/jest": "24.0.17",
+        "@types/react": "16.9.2",
+        "@types/react-native": "0.60.8",
+        "@types/react-test-renderer": "16.9.0",
+        "@types/shortid": "0.0.29",
+        "babel-jest": "24.9.0",
+        "flow-bin": "0.105.2",
+        "istanbul": "0.4.5",
+        "istanbul-api": "2.1.6",
+        "istanbul-reports": "2.2.6",
+        "jest": "24.9.0",
+        "metro-react-native-babel-preset": "0.56.0",
+        "prettier": "1.18.2",
+        "prettier-eslint": "9.0.0",
+        "react-test-renderer": "16.9.0",
+        "ts-jest": "24.0.2",
+        "tslint": "5.19.0",
+        "typescript": "3.5.3"
+    },
+    "keywords": [
+        "react",
+        "native",
+        "list",
+        "nested"
     ],
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/examples/"
-    ],
-    "testPathIgnorePatterns": [
-      "\\.snap$",
-      "<rootDir>/node_modules/",
-      "<rootDir>/examples/",
-      "<rootDir>/lib/",
-      "<rootDir>/dist/"
-    ],
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "globals": {
-      "ts-jest": {
-        "babelConfig": true
-      }
+    "author": "Javier Morant",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/fjmorant/react-native-nested-listview/issues"
+    },
+    "homepage": "https://github.com/fjmorant/react-native-nested-listview#readme",
+    "jest": {
+        "preset": "react-native",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+            "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+        },
+        "transformIgnorePatterns": [
+            "node_modules/(?!(jest-)|react-native|react-navigation|react-clone-referenced-element|mobx-react)"
+        ],
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "modulePathIgnorePatterns": [
+            "<rootDir>/examples/"
+        ],
+        "testPathIgnorePatterns": [
+            "\\.snap$",
+            "<rootDir>/node_modules/",
+            "<rootDir>/examples/",
+            "<rootDir>/lib/",
+            "<rootDir>/dist/"
+        ],
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true,
+        "globals": {
+            "ts-jest": {
+                "babelConfig": true
+            }
+        }
     }
-  }
 }
