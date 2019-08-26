@@ -3,6 +3,7 @@ flow-typed
 node_modules
 src
 .circleci
+.git
 .github
 coverage
 .babelrc
