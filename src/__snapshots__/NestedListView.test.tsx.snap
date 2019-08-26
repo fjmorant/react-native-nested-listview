@@ -1,5 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NestedListView renders empty data 1`] = `
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "_internalId": "1",
+      },
+      Object {
+        "_internalId": "1",
+      },
+      Object {
+        "_internalId": "1",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        clickable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View>
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
 exports[`NestedListView renders with NestedRow 1`] = `
 <RCTScrollView
   data={
@@ -814,4 +917,62 @@ exports[`NestedListView renders with simple array 1`] = `
     </View>
   </View>
 </RCTScrollView>
+`;
+
+exports[`NestedListView renders without data 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(237, 57, 40)",
+      "borderColor": "rgb(84, 85, 86)",
+      "borderWidth": 1,
+      "height": 60,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "rgb(255, 255, 255)",
+        "fontSize": 17,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    prop 
+    data
+     has not been passed
+  </Text>
+</View>
+`;
+
+exports[`NestedListView renders without renderNode 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(237, 57, 40)",
+      "borderColor": "rgb(84, 85, 86)",
+      "borderWidth": 1,
+      "height": 60,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "rgb(255, 255, 255)",
+        "fontSize": 17,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    prop 
+    renderNode
+     has not been passed
+  </Text>
+</View>
 `;

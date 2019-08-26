@@ -183,4 +183,47 @@ describe('NestedListView', () => {
             .toJSON()
         expect(nestedListView).toMatchSnapshot()
     })
+
+    test('renders without renderNode', () => {
+        const data = [{title: 'child1'}, {title: 'child2'}, {title: 'child3'}]
+        const nestedListView = renderer
+            .create(
+                <NestedListView
+                    getChildrenName={() => 'items'}
+                    // @ts-ignore
+                    renderNode={undefined}
+                    data={data}
+                />
+            )
+            .toJSON()
+        expect(nestedListView).toMatchSnapshot()
+    })
+
+    test('renders without data', () => {
+        const data = [{title: 'child1'}, {title: 'child2'}, {title: 'child3'}]
+        const nestedListView = renderer
+            .create(
+                <NestedListView
+                    getChildrenName={() => 'items'}
+                    renderNode={renderNode}
+                    data={null}
+                />
+            )
+            .toJSON()
+        expect(nestedListView).toMatchSnapshot()
+    })
+
+    test('renders empty data', () => {
+        const data = [null, null, null]
+        const nestedListView = renderer
+            .create(
+                <NestedListView
+                    getChildrenName={() => 'items'}
+                    renderNode={renderNode}
+                    data={data}
+                />
+            )
+            .toJSON()
+        expect(nestedListView).toMatchSnapshot()
+    })
 })
