@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 export interface IProps {
     data: any
     extraData?: any
-    renderNode: (elem: any, level?: number) => any
+    renderNode: (elem: INode, level?: number) => any
     onNodePressed?: (node?: INode) => void
     getChildrenName: (elem: any) => any
     style?: any
@@ -39,7 +39,9 @@ const NestedListView = React.memo(
     ({getChildrenName, renderNode, data, onNodePressed, extraData}: IProps) => {
         const generateIds = (node?: INode) => {
             if (!node) {
-                return
+                return {
+                    _internalId: shortid.generate(),
+                }
             }
 
             const childrenName: string = getChildrenName(node) || 'items'
@@ -112,10 +114,6 @@ const NestedListView = React.memo(
                     </Text>
                 </View>
             )
-        }
-
-        if (!getChildrenName) {
-            return renderErrorMessage('getChildrenName')
         }
 
         if (!renderNode) {

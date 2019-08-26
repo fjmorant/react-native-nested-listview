@@ -18,4 +18,31 @@ describe('NestedListView', () => {
             .toJSON()
         expect(nestedListView).toMatchSnapshot()
     })
+
+    test('renders with simple array without level', () => {
+        const nestedListView = renderer
+            .create(
+                <NestedRow style={{borderColor: 'black', borderWidth: 1}}>
+                    <Text>Test</Text>
+                </NestedRow>
+            )
+            .toJSON()
+        expect(nestedListView).toMatchSnapshot()
+    })
+
+    test('renders customised', () => {
+        const nestedListView = renderer
+            .create(
+                <NestedRow
+                    level={1}
+                    height={60}
+                    paddingLeftIncrement={15}
+                    style={{borderColor: 'black', borderWidth: 1}}
+                >
+                    <Text>Test</Text>
+                </NestedRow>
+            )
+            .toJSON()
+        expect(nestedListView).toMatchSnapshot()
+    })
 })

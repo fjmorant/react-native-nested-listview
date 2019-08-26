@@ -26,22 +26,20 @@ const NestedRow = React.memo(
         level = 0,
         paddingLeftIncrement = 10,
         style,
-    }: IProps) => {
-        return (
-            <View
-                style={[
-                    styles.nestedRow,
-                    {
-                        ...style,
-                        height,
-                        paddingLeft: level * paddingLeftIncrement,
-                    },
-                ]}
-            >
-                {children}
-            </View>
-        )
-    },
+    }: IProps) => (
+        <View
+            style={[
+                styles.nestedRow,
+                {
+                    ...style,
+                    height,
+                    paddingLeft: level * paddingLeftIncrement,
+                },
+            ]}
+        >
+            {children}
+        </View>
+    ),
     isEqual
 )
 

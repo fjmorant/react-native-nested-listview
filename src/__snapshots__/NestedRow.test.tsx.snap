@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NestedListView renders customised 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "borderColor": "black",
+        "borderWidth": 1,
+        "height": 60,
+        "paddingLeft": 15,
+      },
+    ]
+  }
+>
+  <Text>
+    Test
+  </Text>
+</View>
+`;
+
 exports[`NestedListView renders with simple array 1`] = `
 <View
   style={
@@ -13,6 +36,29 @@ exports[`NestedListView renders with simple array 1`] = `
         "borderWidth": 1,
         "height": 50,
         "paddingLeft": 10,
+      },
+    ]
+  }
+>
+  <Text>
+    Test
+  </Text>
+</View>
+`;
+
+exports[`NestedListView renders with simple array without level 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "borderColor": "black",
+        "borderWidth": 1,
+        "height": 50,
+        "paddingLeft": 0,
       },
     ]
   }
