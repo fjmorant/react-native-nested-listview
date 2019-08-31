@@ -7,13 +7,14 @@ UI component for React Native that allows to create a listview with N levels of 
 [![codecov](https://codecov.io/gh/fjmorant/react-native-nested-listview/branch/master/graph/badge.svg)](https://codecov.io/gh/fjmorant/react-native-nested-listview)
 [![npm](https://img.shields.io/npm/v/react-native-nested-listview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-nested-listview)
 [![github release](https://img.shields.io/github/release/fjmorant/react-native-nested-listview.svg?style=flat-square)](https://github.com/fjmorant/react-native-nested-listview/releases)
+[![CodeFactor](https://www.codefactor.io/repository/github/fjmorant/react-native-nested-listview/badge)](https://www.codefactor.io/repository/github/fjmorant/react-native-nested-listview)
 
 ## Table of contents
 
 1. [Show](#show)
 1. [Usage](#usage)
 1. [Props](#props)
-1. [Example](#example)
+1. [Examples](#examples)
 1. [Roadmap](#roadmap)
 
 ## Show
