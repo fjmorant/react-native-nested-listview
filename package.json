@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "react-fast-compare": "2.0.4",
-    "shortid": "2.2.14"
+    "shortid": "2.2.15"
   },
   "peerDependencies": {
     "react": "*",
