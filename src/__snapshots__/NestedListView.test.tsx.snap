@@ -45,7 +45,7 @@ exports[`NestedListView renders empty data 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -65,7 +65,7 @@ exports[`NestedListView renders empty data 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -85,7 +85,7 @@ exports[`NestedListView renders empty data 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -151,7 +151,7 @@ exports[`NestedListView renders with NestedRow 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -182,7 +182,7 @@ exports[`NestedListView renders with NestedRow 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -213,7 +213,7 @@ exports[`NestedListView renders with NestedRow 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -322,7 +322,7 @@ exports[`NestedListView renders with children as objects 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -406,7 +406,7 @@ exports[`NestedListView renders with nested arrays 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -426,7 +426,7 @@ exports[`NestedListView renders with nested arrays 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -446,7 +446,7 @@ exports[`NestedListView renders with nested arrays 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -528,7 +528,7 @@ exports[`NestedListView renders with nested arrays and children with different n
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -548,7 +548,7 @@ exports[`NestedListView renders with nested arrays and children with different n
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -568,7 +568,7 @@ exports[`NestedListView renders with nested arrays and children with different n
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -649,7 +649,7 @@ exports[`NestedListView renders with nested arrays and children with different t
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -669,7 +669,7 @@ exports[`NestedListView renders with nested arrays and children with different t
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -689,7 +689,7 @@ exports[`NestedListView renders with nested arrays and children with different t
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -755,7 +755,7 @@ exports[`NestedListView renders with onNodePressed 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -775,7 +775,7 @@ exports[`NestedListView renders with onNodePressed 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -795,7 +795,7 @@ exports[`NestedListView renders with onNodePressed 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -861,7 +861,7 @@ exports[`NestedListView renders with simple array 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -881,7 +881,7 @@ exports[`NestedListView renders with simple array 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -901,7 +901,7 @@ exports[`NestedListView renders with simple array 1`] = `
     >
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
