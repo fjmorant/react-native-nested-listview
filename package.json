@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "jest && codecov",
+    "test": "jest",
     "tslint": "tslint -p .",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./ --outDir dist/",
