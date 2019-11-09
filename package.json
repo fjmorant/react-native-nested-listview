@@ -47,7 +47,7 @@
     "react": "16.9.0",
     "react-native": "0.60.5",
     "react-test-renderer": "16.9.0",
-    "ts-jest": "24.0.2",
+    "ts-jest": "24.1.0",
     "tslint": "5.19.0",
     "typescript": "3.5.3"
   },
