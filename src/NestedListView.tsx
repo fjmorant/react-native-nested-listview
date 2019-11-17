@@ -37,7 +37,7 @@ export interface IState {
 
 const NestedListView = React.memo(
     ({getChildrenName, renderNode, data, onNodePressed, extraData}: IProps) => {
-        const generateIds = (node?: INode) => {
+        const generateIds = (node?: INode, oldNode?: INode) => {
             if (!node) {
                 return {
                     _internalId: shortid.generate(),
@@ -54,11 +54,15 @@ const NestedListView = React.memo(
                     )
                 }
                 node[childrenName] = children.map((_: INode, index: number) =>
-                    generateIds(children[index])
+                    generateIds(
+                        children[index],
+                        oldNode ? oldNode[index] : null
+                    )
                 )
             }
 
             node._internalId = shortid.generate()
+            node.opened = oldNode ? oldNode.opened : false
 
             return node
         }
@@ -68,7 +72,7 @@ const NestedListView = React.memo(
                 _internalId: shortid.generate(),
                 items: props.data
                     ? props.data.map((_: INode, index: number) =>
-                          generateIds(props.data[index])
+                          generateIds(props.data[index], _root.items[index])
                       )
                     : [],
                 name: 'root',
@@ -129,7 +133,6 @@ const NestedListView = React.memo(
                 getChildrenName={_getChildrenName}
                 node={_root}
                 onNodePressed={onNodePressed}
-                generateIds={generateIds}
                 level={0}
                 renderNode={renderNode}
                 extraData={extraData}

@@ -12,7 +12,6 @@ export interface INode {
 }
 
 export interface IProps {
-    generateIds?: (node?: INode) => any
     getChildren?: () => any
     getChildrenName: (item: INode) => any
     node: INode
