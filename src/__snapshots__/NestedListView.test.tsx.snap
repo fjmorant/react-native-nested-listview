@@ -168,9 +168,9 @@ exports[`NestedListView renders with NestedRow 1`] = `
                 "justifyContent": "center",
               },
               Object {
-                "height": 50,
                 "paddingLeft": 10,
               },
+              Object {},
             ]
           }
         />
@@ -199,9 +199,9 @@ exports[`NestedListView renders with NestedRow 1`] = `
                 "justifyContent": "center",
               },
               Object {
-                "height": 50,
                 "paddingLeft": 10,
               },
+              Object {},
             ]
           }
         />
@@ -230,9 +230,9 @@ exports[`NestedListView renders with NestedRow 1`] = `
                 "justifyContent": "center",
               },
               Object {
-                "height": 50,
                 "paddingLeft": 10,
               },
+              Object {},
             ]
           }
         />
