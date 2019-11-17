@@ -21,7 +21,7 @@ export interface IProps {
 
 const NestedRow = React.memo(
     ({
-        height = 50,
+        height,
         children,
         level = 0,
         paddingLeftIncrement = 10,
@@ -32,9 +32,9 @@ const NestedRow = React.memo(
                 styles.nestedRow,
                 {
                     ...style,
-                    height,
                     paddingLeft: level * paddingLeftIncrement,
                 },
+                height ? {height} : {},
             ]}
         >
             {children}

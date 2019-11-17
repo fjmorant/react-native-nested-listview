@@ -11,8 +11,10 @@ exports[`NestedListView renders customised 1`] = `
       Object {
         "borderColor": "black",
         "borderWidth": 1,
-        "height": 60,
         "paddingLeft": 15,
+      },
+      Object {
+        "height": 60,
       },
     ]
   }
@@ -34,9 +36,9 @@ exports[`NestedListView renders with simple array 1`] = `
       Object {
         "borderColor": "black",
         "borderWidth": 1,
-        "height": 50,
         "paddingLeft": 10,
       },
+      Object {},
     ]
   }
 >
@@ -57,9 +59,9 @@ exports[`NestedListView renders with simple array without level 1`] = `
       Object {
         "borderColor": "black",
         "borderWidth": 1,
-        "height": 50,
         "paddingLeft": 0,
       },
+      Object {},
     ]
   }
 >
