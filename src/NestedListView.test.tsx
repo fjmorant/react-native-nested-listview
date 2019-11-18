@@ -5,8 +5,9 @@ import * as renderer from 'react-test-renderer'
 import NestedListView from './NestedListView'
 import NestedRow from './NestedRow'
 
+let mockI = 0
 jest.mock('shortid', () => ({
-    generate: () => `${Math.random()}`,
+    generate: () => `${mockI++}`,
 }))
 
 const renderNode = (node: any) => (
