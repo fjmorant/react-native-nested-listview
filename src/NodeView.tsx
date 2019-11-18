@@ -15,6 +15,7 @@ export interface IProps {
     getChildren?: () => any
     getChildrenName: (item: INode) => any
     node: INode
+    oldNode: INode
     level: number
     onNodePressed?: (item: any) => any
     renderNode: (item: any, level: number) => any
@@ -35,18 +36,20 @@ const NodeView = React.memo(
         level,
         getChildrenName,
         node,
+        oldNode,
         onNodePressed,
     }: IProps) => {
         // tslint:disable-next-line:variable-name
         const [_node, setNode]: [INode, any] = useState({
             opened: false,
-            ...node,
+            ...oldNode,
         })
 
         useEffect(() => {
             setNode({
                 ...node,
-                opened: _node.opened,
+                oldItems: node.items,
+                opened: oldNode ? oldNode.opened : _node.opened,
             })
         }, [node])
 
@@ -62,12 +65,16 @@ const NodeView = React.memo(
             }
         }
 
-        // tslint:disable-next-line:variable-name
-        const renderChildren = (item: INode, _level: number): any => {
+        const renderChildren = (
+            item: INode,
+            oldItem: INode,
+            _level: number // tslint:disable-line:variable-name
+        ): any => {
             return (
                 <NodeView
                     getChildrenName={getChildrenName}
                     node={item}
+                    oldNode={oldItem}
                     level={_level + 1}
                     extraData={extraData}
                     onNodePressed={onNodePressed}
@@ -76,8 +83,8 @@ const NodeView = React.memo(
             )
         }
 
-        const renderItem = ({item}: {item: INode}) =>
-            renderChildren(item, level)
+        const renderItem = ({item, index}: {item: INode; index: number}) =>
+            renderChildren(item, _node.oldItems[index], level)
 
         const rootChildrenName = getChildrenName(_node)
         const rootChildren = _node[rootChildrenName]
