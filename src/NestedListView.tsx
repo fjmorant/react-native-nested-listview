@@ -72,7 +72,10 @@ const NestedListView = React.memo(
                 _internalId: shortid.generate(),
                 items: props.data
                     ? props.data.map((_: INode, index: number) =>
-                          generateIds(props.data[index], _root.items[index])
+                          generateIds(
+                              props.data[index],
+                              _root ? _root.items[index] : null
+                          )
                       )
                     : [],
                 name: 'root',

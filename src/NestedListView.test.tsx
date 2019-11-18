@@ -6,7 +6,7 @@ import NestedListView from './NestedListView'
 import NestedRow from './NestedRow'
 
 jest.mock('shortid', () => ({
-    generate: () => '1',
+    generate: () => `${Math.random()}`,
 }))
 
 const renderNode = (node: any) => (
