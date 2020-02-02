@@ -1,9 +1,8 @@
-/* @flow */
-
+import hashObjectGenerator from 'object-hash'
 import React, {useEffect, useState} from 'react'
 import isEqual from 'react-fast-compare'
 import {StyleSheet, Text, View} from 'react-native'
-import * as shortid from 'shortid'
+import shortid from 'shortid'
 import NodeView, {INode} from './NodeView'
 
 const styles = StyleSheet.create({
@@ -28,15 +27,23 @@ export interface IProps {
     renderNode: (elem: INode, level?: number) => any
     onNodePressed?: (node?: INode) => void
     getChildrenName: (elem: any) => any
-    style?: any
+    style?: StyleSheet
+    keepOpenedState?: boolean
 }
 
 export interface IState {
-    root: any
+    root: INode
 }
 
 const NestedListView = React.memo(
-    ({getChildrenName, renderNode, data, onNodePressed, extraData}: IProps) => {
+    ({
+        getChildrenName,
+        renderNode,
+        data,
+        onNodePressed,
+        extraData,
+        keepOpenedState,
+    }: IProps) => {
         const generateIds = (node?: INode) => {
             if (!node) {
                 return {
@@ -57,15 +64,21 @@ const NestedListView = React.memo(
                     generateIds(children[index])
                 )
             }
+            if (node._internalId) {
+                delete node._internalId
+            }
 
-            node._internalId = shortid.generate()
+            node._internalId = hashObjectGenerator(node, {
+                algorithm: 'md5',
+                encoding: 'base64',
+            })
 
             return node
         }
 
         const generateRootNode = (props: IProps): INode => {
             return {
-                _internalId: shortid.generate(),
+                _internalId: 'root',
                 items: props.data
                     ? props.data.map((_: INode, index: number) =>
                           generateIds(props.data[index])
@@ -133,6 +146,7 @@ const NestedListView = React.memo(
                 level={0}
                 renderNode={renderNode}
                 extraData={extraData}
+                keepOpenedState={keepOpenedState}
             />
         )
     },
