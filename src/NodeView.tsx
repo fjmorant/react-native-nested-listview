@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, {useEffect, useState} from 'react'
 import isEqual from 'react-fast-compare'
 import {FlatList, TouchableWithoutFeedback, View} from 'react-native'
@@ -29,6 +27,10 @@ export interface IState {
     opened: boolean
 }
 
+const nodeOpenState: any = {
+    root: true,
+}
+
 const NodeView = React.memo(
     ({
         renderNode,
@@ -40,8 +42,10 @@ const NodeView = React.memo(
     }: IProps) => {
         // tslint:disable-next-line:variable-name
         const [_node, setNode]: [INode, any] = useState({
-            opened: false,
             ...node,
+            opened: nodeOpenState[node._internalId]
+                ? nodeOpenState[node._internalId]
+                : false,
         })
 
         useEffect(() => {
@@ -53,6 +57,8 @@ const NodeView = React.memo(
 
         // tslint:disable-next-line:variable-name
         const _onNodePressed = () => {
+            nodeOpenState[_node._internalId] = !_node.opened
+
             setNode({
                 ..._node,
                 opened: !_node.opened,
@@ -90,7 +96,7 @@ const NodeView = React.memo(
                         <View>{renderNode(_node, level)}</View>
                     </TouchableWithoutFeedback>
                 ) : null}
-                {_node.opened && rootChildren ? (
+                {nodeOpenState[_node._internalId] && rootChildren ? (
                     <FlatList
                         data={rootChildren}
                         renderItem={renderItem}
