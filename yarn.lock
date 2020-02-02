@@ -1169,6 +1169,11 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
+"@types/use-global-hook@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@types/use-global-hook/-/use-global-hook-0.1.2.tgz#1608345dfec6863ad6b546d5501f42dd5dc843a0"
+  integrity sha512-9sw7j/OeU0GEyvdpzmzPW4WIhPEpeFuqCJ+C1YRbz6uHYyJ6ssydb3GO/d5Bqf8fn56AvmsBL42P1KhJbNTJ6w==
+
 "@types/yargs-parser@*":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-13.0.0.tgz#453743c5bbf9f1bed61d959baab5b06be029b2d0"
@@ -6726,6 +6731,11 @@ urlgrey@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/urlgrey/-/urlgrey-0.4.4.tgz#892fe95960805e85519f1cd4389f2cb4cbb7652f"
   integrity sha1-iS/pWWCAXoVRnxzUOJ8stMu3ZS8=
+
+use-global-hook@0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/use-global-hook/-/use-global-hook-0.1.12.tgz#3db747ca78e5bd1a007af176ad338f72293e730f"
+  integrity sha512-KhsWfDaa4jXgGHKDSxmBP0GjnIs5ad12y1vhl5mGBDcIiFfj3oB9vdfZZZCCPlZ14gI+tjCKZtb82+bPEwj3Iw==
 
 use@^3.1.0:
   version "3.1.0"

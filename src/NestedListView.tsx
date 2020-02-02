@@ -27,15 +27,23 @@ export interface IProps {
     renderNode: (elem: INode, level?: number) => any
     onNodePressed?: (node?: INode) => void
     getChildrenName: (elem: any) => any
-    style?: any
+    style?: StyleSheet
+    keepOpenedState?: boolean
 }
 
 export interface IState {
-    root: any
+    root: INode
 }
 
 const NestedListView = React.memo(
-    ({getChildrenName, renderNode, data, onNodePressed, extraData}: IProps) => {
+    ({
+        getChildrenName,
+        renderNode,
+        data,
+        onNodePressed,
+        extraData,
+        keepOpenedState,
+    }: IProps) => {
         const generateIds = (node?: INode) => {
             if (!node) {
                 return {
@@ -63,7 +71,7 @@ const NestedListView = React.memo(
             node._internalId = hashObjectGenerator(node, {
                 algorithm: 'md5',
                 encoding: 'base64',
-            }) // shortid.generate()
+            })
 
             return node
         }
@@ -138,6 +146,7 @@ const NestedListView = React.memo(
                 level={0}
                 renderNode={renderNode}
                 extraData={extraData}
+                keepOpenedState={keepOpenedState}
             />
         )
     },
