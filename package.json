@@ -45,7 +45,7 @@
         "istanbul-api": "2.1.6",
         "istanbul-reports": "3.0.0",
         "jest": "24.9.0",
-        "metro-react-native-babel-preset": "0.57.0",
+        "metro-react-native-babel-preset": "0.58.0",
         "prettier": "1.19.1",
         "prettier-eslint": "9.0.1",
         "react": "16.9.0",
