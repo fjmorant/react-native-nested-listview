@@ -40,7 +40,7 @@
         "@types/react-test-renderer": "16.9.1",
         "@types/shortid": "0.0.29",
         "babel-jest": "24.9.0",
-        "codecov": "3.6.1",
+        "codecov": "3.6.5",
         "istanbul": "0.4.5",
         "istanbul-api": "2.1.6",
         "istanbul-reports": "3.0.0",
