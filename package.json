@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "test-coverage": "jest && codecov",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "tsc -p ./ --outDir dist/",
     "add-react": "yarn add react@16.9.0 && yarn add react-native@0.61.4",
