@@ -1,6 +1,6 @@
-import NestedListView from './NestedListView'
-import NestedRow from './NestedRow'
+import { NestedListView } from './NestedListView';
+import { NestedRow } from './NestedRow';
 
-export {NestedRow}
+export { NestedRow };
 
-export default NestedListView
+export default NestedListView;
