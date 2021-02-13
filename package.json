@@ -13,7 +13,8 @@
     "add-react": "yarn add react@16.9.0 && yarn add react-native@0.61.4",
     "remove-react": "yarn remove react && yarn remove react-native",
     "prettier-check": "prettier --check 'src/**/*.{ts, tsx}'",
-    "prettier-format": "prettier --write 'src/**/*.{ts, tsx}'"
+    "prettier-format": "prettier --write 'src/**/*.{ts, tsx}'",
+    "check-all": "yarn lint && yarn type-check && yarn test"
   },
   "repository": {
     "type": "git",
