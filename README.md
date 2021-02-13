@@ -76,7 +76,7 @@ You can find examples [here](https://github.com/fjmorant/react-native-nested-lis
 
 | React Native | Library |
 | ------------ | ------- |
-| 0.63.2       | 0.9.0   |
+| 0.63.2       | 0.9.1   |
 
 ## Roadmap
 
