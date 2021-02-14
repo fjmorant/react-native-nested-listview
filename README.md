@@ -74,9 +74,9 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples).
 
-| React Native | Library |
-| ------------ | ------- |
-| 0.63.2       | 0.9.1   |
+| Version App  | React Native | Library |
+| ------------ | ------------ | ------- |
+| 1.0.0        | 0.63.2       | 0.9.2   |
 
 ## Roadmap
 
