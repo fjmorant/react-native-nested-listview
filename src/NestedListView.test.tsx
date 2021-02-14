@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import NestedListView, { NestedRow } from '.';
+import { Pressable, Text, View } from 'react-native';
+import NestedListView, { INode, NestedRow } from '.';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 
 let mockCounter = 0;
@@ -126,13 +126,13 @@ describe('NestedListView', () => {
 
     const { queryByText } = render(
       <NestedListView
-        getChildrenName={(node: any) => {
+        getChildrenName={(node: INode) => {
           if (node.title === 'child2') {
             return 'descendants';
           }
           return 'items';
         }}
-        renderNode={(node: any) => (
+        renderNode={(node: INode) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -168,13 +168,13 @@ describe('NestedListView', () => {
 
     const { queryByText } = render(
       <NestedListView
-        getChildrenName={(node: any) => {
+        getChildrenName={(node: INode) => {
           if (node.title === 'child2') {
             return 'children';
           }
           return 'items';
         }}
-        renderNode={(node: any) => (
+        renderNode={(node: INode) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -237,7 +237,7 @@ describe('NestedListView', () => {
     const { queryByText } = render(
       <NestedListView
         getChildrenName={() => 'children'}
-        renderNode={(node: any) => (
+        renderNode={(node: INode) => (
           <View>
             <Text>{node.name}</Text>
           </View>
@@ -277,7 +277,7 @@ describe('NestedListView', () => {
     const { queryByText } = render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
-        renderNode={(node: any) => (
+        renderNode={(node: INode) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -308,7 +308,7 @@ describe('NestedListView', () => {
     const { UNSAFE_queryAllByType } = render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
-        renderNode={(node: any, level?: number) => (
+        renderNode={(node: INode, level?: number) => (
           <NestedRow level={level}>{node.name}</NestedRow>
         )}
         data={data}
@@ -349,5 +349,37 @@ describe('NestedListView', () => {
 
     const component = queryByText('prop data has not been passed');
     expect(component).toBeDefined();
+  });
+
+  test('renders with isLast renderNode', async () => {
+    const data = [
+      {
+        title: 'child1',
+        items: [{ title: 'subchild 1.1' }, { title: 'subchild 1.2' }],
+      },
+    ];
+
+    const mockIsTheLast = jest.fn();
+
+    const { UNSAFE_getByType } = render(
+      <NestedListView
+        renderNode={(item: INode, level: number, isLastItem: boolean) => {
+          mockIsTheLast(isLastItem);
+
+          return <NestedRow level={level}>{item.title}</NestedRow>;
+        }}
+        data={data}
+      />,
+    );
+
+    await waitFor(() => {
+      const child1 = UNSAFE_getByType(Pressable);
+
+      if (child1) {
+        fireEvent.press(child1);
+      }
+
+      expect(mockIsTheLast).toHaveBeenLastCalledWith(true);
+    });
   });
 });

@@ -1,5 +1,5 @@
 import hashObjectGenerator from 'object-hash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { StyleSheet, Text, View } from 'react-native';
 import shortid from 'shortid';
@@ -24,9 +24,13 @@ const styles = StyleSheet.create({
 export interface IProps {
   data: any;
   extraData?: any;
-  renderNode: (elem: INode, level?: number) => any;
-  onNodePressed?: (node?: INode) => void;
-  getChildrenName?: (elem: any) => any;
+  renderNode: (
+    item: INode,
+    level: number,
+    isLastLevel: boolean,
+  ) => ReactElement;
+  onNodePressed?: (item: INode) => void;
+  getChildrenName?: (item: INode) => string;
   style?: StyleSheet;
   keepOpenedState?: boolean;
 }
@@ -34,6 +38,14 @@ export interface IProps {
 export interface IState {
   root: INode;
 }
+
+const defaultRootNode = {
+  _internalId: 'root',
+  items: [],
+  name: 'root',
+  opened: true,
+  hidden: true,
+} as INode;
 
 const NestedListView = React.memo(
   ({
@@ -100,12 +112,7 @@ const NestedListView = React.memo(
     );
 
     const [_root, setRoot]: [INode, (_root: INode) => void] = useState(
-      generateRootNode({
-        getChildrenName,
-        renderNode,
-        data,
-        onNodePressed,
-      }),
+      defaultRootNode,
     );
 
     useEffect(() => {
@@ -156,7 +163,6 @@ const NestedListView = React.memo(
         getChildrenName={_getChildrenName}
         node={_root}
         onNodePressed={onNodePressed}
-        generateIds={generateIds}
         level={0}
         renderNode={renderNode}
         extraData={extraData}

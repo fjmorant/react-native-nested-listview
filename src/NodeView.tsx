@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import isEqual from 'react-fast-compare';
-import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import globalHook from 'use-global-hook';
 
 export interface INode {
@@ -11,14 +11,16 @@ export interface INode {
 }
 
 export interface IProps {
-  generateIds?: (node?: INode) => any;
-  getChildren?: () => any;
-  getChildrenName: (item: INode) => any;
+  getChildrenName: (item: INode) => string;
   node: INode;
   level: number;
-  onNodePressed?: (item: any) => any;
-  renderNode: (item: any, level: number) => any;
-  renderChildrenNode?: (item: any) => any;
+  onNodePressed?: (item: INode) => void;
+  renderNode: (
+    item: INode,
+    level: number,
+    isLastLevel: boolean,
+  ) => ReactElement;
+  renderChildrenNode?: (item: INode) => ReactElement;
   extraData?: any;
   keepOpenedState?: boolean;
 }
@@ -57,13 +59,12 @@ const NodeView = React.memo(
   }: IProps) => {
     const [globalState, globalActions]: [any, any] = useGlobal();
 
-    // tslint:disable-next-line:variable-name
     const [_node, setNode]: [INode, any] = useState({
       ...node,
       opened:
         keepOpenedState && globalState.nodesState[node._internalId]
-          ? globalState.nodesState[node._internalId]
-          : node.opened,
+          ? !!globalState.nodesState[node._internalId]
+          : !!node.opened,
     });
 
     useEffect(() => {
@@ -73,7 +74,6 @@ const NodeView = React.memo(
       });
     }, [node, _node.opened]);
 
-    // tslint:disable-next-line:variable-name
     const _onNodePressed = () => {
       if (keepOpenedState) {
         globalActions.setOpenedNode({
@@ -92,9 +92,8 @@ const NodeView = React.memo(
       }
     };
 
-    // tslint:disable-next-line:variable-name
-    const renderChildren = (item: INode, _level: number): any => {
-      return (
+    const renderChildren = useCallback(
+      (item: INode, _level: number): ReactElement => (
         <NodeView
           getChildrenName={getChildrenName}
           node={item}
@@ -104,14 +103,17 @@ const NodeView = React.memo(
           renderNode={renderNode}
           keepOpenedState={keepOpenedState}
         />
-      );
-    };
+      ),
+      [extraData, getChildrenName, onNodePressed, renderNode, keepOpenedState],
+    );
 
-    const renderItem = ({ item }: { item: INode }) =>
-      renderChildren(item, level);
+    const renderItem = useCallback(
+      ({ item }: { item: INode }) => renderChildren(item, level),
+      [renderChildren, level],
+    );
 
-    const rootChildrenName = getChildrenName(_node);
-    const rootChildren = _node[rootChildrenName];
+    const nodeChildrenName = getChildrenName(_node);
+    const nodeChildren: [] = _node[nodeChildrenName];
 
     const isNodeOpened =
       (keepOpenedState && globalState.nodesState[node._internalId]) ||
@@ -120,13 +122,13 @@ const NodeView = React.memo(
     return (
       <>
         {!_node.hidden ? (
-          <TouchableWithoutFeedback onPress={_onNodePressed}>
-            <View>{renderNode(_node, level)}</View>
-          </TouchableWithoutFeedback>
+          <Pressable onPress={_onNodePressed}>
+            {renderNode(_node, level, !nodeChildren || !nodeChildren.length)}
+          </Pressable>
         ) : null}
-        {isNodeOpened && rootChildren ? (
+        {isNodeOpened && nodeChildren ? (
           <FlatList
-            data={rootChildren}
+            data={nodeChildren}
             renderItem={renderItem}
             extraData={extraData}
             keyExtractor={(item: INode) => item._internalId}
