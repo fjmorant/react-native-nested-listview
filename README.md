@@ -37,7 +37,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
   data={data}
   getChildrenName={(node) => 'items'}
   onNodePressed={(node) => alert('Selected node')}
-  renderNode={(node, level) => (
+  renderNode={(node, level, isLastLevel) => (
     <NestedRow
       level={level}
       style={styles.row}
@@ -52,14 +52,14 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ### NestedListView
 
-| Prop                  | Description                                                                                                                                                 | Type     | Default      |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------ |
-| **`data`**            | Array of nested items                                                                                                                                       | Array    | **Required** |
-| **`renderNode`**      | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level}` (see [Usage](#usage)) and must return a React element. | Function | **Required** |
-| **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                        | Function | **items**    |
-| **`onNodePressed`**   | Function called when a node is pressed by a user                                                                                                            | Function | Not required |
-| **`extraData`**       | A marker property for telling the list to re-render                                                                                                         | Boolean  | Not required |
-| **`keepOpenedState`** | Prop for keeping the opened state of each node when data passed to the list changes                                                                         | Boolean  | Not required |
+| Prop                  | Description                                                                                                                                                              | Type     | Default      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------ |
+| **`data`**            | Array of nested items                                                                                                                                                    | Array    | **Required** |
+| **`renderNode`**      | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. | Function | **Required** |
+| **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                                     | Function | **items**    |
+| **`onNodePressed`**   | Function called when a node is pressed by a user                                                                                                                         | Function | Not required |
+| **`extraData`**       | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
+| **`keepOpenedState`** | Prop for keeping the opened state of each node when data passed to the list changes                                                                                      | Boolean  | Not required |
 
 ### NestedRow
 
@@ -74,12 +74,12 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples).
 
-| Version App  | React Native | Library |
-| ------------ | ------------ | ------- |
-| 1.0.0        | 0.63.2       | 0.9.2   |
+| Version App | React Native | Library |
+| ----------- | ------------ | ------- |
+| 1.0.0       | 0.63.2       | 0.9.2   |
 
 ## Roadmap
 
--   Autoscrolling optionally
--   Expand/contract nodes programatically
--   Support animations
+- Autoscrolling optionally
+- Expand/contract nodes programatically
+- Support animations
