@@ -80,6 +80,8 @@ You can find examples [here](https://github.com/fjmorant/react-native-nested-lis
 
 ## Roadmap
 
-- Autoscrolling optionally
-- Expand/contract nodes programatically
-- Support animations
+I have moved the roadmap of this library to this trello board so that it can be easier to add more things and like that it doesn't create issues in GitHub if I need to create a ticket
+
+[Roadmap Trello Board](https://trello.com/b/IOMR8gFw)
+
+
