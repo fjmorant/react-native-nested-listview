@@ -111,9 +111,8 @@ const NestedListView = React.memo(
       [generateIds],
     );
 
-    const [_root, setRoot]: [INode, (_root: INode) => void] = useState(
-      defaultRootNode,
-    );
+    const [_root, setRoot]: [INode, (_root: INode) => void] =
+      useState(defaultRootNode);
 
     useEffect(() => {
       setRoot(
