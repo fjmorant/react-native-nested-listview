@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import NestedListView, { INode, NestedRow } from '.';
+import { INode } from './NodeView';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
+import { NestedListView } from './NestedListView';
+import { NestedRow } from './NestedRow';
 
 let mockCounter = 0;
 
