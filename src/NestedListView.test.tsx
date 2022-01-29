@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import NestedListView, { INode, NestedRow } from '.';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 
@@ -361,19 +361,23 @@ describe('NestedListView', () => {
 
     const mockIsTheLast = jest.fn();
 
-    const { UNSAFE_getByType } = render(
+    const { getByText } = render(
       <NestedListView
         renderNode={(item: INode, level: number, isLastItem: boolean) => {
           mockIsTheLast(isLastItem);
 
-          return <NestedRow level={level}>{item.title}</NestedRow>;
+          return (
+            <NestedRow level={level}>
+              <Text>{item.title}</Text>
+            </NestedRow>
+          );
         }}
         data={data}
       />,
     );
 
     await waitFor(() => {
-      const child1 = UNSAFE_getByType(Pressable);
+      const child1 = getByText('child1');
 
       if (child1) {
         fireEvent.press(child1);
