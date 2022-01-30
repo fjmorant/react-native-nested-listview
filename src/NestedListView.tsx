@@ -1,6 +1,5 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import isEqual from 'react-fast-compare';
 import { StyleSheet, Text, View } from 'react-native';
 import shortid from 'shortid';
 import { INode, NodeView } from './NodeView';
@@ -64,9 +63,7 @@ const NestedListView = React.memo(
           };
         }
 
-        const childrenName: string = getChildrenName
-          ? getChildrenName(node)
-          : 'items';
+        const childrenName = getChildrenName ? getChildrenName(node) : 'items';
         let children = node[childrenName];
 
         if (children) {
@@ -133,13 +130,16 @@ const NestedListView = React.memo(
       generateRootNode,
     ]);
 
-    const _getChildrenName = (node: INode) => {
-      if (node.name === 'root') {
-        return 'items';
-      }
+    const _getChildrenName = React.useCallback(
+      (node: INode) => {
+        if (node.name === 'root') {
+          return 'items';
+        }
 
-      return getChildrenName ? getChildrenName(node) : 'items';
-    };
+        return getChildrenName ? getChildrenName(node) : 'items';
+      },
+      [getChildrenName],
+    );
 
     const renderErrorMessage = (prop: string) => {
       return (
@@ -169,7 +169,8 @@ const NestedListView = React.memo(
       />
     );
   },
-  isEqual,
 );
+
+NestedListView.displayName = 'NestedListView';
 
 export { NestedListView };

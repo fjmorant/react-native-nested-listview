@@ -1,5 +1,4 @@
-import * as React from 'react';
-import isEqual from 'react-fast-compare';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -24,20 +23,22 @@ const NestedRow = React.memo(
     level = 0,
     paddingLeftIncrement = 10,
     style,
-  }: IProps) => (
-    <View
-      style={[
+  }: IProps) => {
+    const composedStyles = useMemo(
+      () => [
         styles.nestedRow,
         {
           ...style,
           paddingLeft: level * paddingLeftIncrement,
         },
         height ? { height } : {},
-      ]}>
-      {children}
-    </View>
-  ),
-  isEqual,
+      ],
+      [height, level, paddingLeftIncrement, style],
+    );
+    return <View style={composedStyles}>{children}</View>;
+  },
 );
+
+NestedRow.displayName = 'NestedRow';
 
 export { NestedRow };

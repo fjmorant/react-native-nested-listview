@@ -1,37 +1,37 @@
-import * as React from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 import { NestedRow } from './NestedRow';
 import { render, waitFor } from '@testing-library/react-native';
 
 describe('NestedListView', () => {
   test('renders with succesfully', async () => {
-    const { UNSAFE_getByType } = render(
+    const { getByText } = render(
       <NestedRow level={1} style={{ borderColor: 'black', borderWidth: 1 }}>
         <Text>Test</Text>
       </NestedRow>,
     );
 
     await waitFor(() => {
-      const component = UNSAFE_getByType(NestedRow);
-      expect(component).toBeDefined();
+      const component = getByText('Test');
+      expect(component).toBeTruthy();
     });
   });
 
   test('renders without level passed', async () => {
-    const { UNSAFE_getByType } = render(
+    const { getByText } = render(
       <NestedRow style={{ borderColor: 'black', borderWidth: 1 }}>
         <Text>Test</Text>
       </NestedRow>,
     );
 
     await waitFor(() => {
-      const component = UNSAFE_getByType(NestedRow);
-      expect(component).toBeDefined();
+      const component = getByText('Test');
+      expect(component).toBeTruthy();
     });
   });
 
   test('renders with height passed', async () => {
-    const { UNSAFE_getByType } = render(
+    const { getByText } = render(
       <NestedRow
         level={1}
         height={60}
@@ -42,8 +42,8 @@ describe('NestedListView', () => {
     );
 
     await waitFor(() => {
-      const component = UNSAFE_getByType(NestedRow);
-      expect(component).toBeDefined();
+      const component = getByText('Test');
+      expect(component).toBeTruthy();
     });
   });
 });
