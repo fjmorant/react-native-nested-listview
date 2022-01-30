@@ -72,9 +72,7 @@ const NodeView = React.memo(
     const [_node, setNode]: [INode, any] = useState({
       ...node,
       opened:
-        keepOpenedState &&
-        globalState?.nodesState &&
-        globalState?.nodesState[node._internalId]
+        keepOpenedState && globalState?.nodesState[node._internalId]
           ? !!globalState?.nodesState[node._internalId]
           : !!node.opened,
     });
@@ -128,9 +126,7 @@ const NodeView = React.memo(
     const nodeChildren: [] = _node[nodeChildrenName];
 
     const isNodeOpened =
-      (keepOpenedState &&
-        globalState?.nodesState &&
-        globalState?.nodesState[node._internalId]) ||
+      (keepOpenedState && globalState?.nodesState[node._internalId]) ||
       _node.opened;
 
     return (
