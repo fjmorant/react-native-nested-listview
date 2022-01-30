@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { FlatList, Pressable } from 'react-native';
-import globalHook from 'use-global-hook';
+import globalHook, { Store } from 'use-global-hook';
 
 export interface INode {
   _internalId: string;
@@ -31,21 +31,31 @@ export interface IState {
   opened: boolean;
 }
 
+interface GlobalState {
+  nodesState: { root: boolean };
+}
+
+interface NodeActions {
+  setOpenedNode: (store: any, { internalId, opened }: any) => void;
+}
+
 const actions = {
-  setOpenedNode: (store: any, { internalId, opened }: any) => {
+  setOpenedNode: (
+    store: Store<GlobalState, NodeActions>,
+    { internalId, opened }: any,
+  ) => {
     store.setState({
       nodesState: { ...store.state.nodesState, [internalId]: opened },
     });
   },
 };
 
-const useGlobal = globalHook(
-  React,
-  {
-    nodesState: { root: true },
-  },
-  actions,
-);
+const initialState: GlobalState = {
+  nodesState: { root: true },
+};
+
+// @ts-ignore
+const useGlobal = globalHook<GlobalState, NodeActions>(initialState, actions);
 
 const NodeView = React.memo(
   ({
@@ -62,8 +72,10 @@ const NodeView = React.memo(
     const [_node, setNode]: [INode, any] = useState({
       ...node,
       opened:
-        keepOpenedState && globalState.nodesState[node._internalId]
-          ? !!globalState.nodesState[node._internalId]
+        keepOpenedState &&
+        globalState?.nodesState &&
+        globalState?.nodesState[node._internalId]
+          ? !!globalState?.nodesState[node._internalId]
           : !!node.opened,
     });
 
@@ -116,7 +128,9 @@ const NodeView = React.memo(
     const nodeChildren: [] = _node[nodeChildrenName];
 
     const isNodeOpened =
-      (keepOpenedState && globalState.nodesState[node._internalId]) ||
+      (keepOpenedState &&
+        globalState?.nodesState &&
+        globalState?.nodesState[node._internalId]) ||
       _node.opened;
 
     return (
