@@ -1,5 +1,4 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import isEqual from 'react-fast-compare';
 import { FlatList, Pressable } from 'react-native';
 import globalHook, { Store } from 'use-global-hook';
 
@@ -147,7 +146,8 @@ const NodeView = React.memo(
       </>
     );
   },
-  isEqual,
 );
+
+NodeView.displayName = 'NodeView';
 
 export { NodeView };

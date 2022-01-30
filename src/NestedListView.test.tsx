@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import { INode } from './NodeView';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
@@ -307,18 +307,21 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { UNSAFE_queryAllByType } = render(
+    const { queryByText } = render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
         renderNode={(node: INode, level?: number) => (
-          <NestedRow level={level}>{node.name}</NestedRow>
+          <NestedRow level={level}>
+            <Text>{node.title}</Text>
+          </NestedRow>
         )}
         data={data}
       />,
     );
 
-    const component = UNSAFE_queryAllByType(NestedRow);
-    expect(component.length).toEqual(3);
+    expect(queryByText('child1')).toBeTruthy();
+    expect(queryByText('child2')).toBeTruthy();
+    expect(queryByText('child3')).toBeTruthy();
   });
 
   test('renders without renderNode', async () => {
