@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kill -9 $(ps -A | grep '[r]eact-native/scripts/../cli.js' | awk '{print $1}')
 
 mv .template.watchmanconfig .watchmanconfig

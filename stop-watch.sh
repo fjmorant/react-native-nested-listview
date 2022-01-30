@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kill -9 $(ps -A | grep '[r]eact-native/scripts/../cli.js' | awk '{print $1}')
 kill -9 $(ps -A | grep '[w]ml' | awk '{print $1}')
 
