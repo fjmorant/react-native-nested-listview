@@ -130,13 +130,16 @@ const NestedListView = React.memo(
       generateRootNode,
     ]);
 
-    const _getChildrenName = (node: INode) => {
-      if (node.name === 'root') {
-        return 'items';
-      }
+    const _getChildrenName = React.useCallback(
+      (node: INode) => {
+        if (node.name === 'root') {
+          return 'items';
+        }
 
-      return getChildrenName ? getChildrenName(node) : 'items';
-    };
+        return getChildrenName ? getChildrenName(node) : 'items';
+      },
+      [getChildrenName],
+    );
 
     const renderErrorMessage = (prop: string) => {
       return (
