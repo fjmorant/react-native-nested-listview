@@ -1,0 +1,15 @@
+{
+  "ignore_dirs": [
+    ".git",
+    "node_modules",
+    ".github",
+    ".husky",
+    ".vscode",
+    "ios",
+    "android",
+    "coverage",
+    "coverage-ts",
+    "lib",
+    "storybook"
+  ]
+}
