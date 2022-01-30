@@ -76,7 +76,7 @@ You can find examples [here](https://github.com/fjmorant/react-native-nested-lis
 
 | Version App | React Native | Library |
 | ----------- | ------------ | ------- |
-| 1.0.0       | 0.63.2       | 0.9.2   |
+| 1.0.0       | 0.67.1       | 0.11.1  |
 
 ## Roadmap
 
@@ -86,4 +86,25 @@ I have moved the roadmap of this library to this trello board so that it can be 
 
 ## Development
 
-(Pending to update)
+In other to start watch mode and develop the library with the examples project (described above), you need to have installed the following npm packages:
+
+- `npm -g json`
+- `npm -g wml`
+
+And have the library and examples project in the same root folder, example:
+
+- root
+  - react-native-nested-listview
+  - react-native-nested-listview-examples
+
+After the previous steps you can then run the following command:
+
+`yarn start-watch`
+
+and then you can start the examples app as usual:
+
+`yarn ios` or `yarn android`
+
+When you finish with watch mode remember to stop it to get back to normal like this:
+
+`yarn stop-watch`
