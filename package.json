@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "object-hash": "2.2.0",
-    "shortid": "2.2.16",
     "use-global-hook": "0.3.0"
   },
   "peerDependencies": {
@@ -41,7 +40,6 @@
     "@types/object-hash": "2.2.1",
     "@types/react-native": "0.66.15",
     "@types/react-test-renderer": "17.0.1",
-    "@types/shortid": "0.0.29",
     "@types/use-global-hook": "0.1.5",
     "@typescript-eslint/parser": "5.10.1",
     "babel-jest": "26.6.3",
