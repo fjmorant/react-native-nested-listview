@@ -108,3 +108,7 @@ and then you can start the examples app as usual:
 When you finish with watch mode remember to stop it to get back to normal like this:
 
 `yarn stop-watch`
+
+## Invite me a coffee
+
+If you want to invite me for a coffee after enjoying this library or just for fun you can follow this link https://ko-fi.com/fjmorant. Thanks
