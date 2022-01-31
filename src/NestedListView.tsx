@@ -58,13 +58,7 @@ const NestedListView = React.memo(
       (node?: INode) => {
         if (!node) {
           return {
-            _internalId: hashObjectGenerator(
-              {},
-              {
-                algorithm: 'md5',
-                encoding: 'base64',
-              },
-            ),
+            _internalId: hashObjectGenerator({}),
           };
         }
 
@@ -82,10 +76,7 @@ const NestedListView = React.memo(
           );
         }
 
-        node._internalId = hashObjectGenerator(node, {
-          algorithm: 'md5',
-          encoding: 'base64',
-        });
+        node._internalId = hashObjectGenerator(node);
 
         return node;
       },
