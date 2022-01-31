@@ -1,7 +1,6 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import shortid from 'shortid';
 import { INode, NodeView } from './NodeView';
 
 const styles = StyleSheet.create({
@@ -59,7 +58,13 @@ const NestedListView = React.memo(
       (node?: INode) => {
         if (!node) {
           return {
-            _internalId: shortid.generate(),
+            _internalId: hashObjectGenerator(
+              {},
+              {
+                algorithm: 'md5',
+                encoding: 'base64',
+              },
+            ),
           };
         }
 
@@ -75,10 +80,6 @@ const NestedListView = React.memo(
           node[childrenName] = children.map((_: INode, index: number) =>
             generateIds(children[index]),
           );
-        }
-        if (node._internalId) {
-          // @ts-ignore
-          delete node._internalId;
         }
 
         node._internalId = hashObjectGenerator(node, {
@@ -130,7 +131,7 @@ const NestedListView = React.memo(
       generateRootNode,
     ]);
 
-    const _getChildrenName = React.useCallback(
+    const _getChildrenName = useCallback(
       (node: INode) => {
         if (node.name === 'root') {
           return 'items';

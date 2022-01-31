@@ -5,13 +5,7 @@ import { render, waitFor, fireEvent } from '@testing-library/react-native';
 import { NestedListView } from './NestedListView';
 import { NestedRow } from './NestedRow';
 
-let mockCounter = 0;
-
-jest.mock('shortid', () => ({
-  generate: () => `${mockCounter++}`,
-}));
-
-const renderNode = (node: any) => (
+const renderNode = (node: INode) => (
   <View>
     <Text>{node.title}</Text>
   </View>
