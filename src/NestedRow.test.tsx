@@ -36,8 +36,7 @@ describe('NestedListView', () => {
         level={1}
         height={60}
         paddingLeftIncrement={15}
-        style={{ borderColor: 'black', borderWidth: 1 }}
-      >
+        style={{ borderColor: 'black', borderWidth: 1 }}>
         <Text>Test</Text>
       </NestedRow>,
     );
