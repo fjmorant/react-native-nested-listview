@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { Text, View } from 'react-native';
-import { INode } from './NodeView';
+import { INode } from '../node-view';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
-import { NestedListView } from './NestedListView';
-import { NestedRow } from './NestedRow';
+import { NestedListView } from './nested-list-view';
+import { NestedRow } from '../nested-row';
 
 const renderNode = (node: INode) => (
   <View>
