@@ -3,5 +3,6 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     semi: 'off',
+    'react/jsx-no-bind': [2],
   },
 };
