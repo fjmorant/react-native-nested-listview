@@ -35,7 +35,10 @@ interface GlobalState {
 }
 
 interface NodeActions {
-  setOpenedNode: (store: any, { internalId, opened }: any) => void;
+  setOpenedNode: (
+    store: Store<GlobalState, NodeActions>,
+    { internalId, opened }: any,
+  ) => void;
 }
 
 const actions = {
@@ -83,7 +86,7 @@ const NodeView = React.memo(
       });
     }, [node, _node.opened]);
 
-    const _onNodePressed = () => {
+    const _onNodePressed = useCallback(() => {
       if (keepOpenedState) {
         globalActions.setOpenedNode({
           internalId: _node._internalId,
@@ -99,7 +102,7 @@ const NodeView = React.memo(
       if (onNodePressed) {
         onNodePressed(_node);
       }
-    };
+    }, [_node, globalActions, keepOpenedState, onNodePressed]);
 
     const renderChildren = useCallback(
       (item: INode, _level: number): ReactElement => (
@@ -121,6 +124,8 @@ const NodeView = React.memo(
       [renderChildren, level],
     );
 
+    const keyExtractor = useCallback((item: INode) => item._internalId, []);
+
     const nodeChildrenName = getChildrenName(_node);
     const nodeChildren: [] = _node[nodeChildrenName];
 
@@ -140,7 +145,7 @@ const NodeView = React.memo(
             data={nodeChildren}
             renderItem={renderItem}
             extraData={extraData}
-            keyExtractor={(item: INode) => item._internalId}
+            keyExtractor={keyExtractor}
           />
         ) : null}
       </>

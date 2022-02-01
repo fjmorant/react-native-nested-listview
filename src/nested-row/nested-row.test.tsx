@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { NestedRow } from './NestedRow';
+import { NestedRow } from './nested-row';
 import { render, waitFor } from '@testing-library/react-native';
 
 describe('NestedListView', () => {

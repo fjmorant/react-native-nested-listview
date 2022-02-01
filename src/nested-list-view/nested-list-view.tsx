@@ -1,7 +1,7 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { INode, NodeView } from './NodeView';
+import { INode, NodeView } from '../node-view';
 
 const styles = StyleSheet.create({
   errorContainer: {
