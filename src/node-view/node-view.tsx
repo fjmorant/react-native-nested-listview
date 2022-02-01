@@ -1,13 +1,7 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import globalHook, { Store } from 'use-global-hook';
-
-export interface INode {
-  _internalId: string;
-  hidden: boolean;
-  opened: boolean;
-  [key: string]: any;
-}
+import { GlobalState, INode, NodeActions } from './types';
 
 export interface IProps {
   getChildrenName: (item: INode) => string;
@@ -22,23 +16,6 @@ export interface IProps {
   renderChildrenNode?: (item: INode) => ReactElement;
   extraData?: any;
   keepOpenedState?: boolean;
-}
-
-export interface IState {
-  node: INode;
-  extraData?: any;
-  opened: boolean;
-}
-
-interface GlobalState {
-  nodesState: { root: boolean };
-}
-
-interface NodeActions {
-  setOpenedNode: (
-    store: Store<GlobalState, NodeActions>,
-    { internalId, opened }: any,
-  ) => void;
 }
 
 const actions = {
@@ -59,7 +36,7 @@ const initialState: GlobalState = {
 // @ts-ignore
 const useGlobal = globalHook<GlobalState, NodeActions>(initialState, actions);
 
-const NodeView = React.memo(
+const NodeView: React.FC<IProps> = React.memo(
   ({
     renderNode,
     extraData,
@@ -68,7 +45,7 @@ const NodeView = React.memo(
     node,
     onNodePressed,
     keepOpenedState,
-  }: IProps) => {
+  }) => {
     const [globalState, globalActions]: [any, any] = useGlobal();
 
     const [_node, setNode]: [INode, any] = useState({
