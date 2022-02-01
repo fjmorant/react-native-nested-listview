@@ -33,10 +33,6 @@ export interface IProps {
   keepOpenedState?: boolean;
 }
 
-export interface IState {
-  root: INode;
-}
-
 const defaultRootNode = {
   _internalId: 'root',
   items: [],
@@ -45,7 +41,7 @@ const defaultRootNode = {
   hidden: true,
 } as INode;
 
-const NestedListView = React.memo(
+const NestedListView: React.FC<IProps> = React.memo(
   ({
     getChildrenName,
     renderNode,

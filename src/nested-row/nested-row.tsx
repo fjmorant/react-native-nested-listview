@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 const styles = StyleSheet.create({
   nestedRow: {
@@ -10,25 +10,18 @@ const styles = StyleSheet.create({
 
 export interface IProps {
   height?: number;
-  children: any;
   level?: number;
   paddingLeftIncrement?: number;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }
 
-const NestedRow = React.memo(
-  ({
-    height,
-    children,
-    level = 0,
-    paddingLeftIncrement = 10,
-    style,
-  }: IProps) => {
+const NestedRow: React.FC<IProps> = React.memo(
+  ({ height, children, level = 0, paddingLeftIncrement = 10, style }) => {
     const composedStyles = useMemo(
       () => [
         styles.nestedRow,
+        style,
         {
-          ...style,
           paddingLeft: level * paddingLeftIncrement,
         },
         height ? { height } : {},
