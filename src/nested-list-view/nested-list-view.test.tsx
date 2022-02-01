@@ -293,6 +293,38 @@ describe('NestedListView', () => {
     expect(mockOnNodePressed).toBeCalledTimes(1);
   });
 
+  test('onNodePressed should be called when press a node and keepOpenedState is true', async () => {
+    const data = [
+      { title: 'child1' },
+      { title: 'child2' },
+      { title: 'child3' },
+    ];
+
+    const mockOnNodePressed = jest.fn();
+
+    const { queryByText } = render(
+      <NestedListView
+        keepOpenedState
+        onNodePressed={mockOnNodePressed}
+        renderNode={(node: INode) => (
+          <View>
+            <Text>{node.title}</Text>
+          </View>
+        )}
+        data={data}
+      />,
+    );
+
+    const component = queryByText('child1');
+    expect(component).toBeDefined();
+
+    if (component) {
+      fireEvent.press(component);
+    }
+
+    expect(mockOnNodePressed).toBeCalledTimes(1);
+  });
+
   test('renders with NestedRow', async () => {
     const data = [
       { title: 'child1' },
