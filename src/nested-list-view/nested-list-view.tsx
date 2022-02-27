@@ -72,6 +72,11 @@ const NestedListView: React.FC<IProps> = React.memo(
           );
         }
 
+        if (node._internalId) {
+          // @ts-ignore
+          delete node._internalId;
+        }
+
         node._internalId = hashObjectGenerator(node);
 
         return node;
