@@ -33,6 +33,8 @@ export interface IProps {
   keepOpenedState?: boolean;
 }
 
+const DEFAULT_CHILDREN_NAME = 'items';
+
 const defaultRootNode = {
   _internalId: 'root',
   items: [],
@@ -58,7 +60,11 @@ const NestedListView: React.FC<IProps> = React.memo(
           };
         }
 
-        const childrenName = getChildrenName ? getChildrenName(node) : 'items';
+        const copyNode = { ...node };
+
+        const childrenName = getChildrenName
+          ? getChildrenName(node)
+          : DEFAULT_CHILDREN_NAME;
         let children = node[childrenName];
 
         if (children) {
@@ -67,19 +73,19 @@ const NestedListView: React.FC<IProps> = React.memo(
               (key: string) => children[key],
             );
           }
-          node[childrenName] = children.map((_: INode, index: number) =>
+          copyNode[childrenName] = children.map((_: INode, index: number) =>
             generateIds(children[index]),
           );
         }
 
-        if (node._internalId) {
+        if (copyNode._internalId) {
           // @ts-ignore
-          delete node._internalId;
+          delete copyNode._internalId;
         }
 
-        node._internalId = hashObjectGenerator(node);
+        copyNode._internalId = hashObjectGenerator(copyNode);
 
-        return node;
+        return copyNode;
       },
       [getChildrenName],
     );
@@ -89,9 +95,7 @@ const NestedListView: React.FC<IProps> = React.memo(
         return {
           _internalId: 'root',
           items: props.data
-            ? props.data.map((_: INode, index: number) =>
-                generateIds(props.data[index]),
-              )
+            ? props.data.map((item: any) => generateIds(item))
             : [],
           name: 'root',
           opened: true,
