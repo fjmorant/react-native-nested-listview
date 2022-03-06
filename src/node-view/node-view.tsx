@@ -123,6 +123,7 @@ const NodeView: React.FC<IProps> = React.memo(
             renderItem={renderItem}
             extraData={extraData}
             keyExtractor={keyExtractor}
+            listKey={node._internalId}
           />
         ) : null}
       </>
