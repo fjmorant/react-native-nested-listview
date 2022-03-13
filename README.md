@@ -52,14 +52,15 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ### NestedListView
 
-| Prop                  | Description                                                                                                                                                              | Type     | Default      |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------ |
-| **`data`**            | Array of nested items                                                                                                                                                    | Array    | **Required** |
-| **`renderNode`**      | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. | Function | **Required** |
-| **`getChildrenName`** | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                                     | Function | **items**    |
-| **`onNodePressed`**   | Function called when a node is pressed by a user                                                                                                                         | Function | Not required |
-| **`extraData`**       | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
-| **`keepOpenedState`** | Prop for keeping the opened state of each node when data passed to the list changes                                                                                      | Boolean  | Not required |
+| Prop                     | Description                                                                                                                                                              | Type     | Default      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------ |
+| **`data`**               | Array of nested items                                                                                                                                                    | Array    | **Required** |
+| **`renderNode`**         | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. | Function | **Required** |
+| **`getChildrenName`**    | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                                     | Function | **items**    |
+| **`onNodePressed`**      | Function called when a node is pressed by a user                                                                                                                         | Function | Not required |
+| **`extraData`**          | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
+| **`keepOpenedState`**    | Prop for keeping the opened state of each node when data passed to the list changes                                                                                      | Boolean  | Not required |
+| **`initialNumToRender`** | Prop for setting the initial amount of items to render.                                                                                                                  | number   | Not required |
 
 ### NestedRow
 
@@ -111,7 +112,7 @@ When you finish with watch mode remember to stop it to get back to normal like t
 
 ## Invite me a coffee
 
-If you want to invite me for a coffee after enjoying this library or just for fun. 
+If you want to invite me for a coffee after enjoying this library or just for fun.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D16TF2V)
 

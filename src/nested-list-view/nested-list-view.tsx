@@ -32,6 +32,7 @@ export interface IProps {
   getChildrenName?: (item: INode) => string;
   style?: StyleSheet;
   keepOpenedState?: boolean;
+  initialNumToRender?: number;
 }
 
 const DEFAULT_CHILDREN_NAME = 'items';
@@ -52,6 +53,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     onNodePressed,
     extraData,
     keepOpenedState,
+    initialNumToRender,
   }: IProps) => {
     const generateIds = useCallback(
       (node?: INode) => {
@@ -165,6 +167,7 @@ const NestedListView: React.FC<IProps> = React.memo(
           renderNode={renderNode}
           extraData={extraData}
           keepOpenedState={keepOpenedState}
+          initialNumToRender={initialNumToRender}
         />
       </NodeProvider>
     );

@@ -16,6 +16,7 @@ export interface IProps {
   renderChildrenNode?: (item: INode) => ReactElement;
   extraData?: any;
   keepOpenedState?: boolean;
+  initialNumToRender?: number;
 }
 
 const NodeView: React.FC<IProps> = React.memo(
@@ -27,6 +28,7 @@ const NodeView: React.FC<IProps> = React.memo(
     node,
     onNodePressed,
     keepOpenedState,
+    initialNumToRender,
   }) => {
     const { openedNodes, setOpenNode } = useNodesContext();
 
@@ -105,6 +107,7 @@ const NodeView: React.FC<IProps> = React.memo(
             extraData={extraData}
             keyExtractor={keyExtractor}
             listKey={node._internalId}
+            initialNumToRender={initialNumToRender}
           />
         ) : null}
       </>
