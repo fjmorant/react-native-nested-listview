@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
-import globalHook, { Store } from 'use-global-hook';
-import { GlobalState, INode, NodeActions } from './types';
+import { useNodesContext } from '../nodes-context-provider';
+import { INode } from './types';
 
 export interface IProps {
   getChildrenName: (item: INode) => string;
@@ -18,24 +18,6 @@ export interface IProps {
   keepOpenedState?: boolean;
 }
 
-const actions = {
-  setOpenedNode: (
-    store: Store<GlobalState, NodeActions>,
-    { internalId, opened }: any,
-  ) => {
-    store.setState({
-      nodesState: { ...store.state.nodesState, [internalId]: opened },
-    });
-  },
-};
-
-const initialState: GlobalState = {
-  nodesState: { root: true },
-};
-
-// @ts-ignore
-const useGlobal = globalHook<GlobalState, NodeActions>(initialState, actions);
-
 const NodeView: React.FC<IProps> = React.memo(
   ({
     renderNode,
@@ -46,13 +28,13 @@ const NodeView: React.FC<IProps> = React.memo(
     onNodePressed,
     keepOpenedState,
   }) => {
-    const [globalState, globalActions]: [any, any] = useGlobal();
+    const { openedNodes, setOpenNode } = useNodesContext();
 
     const [_node, setNode]: [INode, any] = useState({
       ...node,
       opened:
-        keepOpenedState && globalState?.nodesState[node._internalId]
-          ? !!globalState?.nodesState[node._internalId]
+        keepOpenedState && openedNodes[node._internalId]
+          ? !!openedNodes[node._internalId]
           : !!node.opened,
     });
 
@@ -65,7 +47,7 @@ const NodeView: React.FC<IProps> = React.memo(
 
     const _onNodePressed = useCallback(() => {
       if (keepOpenedState) {
-        globalActions.setOpenedNode({
+        setOpenNode({
           internalId: _node._internalId,
           opened: !_node.opened,
         });
@@ -79,7 +61,7 @@ const NodeView: React.FC<IProps> = React.memo(
       if (onNodePressed) {
         onNodePressed(_node);
       }
-    }, [_node, globalActions, keepOpenedState, onNodePressed]);
+    }, [_node, keepOpenedState, onNodePressed, setOpenNode]);
 
     const renderChildren = useCallback(
       (item: INode, _level: number): ReactElement => (
@@ -107,8 +89,7 @@ const NodeView: React.FC<IProps> = React.memo(
     const nodeChildren: [] = _node[nodeChildrenName];
 
     const isNodeOpened =
-      (keepOpenedState && globalState?.nodesState[node._internalId]) ||
-      _node.opened;
+      (keepOpenedState && openedNodes[node._internalId]) || _node.opened;
 
     return (
       <>

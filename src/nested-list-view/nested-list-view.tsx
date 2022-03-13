@@ -2,6 +2,7 @@ import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { INode, NodeView } from '../node-view';
+import { NodeProvider } from '../nodes-context-provider';
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -155,15 +156,17 @@ const NestedListView: React.FC<IProps> = React.memo(
     }
 
     return (
-      <NodeView
-        getChildrenName={_getChildrenName}
-        node={_root}
-        onNodePressed={onNodePressed}
-        level={0}
-        renderNode={renderNode}
-        extraData={extraData}
-        keepOpenedState={keepOpenedState}
-      />
+      <NodeProvider>
+        <NodeView
+          getChildrenName={_getChildrenName}
+          node={_root}
+          onNodePressed={onNodePressed}
+          level={0}
+          renderNode={renderNode}
+          extraData={extraData}
+          keepOpenedState={keepOpenedState}
+        />
+      </NodeProvider>
     );
   },
 );
