@@ -37,7 +37,7 @@
     "@testing-library/react-native": "9.0.0",
     "@types/jest": "27.4.1",
     "@types/object-hash": "2.2.1",
-    "@types/react-native": "0.67.2",
+    "@types/react-native": "0.67.3",
     "@types/react-test-renderer": "17.0.1",
     "@types/use-global-hook": "0.1.5",
     "@typescript-eslint/parser": "5.16.0",
