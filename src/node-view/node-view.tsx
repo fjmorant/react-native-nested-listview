@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import { FlatList, Pressable } from 'react-native';
+import { Pressable, VirtualizedList } from 'react-native';
 import { useNodesContext } from '../nodes-context-provider';
 import { INode } from './types';
 
@@ -31,7 +31,6 @@ const NodeView: React.FC<IProps> = React.memo(
     initialNumToRender,
   }) => {
     const { openedNodes, setOpenNode } = useNodesContext();
-
     const [_node, setNode]: [INode, any] = useState({
       ...node,
       opened:
@@ -85,6 +84,10 @@ const NodeView: React.FC<IProps> = React.memo(
       [renderChildren, level],
     );
 
+    const getItem = useCallback((data, index) => data && data[index], []);
+
+    const getItemCount = useCallback((data) => data?.length ?? 0, []);
+
     const keyExtractor = useCallback((item: INode) => item._internalId, []);
 
     const nodeChildrenName = getChildrenName(_node);
@@ -101,8 +104,10 @@ const NodeView: React.FC<IProps> = React.memo(
           </Pressable>
         ) : null}
         {isNodeOpened && nodeChildren ? (
-          <FlatList
+          <VirtualizedList
             data={nodeChildren}
+            getItemCount={getItemCount}
+            getItem={getItem}
             renderItem={renderItem}
             extraData={extraData}
             keyExtractor={keyExtractor}
