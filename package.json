@@ -30,7 +30,7 @@
   "devDependencies": {
     "@babel/core": "7.17.5",
     "@babel/runtime": "7.17.2",
-    "@commitlint/cli": "16.2.1",
+    "@commitlint/cli": "16.2.4",
     "@commitlint/config-conventional": "16.2.1",
     "@react-native-community/eslint-config": "3.0.1",
     "@testing-library/jest-native": "4.0.4",
