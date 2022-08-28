@@ -59,7 +59,7 @@ const NestedListView: React.FC<IProps> = React.memo(
       (node?: INode) => {
         if (!node) {
           return {
-            _internalId: hashObjectGenerator({}),
+            _internalId: '',
           };
         }
 
@@ -86,11 +86,17 @@ const NestedListView: React.FC<IProps> = React.memo(
           delete copyNode._internalId;
         }
 
-        copyNode._internalId = hashObjectGenerator(copyNode);
+        copyNode._internalId = keepOpenedState
+          ? hashObjectGenerator(copyNode, {
+              algorithm: 'passthrough',
+              unorderedSets: false,
+              unorderedObjects: false,
+            })
+          : Math.random().toString(36).substring(2, 10);
 
         return copyNode;
       },
-      [getChildrenName],
+      [getChildrenName, keepOpenedState],
     );
 
     const generateRootNode = useCallback(
