@@ -29,7 +29,6 @@ export interface IProps {
     isLastLevel: boolean,
   ) => ReactElement;
   onNodePressed?: (item: INode) => void;
-  renderLoading?: () => ReactElement;
   getChildrenName?: (item: INode) => string;
   style?: StyleSheet;
   keepOpenedState?: boolean;
