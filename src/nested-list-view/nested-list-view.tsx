@@ -1,8 +1,8 @@
+import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { INode, NodeView } from '../node-view';
 import { NodeProvider } from '../nodes-context-provider';
-import { uid } from 'react-uid';
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -59,7 +59,7 @@ const NestedListView: React.FC<IProps> = React.memo(
       (node?: INode) => {
         if (!node) {
           return {
-            _internalId: uid({}),
+            _internalId: '',
           };
         }
 
@@ -86,11 +86,13 @@ const NestedListView: React.FC<IProps> = React.memo(
           delete copyNode._internalId;
         }
 
-        copyNode._internalId = uid(copyNode);
+        copyNode._internalId = keepOpenedState
+          ? hashObjectGenerator(copyNode)
+          : Math.random().toString(36).substring(2, 10);
 
         return copyNode;
       },
-      [getChildrenName],
+      [getChildrenName, keepOpenedState],
     );
 
     const generateRootNode = useCallback(
@@ -112,15 +114,17 @@ const NestedListView: React.FC<IProps> = React.memo(
       useState(defaultRootNode);
 
     useEffect(() => {
-      setRoot(
-        generateRootNode({
-          getChildrenName,
-          renderNode,
-          data,
-          onNodePressed,
-          extraData,
-        }),
-      );
+      const time = Date.now();
+      const newNode = generateRootNode({
+        getChildrenName,
+        renderNode,
+        data,
+        onNodePressed,
+        extraData,
+      });
+
+      console.log('Spent time => ', Date.now() - time);
+      setRoot(newNode);
     }, [
       data,
       extraData,

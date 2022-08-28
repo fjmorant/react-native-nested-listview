@@ -21,8 +21,7 @@
     "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
   },
   "dependencies": {
-    "object-hash": "3.0.0",
-    "react-uid": "^2.3.2"
+    "object-hash": "3.0.0"
   },
   "peerDependencies": {
     "react": "17.0.2",
