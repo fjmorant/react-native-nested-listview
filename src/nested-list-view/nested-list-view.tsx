@@ -1,6 +1,6 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { INode, NodeView } from '../node-view';
 import { NodeProvider } from '../nodes-context-provider';
 
@@ -29,6 +29,7 @@ export interface IProps {
     isLastLevel: boolean,
   ) => ReactElement;
   onNodePressed?: (item: INode) => void;
+  renderLoading?: () => ReactElement;
   getChildrenName?: (item: INode) => string;
   style?: StyleSheet;
   keepOpenedState?: boolean;
@@ -51,6 +52,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     renderNode,
     data,
     onNodePressed,
+    renderLoading,
     extraData,
     keepOpenedState,
     initialNumToRender,
@@ -116,9 +118,10 @@ const NestedListView: React.FC<IProps> = React.memo(
 
     const [_root, setRoot]: [INode, (_rootNode: INode) => void] =
       useState(defaultRootNode);
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-      const time = Date.now();
+      setLoading(true);
       const newNode = generateRootNode({
         getChildrenName,
         renderNode,
@@ -127,8 +130,8 @@ const NestedListView: React.FC<IProps> = React.memo(
         extraData,
       });
 
-      console.log('Spent time => ', Date.now() - time);
       setRoot(newNode);
+      setLoading(false);
     }, [
       data,
       extraData,
@@ -163,6 +166,10 @@ const NestedListView: React.FC<IProps> = React.memo(
 
     if (!data) {
       return renderErrorMessage('data');
+    }
+
+    if (isLoading) {
+      return renderLoading ? renderLoading() : <ActivityIndicator />;
     }
 
     return (
