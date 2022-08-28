@@ -1,8 +1,8 @@
-import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { INode, NodeView } from '../node-view';
 import { NodeProvider } from '../nodes-context-provider';
+import { uid } from 'react-uid';
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -59,7 +59,7 @@ const NestedListView: React.FC<IProps> = React.memo(
       (node?: INode) => {
         if (!node) {
           return {
-            _internalId: hashObjectGenerator({}),
+            _internalId: uid({}),
           };
         }
 
@@ -86,7 +86,7 @@ const NestedListView: React.FC<IProps> = React.memo(
           delete copyNode._internalId;
         }
 
-        copyNode._internalId = hashObjectGenerator(copyNode);
+        copyNode._internalId = uid(copyNode);
 
         return copyNode;
       },
