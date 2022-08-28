@@ -87,7 +87,11 @@ const NestedListView: React.FC<IProps> = React.memo(
         }
 
         copyNode._internalId = keepOpenedState
-          ? hashObjectGenerator(copyNode)
+          ? hashObjectGenerator(copyNode, {
+              algorithm: 'passthrough',
+              unorderedSets: false,
+              unorderedObjects: false,
+            })
           : Math.random().toString(36).substring(2, 10);
 
         return copyNode;
