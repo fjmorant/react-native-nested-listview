@@ -118,15 +118,15 @@ const NestedListView: React.FC<IProps> = React.memo(
       useState(defaultRootNode);
 
     useEffect(() => {
-      const newNode = generateRootNode({
-        getChildrenName,
-        renderNode,
-        data,
-        onNodePressed,
-        extraData,
-      });
-
-      setRoot(newNode);
+      setRoot(
+        generateRootNode({
+          getChildrenName,
+          renderNode,
+          data,
+          onNodePressed,
+          extraData,
+        }),
+      );
     }, [
       data,
       extraData,
