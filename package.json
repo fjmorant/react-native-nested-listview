@@ -48,7 +48,7 @@
     "husky": "7.0.4",
     "istanbul": "0.4.5",
     "istanbul-api": "3.0.0",
-    "istanbul-reports": "3.1.4",
+    "istanbul-reports": "3.1.5",
     "jest": "27.5.1",
     "metro-react-native-babel-preset": "0.69.0",
     "prettier": "2.6.0",
