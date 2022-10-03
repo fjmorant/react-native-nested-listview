@@ -24,8 +24,8 @@
     "object-hash": "3.0.0"
   },
   "peerDependencies": {
-    "react": "18.1.0",
-    "react-native": "0.70.1"
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
