@@ -4,7 +4,7 @@ If you want to vote for the next functionality [here](http://etc.ch/HMjy)
 
 UI component for React Native that allows to create a listview with N levels of nesting
 
-![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square)
+![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Expo-brightgreen)
 [![CircleCI](https://circleci.com/gh/fjmorant/react-native-nested-listview.svg?style=shield)](https://circleci.com/gh/fjmorant/react-native-nested-listview)
 [![codecov](https://codecov.io/gh/fjmorant/react-native-nested-listview/branch/master/graph/badge.svg)](https://codecov.io/gh/fjmorant/react-native-nested-listview)
 [![npm](https://img.shields.io/npm/v/react-native-nested-listview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-nested-listview)
@@ -75,7 +75,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ## Examples
 
-You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples).
+You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples) and also an Expo project [here](https://github.com/fjmorant/react-native-nested-listview-examples-expo) 
 
 | Version App | React Native | Library |
 | ----------- | ------------ | ------- |
