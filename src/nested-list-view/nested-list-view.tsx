@@ -1,7 +1,7 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { INode, NodeView } from '../node-view';
+import { Node, NodeView } from '../node-view';
 import { NodeProvider } from '../nodes-context-provider';
 
 const styles = StyleSheet.create({
@@ -23,13 +23,9 @@ const styles = StyleSheet.create({
 export interface IProps {
   data: any;
   extraData?: any;
-  renderNode: (
-    item: INode,
-    level: number,
-    isLastLevel: boolean,
-  ) => ReactElement;
-  onNodePressed?: (item: INode) => void;
-  getChildrenName?: (item: INode) => string;
+  renderNode: (item: Node, level: number, isLastLevel: boolean) => ReactElement;
+  onNodePressed?: (item: Node) => void;
+  getChildrenName?: (item: Node) => string;
   style?: StyleSheet;
   keepOpenedState?: boolean;
   initialNumToRender?: number;
@@ -43,7 +39,7 @@ const defaultRootNode = {
   name: 'root',
   opened: true,
   hidden: true,
-} as INode;
+} as Node;
 
 const NestedListView: React.FC<IProps> = React.memo(
   ({
@@ -56,7 +52,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     initialNumToRender,
   }: IProps) => {
     const generateIds = useCallback(
-      (node?: INode) => {
+      (node?: Node) => {
         if (!node) {
           return {
             _internalId: '',
@@ -76,7 +72,7 @@ const NestedListView: React.FC<IProps> = React.memo(
               (key: string) => children[key],
             );
           }
-          copyNode[childrenName] = children.map((_: INode, index: number) =>
+          copyNode[childrenName] = children.map((_: Node, index: number) =>
             generateIds(children[index]),
           );
         }
@@ -98,7 +94,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     );
 
     const generateRootNode = useCallback(
-      (props: IProps): INode => {
+      (props: IProps): Node => {
         return {
           _internalId: 'root',
           items: props.data
@@ -112,7 +108,7 @@ const NestedListView: React.FC<IProps> = React.memo(
       [generateIds],
     );
 
-    const [_root, setRoot]: [INode, (_rootNode: INode) => void] =
+    const [_root, setRoot]: [Node, (_rootNode: Node) => void] =
       useState(defaultRootNode);
 
     useEffect(() => {
@@ -135,7 +131,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     ]);
 
     const _getChildrenName = useCallback(
-      (node: INode) => {
+      (node: Node) => {
         if (node.name === 'root') {
           return 'items';
         }

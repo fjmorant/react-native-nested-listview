@@ -1,19 +1,15 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Pressable, VirtualizedList } from 'react-native';
 import { useNodesContext } from '../nodes-context-provider';
-import { INode } from './types';
+import { Node } from './types';
 
 export interface IProps {
-  getChildrenName: (item: INode) => string;
-  node: INode;
+  getChildrenName: (item: Node) => string;
+  node: Node;
   level: number;
-  onNodePressed?: (item: INode) => void;
-  renderNode: (
-    item: INode,
-    level: number,
-    isLastLevel: boolean,
-  ) => ReactElement;
-  renderChildrenNode?: (item: INode) => ReactElement;
+  onNodePressed?: (item: Node) => void;
+  renderNode: (item: Node, level: number, isLastLevel: boolean) => ReactElement;
+  renderChildrenNode?: (item: Node) => ReactElement;
   extraData?: any;
   keepOpenedState?: boolean;
   initialNumToRender?: number;
@@ -31,7 +27,7 @@ const NodeView: React.FC<IProps> = React.memo(
     initialNumToRender,
   }) => {
     const { openedNodes, setOpenNode } = useNodesContext();
-    const [_node, setNode]: [INode, any] = useState({
+    const [_node, setNode]: [Node, any] = useState({
       ...node,
       opened:
         keepOpenedState && openedNodes[node._internalId]
@@ -48,10 +44,11 @@ const NodeView: React.FC<IProps> = React.memo(
 
     const _onNodePressed = useCallback(() => {
       if (keepOpenedState) {
-        setOpenNode({
-          internalId: _node._internalId,
-          opened: !_node.opened,
-        });
+        setOpenNode &&
+          setOpenNode({
+            internalId: _node._internalId,
+            opened: !_node.opened,
+          });
       }
 
       setNode({
@@ -65,7 +62,7 @@ const NodeView: React.FC<IProps> = React.memo(
     }, [_node, keepOpenedState, onNodePressed, setOpenNode]);
 
     const renderChildren = useCallback(
-      (item: INode, _level: number): ReactElement => (
+      (item: Node, _level: number): ReactElement => (
         <NodeView
           getChildrenName={getChildrenName}
           node={item}
@@ -80,15 +77,15 @@ const NodeView: React.FC<IProps> = React.memo(
     );
 
     const renderItem = useCallback(
-      ({ item }: { item: INode }) => renderChildren(item, level),
+      ({ item }: { item: Node }) => renderChildren(item, level),
       [renderChildren, level],
     );
 
     const getItem = useCallback((data, index) => data && data[index], []);
 
-    const getItemCount = useCallback((data) => data?.length ?? 0, []);
+    const getItemCount = useCallback((data) => data?.length, []);
 
-    const keyExtractor = useCallback((item: INode) => item._internalId, []);
+    const keyExtractor = useCallback((item: Node) => item._internalId, []);
 
     const nodeChildrenName = getChildrenName(_node);
     const nodeChildren: [] = _node[nodeChildrenName];

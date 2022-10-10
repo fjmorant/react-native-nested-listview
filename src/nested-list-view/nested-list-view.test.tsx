@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { Text, View } from 'react-native';
-import { INode } from '../node-view';
+import { Node } from '../node-view';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 import { NestedListView } from './nested-list-view';
 import { NestedRow } from '../nested-row';
 
-const renderNode = (node: INode) => (
+const renderNode = (node: Node) => (
   <View>
     <Text>{node.title}</Text>
   </View>
@@ -19,6 +19,28 @@ describe('NestedListView', () => {
       { title: 'child2' },
       { title: 'child3' },
     ];
+    const { queryByText } = render(
+      <NestedListView
+        getChildrenName={() => 'items'}
+        renderNode={(node: any) => (
+          <View>
+            <Text>{node.title}</Text>
+          </View>
+        )}
+        data={data}
+      />,
+    );
+
+    await waitFor(() => {
+      [1, 2, 3].forEach((item: number) => {
+        const component = queryByText(`child${item}`);
+        expect(component).toBeDefined();
+      });
+    });
+  });
+
+  test('renders with an empty array', async () => {
+    const data = [] as any;
     const { queryByText } = render(
       <NestedListView
         getChildrenName={() => 'items'}
@@ -123,13 +145,13 @@ describe('NestedListView', () => {
 
     const { queryByText } = render(
       <NestedListView
-        getChildrenName={(node: INode) => {
+        getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
             return 'descendants';
           }
           return 'items';
         }}
-        renderNode={(node: INode) => (
+        renderNode={(node: Node) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -165,13 +187,13 @@ describe('NestedListView', () => {
 
     const { queryByText } = render(
       <NestedListView
-        getChildrenName={(node: INode) => {
+        getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
             return 'children';
           }
           return 'items';
         }}
-        renderNode={(node: INode) => (
+        renderNode={(node: Node) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -234,7 +256,7 @@ describe('NestedListView', () => {
     const { queryByText } = render(
       <NestedListView
         getChildrenName={() => 'children'}
-        renderNode={(node: INode) => (
+        renderNode={(node: Node) => (
           <View>
             <Text>{node.name}</Text>
           </View>
@@ -274,7 +296,7 @@ describe('NestedListView', () => {
     const { queryByText } = render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
-        renderNode={(node: INode) => (
+        renderNode={(node: Node) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -306,7 +328,7 @@ describe('NestedListView', () => {
       <NestedListView
         keepOpenedState
         onNodePressed={mockOnNodePressed}
-        renderNode={(node: INode) => (
+        renderNode={(node: Node) => (
           <View>
             <Text>{node.title}</Text>
           </View>
@@ -337,7 +359,7 @@ describe('NestedListView', () => {
     const { queryByText } = render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
-        renderNode={(node: INode, level?: number) => (
+        renderNode={(node: Node, level?: number) => (
           <NestedRow level={level}>
             <Text>{node.title}</Text>
           </NestedRow>
@@ -395,7 +417,7 @@ describe('NestedListView', () => {
 
     const { getByText } = render(
       <NestedListView
-        renderNode={(item: INode, level: number, isLastItem: boolean) => {
+        renderNode={(item: Node, level: number, isLastItem: boolean) => {
           mockIsTheLast(isLastItem);
 
           return (

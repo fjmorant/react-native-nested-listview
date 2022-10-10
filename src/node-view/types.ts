@@ -1,4 +1,4 @@
-export interface INode {
+export interface Node {
   _internalId: string;
   hidden: boolean;
   opened: boolean;

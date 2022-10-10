@@ -5,15 +5,17 @@ type SetOpenedNodesParams = {
   opened: boolean;
 };
 
-type INodexContext = {
+type NodeContext = {
   openedNodes: { [name: string]: boolean };
-  setOpenNode: ({ internalId, opened }: SetOpenedNodesParams) => void;
+  setOpenNode?: ({ internalId, opened }: SetOpenedNodesParams) => void;
 };
 
-const NodesContext = React.createContext<INodexContext>({
+const defaultContextValue = {
   openedNodes: {},
-  setOpenNode: (_: SetOpenedNodesParams) => {},
-});
+  setOpenNode: undefined,
+};
+
+const NodesContext = React.createContext<NodeContext>(defaultContextValue);
 
 export const useNodesContext = () => useContext(NodesContext);
 

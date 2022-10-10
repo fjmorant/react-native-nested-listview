@@ -1,9 +1,9 @@
 import { NestedListView } from './nested-list-view';
 import { NestedRow } from './nested-row';
-import { INode } from './node-view';
+import { Node } from './node-view';
 
 export { NestedRow };
 
-export { INode };
+export { Node as INode };
 
 export default NestedListView;
