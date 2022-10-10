@@ -43,7 +43,7 @@
     "@typescript-eslint/parser": "5.39.0",
     "babel-jest": "29.1.2",
     "codecov": "3.8.3",
-    "eslint": "7.32.0",
+    "eslint": "8.25.0",
     "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.1",
     "istanbul": "0.4.5",
