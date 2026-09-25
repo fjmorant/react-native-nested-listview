@@ -3,9 +3,6 @@
   "version": "0.14.2",
   "description": "Nested Listview for React native",
   "main": "src/index.ts",
-  "engines": {
-    "node": ">=22.13.0"
-  },
   "types": "src/index.ts",
   "scripts": {
     "test": "jest",
