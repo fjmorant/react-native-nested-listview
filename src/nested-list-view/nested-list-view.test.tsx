@@ -19,7 +19,7 @@ describe('NestedListView', () => {
       { title: 'child2' },
       { title: 'child3' },
     ];
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -41,7 +41,7 @@ describe('NestedListView', () => {
 
   test('renders with an empty array', async () => {
     const data = [] as any;
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -71,7 +71,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -83,18 +83,18 @@ describe('NestedListView', () => {
       />,
     );
 
+    const parent = queryByText('child1');
+    expect(parent).toBeTruthy();
+
+    expect(queryByText('subchild 1.1')).toBeNull();
+
+    if (parent) {
+      await fireEvent.press(parent);
+    }
+
     await waitFor(() => {
-      const parent = queryByText('child1');
-
-      if (parent) {
-        fireEvent.press(parent);
-      }
-
-      const component1 = queryByText('subchild 1.1');
-      expect(component1).toBeDefined();
-
-      const component2 = queryByText('subchild 1.2');
-      expect(component2).toBeDefined();
+      expect(queryByText('subchild 1.1')).toBeTruthy();
+      expect(queryByText('subchild 1.2')).toBeTruthy();
     });
   });
 
@@ -108,7 +108,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -120,17 +120,21 @@ describe('NestedListView', () => {
       />,
     );
 
-    await waitFor(() => {
-      const parent = queryByText('child1');
+    const parent = queryByText('child1');
+    expect(parent).toBeTruthy();
 
-      expect(queryByText('subchild 1.1')).toBeDefined();
+    // collapsed initially
+    expect(queryByText('subchild 1.1')).toBeNull();
 
-      if (parent) {
-        fireEvent.press(parent);
-      }
+    if (parent) {
+      await fireEvent.press(parent);
+    }
+    expect(queryByText('subchild 1.1')).toBeTruthy();
 
-      expect(queryByText('subchild 1.1')).toBeDefined();
-    });
+    if (parent) {
+      await fireEvent.press(parent);
+    }
+    expect(queryByText('subchild 1.1')).toBeNull();
   });
 
   test('renders with nested arrays and children with different name', async () => {
@@ -139,11 +143,14 @@ describe('NestedListView', () => {
         title: 'child1',
         items: [{ name: 'subchild 1.1' }, { name: 'subchild 1.2' }],
       },
-      { title: 'child2', descendants: [{ key: 'subchild 2.1' }] },
+      {
+        title: 'child2',
+        descendants: [{ key: 'subchild 2.1', title: 'subchild 2.1' }],
+      },
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
@@ -160,15 +167,17 @@ describe('NestedListView', () => {
       />,
     );
 
+    const parent = queryByText('child2');
+    expect(parent).toBeTruthy();
+
+    expect(queryByText('subchild 2.1')).toBeNull();
+
+    if (parent) {
+      await fireEvent.press(parent);
+    }
+
     await waitFor(() => {
-      const parent = queryByText('child2');
-
-      if (parent) {
-        fireEvent.press(parent);
-      }
-
-      const children = parent?.children;
-      expect(children?.length).toEqual(1);
+      expect(queryByText('subchild 2.1')).toBeTruthy();
     });
   });
 
@@ -185,7 +194,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
@@ -201,16 +210,14 @@ describe('NestedListView', () => {
         data={data}
       />,
     );
-    let parent: any;
-    await waitFor(() => {
-      parent = queryByText('child2');
+    const parent = queryByText('child2');
+    expect(parent).toBeTruthy();
 
-      fireEvent.press(parent);
+    if (parent) {
+      await fireEvent.press(parent);
+    }
 
-      const child = queryByText('subchild 2.1');
-
-      expect(child).toBeNull();
-    });
+    expect(queryByText('subchild 2.1')).toBeNull();
   });
 
   test('renders with children as objects', async () => {
@@ -253,7 +260,7 @@ describe('NestedListView', () => {
       },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'children'}
         renderNode={(node: Node) => (
@@ -265,22 +272,22 @@ describe('NestedListView', () => {
       />,
     );
 
+    const parent = queryByText('Main Parent');
+    expect(parent).toBeTruthy();
+
+    if (parent) {
+      await fireEvent.press(parent);
+    }
+
+    const firstChild = queryByText('Main Child 1');
+    expect(firstChild).toBeTruthy();
+
+    if (firstChild) {
+      await fireEvent.press(firstChild);
+    }
+
     await waitFor(() => {
-      const parent = queryByText('Main Parent');
-
-      if (parent) {
-        fireEvent.press(parent);
-      }
-
-      const firstChild = queryByText('Main Child 1');
-      expect(firstChild).toBeDefined();
-
-      if (firstChild) {
-        fireEvent.press(firstChild);
-      }
-
-      const secondChild = queryByText('Sub Child 2');
-      expect(secondChild).toBeDefined();
+      expect(queryByText('Sub Child 2')).toBeTruthy();
     });
   });
 
@@ -293,7 +300,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
         renderNode={(node: Node) => (
@@ -309,10 +316,10 @@ describe('NestedListView', () => {
     expect(component).toBeDefined();
 
     if (component) {
-      fireEvent.press(component);
+      await fireEvent.press(component);
     }
 
-    expect(mockOnNodePressed).toBeCalledTimes(1);
+    expect(mockOnNodePressed).toHaveBeenCalledTimes(1);
   });
 
   test('onNodePressed should be called when press a node and keepOpenedState is true', async () => {
@@ -324,7 +331,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         keepOpenedState
         onNodePressed={mockOnNodePressed}
@@ -341,10 +348,10 @@ describe('NestedListView', () => {
     expect(component).toBeDefined();
 
     if (component) {
-      fireEvent.press(component);
+      await fireEvent.press(component);
     }
 
-    expect(mockOnNodePressed).toBeCalledTimes(1);
+    expect(mockOnNodePressed).toHaveBeenCalledTimes(1);
   });
 
   test('renders with NestedRow', async () => {
@@ -356,7 +363,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
         renderNode={(node: Node, level?: number) => (
@@ -380,7 +387,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         // @ts-ignore
         renderNode={null}
@@ -393,7 +400,7 @@ describe('NestedListView', () => {
   });
 
   test('renders without data', async () => {
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         renderNode={renderNode}
         // @ts-ignore
@@ -415,7 +422,7 @@ describe('NestedListView', () => {
 
     const mockIsTheLast = jest.fn();
 
-    const { getByText } = render(
+    const { getByText } = await render(
       <NestedListView
         renderNode={(item: Node, level: number, isLastItem: boolean) => {
           mockIsTheLast(isLastItem);
@@ -430,13 +437,15 @@ describe('NestedListView', () => {
       />,
     );
 
+    const child1 = getByText('child1');
+
+    // a node that has children is not the last level
+    expect(mockIsTheLast).toHaveBeenLastCalledWith(false);
+
+    await fireEvent.press(child1);
+
     await waitFor(() => {
-      const child1 = getByText('child1');
-
-      if (child1) {
-        fireEvent.press(child1);
-      }
-
+      // ...but its expanded leaves are
       expect(mockIsTheLast).toHaveBeenLastCalledWith(true);
     });
   });

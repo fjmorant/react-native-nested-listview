@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "es6",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "jsx": "react-native",
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,

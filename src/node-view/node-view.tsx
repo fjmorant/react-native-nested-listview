@@ -81,9 +81,12 @@ const NodeView: React.FC<IProps> = React.memo(
       [renderChildren, level],
     );
 
-    const getItem = useCallback((data, index) => data && data[index], []);
+    const getItem = useCallback(
+      (data: Node[], index: number) => data && data[index],
+      [],
+    );
 
-    const getItemCount = useCallback((data) => data?.length, []);
+    const getItemCount = useCallback((data: Node[]) => data?.length ?? 0, []);
 
     const keyExtractor = useCallback((item: Node) => item._internalId, []);
 
@@ -108,7 +111,6 @@ const NodeView: React.FC<IProps> = React.memo(
             renderItem={renderItem}
             extraData={extraData}
             keyExtractor={keyExtractor}
-            listKey={node._internalId}
             initialNumToRender={initialNumToRender}
           />
         ) : null}

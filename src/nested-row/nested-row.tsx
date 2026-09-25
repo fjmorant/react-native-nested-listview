@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { type ReactNode, useMemo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
 });
 
 export interface IProps {
+  children?: ReactNode;
   height?: number;
   level?: number;
   paddingLeftIncrement?: number;
