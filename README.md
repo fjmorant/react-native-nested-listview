@@ -91,9 +91,9 @@ and an Expo project [here](https://github.com/fjmorant/-react-native-nested-list
 which covers custom nodes, state changes, extra data, dynamic content, children
 as objects, a performance case and a Redux integration.
 
-| Examples app | React Native | Library |
-| ------------ | ------------ | ------- |
-| Expo SDK 57  | 0.86.3       | 0.15.0  |
+| Version App | React Native | Library |
+| ----------- | ------------ | ------- |
+| 1.0.0       | 0.69.6       | 0.14.2  |
 
 ## Roadmap
 
