@@ -2,18 +2,44 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: "0 0 * * *"
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   stale:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/stale@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Issue stale'
-        stale-pr-message: 'PR stale'
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
+      - uses: actions/stale@v11
+        with:
+          days-before-stale: 60
+          days-before-close: 14
+
+          # Everything tracked on the roadmap board carries a milestone.
+          # Without this, deliberately deferred work would be closed by a bot.
+          exempt-all-milestones: true
+
+          stale-issue-label: 'no-issue-activity'
+          stale-pr-label: 'no-pr-activity'
+
+          stale-issue-message: >
+            This issue has had no activity for 60 days and has been marked
+            stale. Leave a comment if it is still relevant and the label will
+            be removed; otherwise it will be closed in 14 days.
+
+          stale-pr-message: >
+            This pull request has had no activity for 60 days and has been
+            marked stale. Rebase it or leave a comment to keep it open;
+            otherwise it will be closed in 14 days.
+
+          close-issue-message: >
+            Closing after 14 further days without activity. Comment here if
+            you would like it reopened.
+
+          close-pr-message: >
+            Closing after 14 further days without activity. Feel free to
+            reopen if you pick this back up.

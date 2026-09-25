@@ -1,13 +1,29 @@
 name: Greetings
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [opened]
+  # first-interaction needs a writable token to comment on pull requests from
+  # forks, which `pull_request` does not provide. This workflow only posts a
+  # comment and never checks out the contributor's code.
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Thank you very much for creating this issue we will review it soon'' first issue'
-        pr-message: 'Thanks for contributing to make this library better'' first pr'
+      - uses: actions/first-interaction@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: >
+            Thanks for opening your first issue here. A maintainer will review
+            it soon.
+          pr-message: >
+            Thanks for your first pull request — contributions like this are
+            what keep the library going. A maintainer will take a look shortly.
