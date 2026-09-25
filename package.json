@@ -1,6 +1,6 @@
 {
   "name": "react-native-nested-listview",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "description": "Nested Listview for React native",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -19,7 +19,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "test": "jest",
@@ -35,8 +36,6 @@
     "prettier-check": "prettier --check 'src/**/*.{ts,tsx}'",
     "prettier-format": "prettier --write 'src/**/*.{ts,tsx}'",
     "check-all": "yarn lint && yarn type-check && yarn test",
-    "start-watch": "./start-watch.sh",
-    "stop-watch": "./stop-watch.sh",
     "prepare": "husky"
   },
   "repository": {
@@ -47,7 +46,7 @@
     "object-hash": "3.0.0"
   },
   "peerDependencies": {
-    "react": "*",
+    "react": ">=17",
     "react-native": "*"
   },
   "devDependencies": {
