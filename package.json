@@ -2,13 +2,27 @@
   "name": "react-native-nested-listview",
   "version": "0.14.2",
   "description": "Nested Listview for React native",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "tsc -p ./ --outDir dist/",
+    "clean": "rm -rf dist",
+    "build:cjs": "tsc -p tsconfig.build.json --module node16 --moduleResolution node16 --declaration false --outDir dist/cjs",
+    "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --outDir dist/types",
+    "build": "yarn clean && yarn build:cjs && yarn build:types",
+    "prepublishOnly": "yarn build",
     "prettier-check": "prettier --check 'src/**/*.{ts,tsx}'",
     "prettier-format": "prettier --write 'src/**/*.{ts,tsx}'",
     "check-all": "yarn lint && yarn type-check && yarn test",
