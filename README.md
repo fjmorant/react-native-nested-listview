@@ -12,15 +12,28 @@ UI component for React Native that allows to create a listview with N levels of 
 ## Table of contents
 
 1. [Show](#show)
+1. [Requirements](#requirements)
 1. [Usage](#usage)
 1. [Props](#props)
 1. [Examples](#examples)
 1. [Roadmap](#roadmap)
+1. [Development](#development)
 
 ## Show
 
 ![react-native-nested-listview](https://i.imgur.com/Y3VFTry.gif)
 ![react-native-nested-listview](https://i.imgur.com/nJvl0ZT.gif)
+
+## Requirements
+
+| | |
+| --- | --- |
+| **React** | `>=17` — the package is compiled with the automatic JSX runtime, which needs `react/jsx-runtime` |
+| **React Native** | no hard lower bound is declared. Verified against **0.86** and **0.87** |
+
+The package ships compiled JavaScript with both CommonJS and ESM entrypoints and
+its own type declarations. Nothing needs to be added to your Metro or Babel
+configuration.
 
 ## Usage
 
@@ -73,42 +86,53 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ## Examples
 
-You can find examples [here](https://github.com/fjmorant/react-native-nested-listview-examples) and also an Expo project [here](https://github.com/fjmorant/react-native-nested-listview-examples-expo) 
+There is a bare React Native project [here](https://github.com/fjmorant/react-native-nested-listview-examples)
+and an Expo project [here](https://github.com/fjmorant/-react-native-nested-listview-examples-expo),
+which covers custom nodes, state changes, extra data, dynamic content, children
+as objects, a performance case and a Redux integration.
 
 | Version App | React Native | Library |
 | ----------- | ------------ | ------- |
-| 1.0.0       | 0.70.1       | 0.14.0  |
+| 1.0.1       | 0.86.3       | 0.15.0  |
 
 ## Roadmap
 
-I have moved the roadmap of this library to this trello board so that it can be easier to add more things and like that it doesn't create issues in GitHub if I need to create a ticket
-
-[Roadmap Trello Board](https://trello.com/b/IOMR8gFw)
+The roadmap is tracked on the [GitHub project board](https://github.com/users/fjmorant/projects/7),
+alongside the issues in this repository.
 
 ## Development
 
-In other to start watch mode and develop the library with the examples project (described above), you need to have installed the following npm packages:
+```
+yarn install      # Node 22, see .nvmrc
+yarn check-all    # lint, type-check and tests
+yarn build        # compile into dist/
+```
 
-- `npm -g json`
-- `npm -g wml`
+Two extra checks guard what gets published, and both run in CI:
 
-And have the library and examples project in the same root folder, example:
+```
+yarn check-build      # every emitted file parses as plain JavaScript
+yarn check-package    # entrypoints and types agree, across all resolution modes
+```
 
-- root
-  - react-native-nested-listview
-  - react-native-nested-listview-examples
+### Trying a local build in an app
 
-After the previous steps you can then run the following command:
+Pack the library and install the tarball into the consuming app:
 
-`yarn start-watch`
+```
+yarn build
+npm pack
+cd ../my-app
+npm install ../react-native-nested-listview/react-native-nested-listview-<version>.tgz --install-links
+```
 
-and then you can start the examples app as usual:
-
-`yarn ios` or `yarn android`
-
-When you finish with watch mode remember to stop it to get back to normal like this:
-
-`yarn stop-watch`
+`--install-links` matters. Without it, npm may symlink the package to this
+repository instead of copying it, which pulls this repository's own
+`node_modules` into resolution — including the React kept here as a
+devDependency. Two copies of React means hooks resolve against a null
+dispatcher, and the app fails at runtime with
+`Cannot read property 'useCallback' of null`. The same applies to `npm link`
+and `yarn link`.
 
 ## Invite me a coffee
 
