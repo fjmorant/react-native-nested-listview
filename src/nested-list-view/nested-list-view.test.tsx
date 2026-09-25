@@ -19,7 +19,7 @@ describe('NestedListView', () => {
       { title: 'child2' },
       { title: 'child3' },
     ];
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -41,7 +41,7 @@ describe('NestedListView', () => {
 
   test('renders with an empty array', async () => {
     const data = [] as any;
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -71,7 +71,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -108,7 +108,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'items'}
         renderNode={(node: any) => (
@@ -143,7 +143,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
@@ -185,7 +185,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={(node: Node) => {
           if (node.title === 'child2') {
@@ -253,7 +253,7 @@ describe('NestedListView', () => {
       },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         getChildrenName={() => 'children'}
         renderNode={(node: Node) => (
@@ -293,7 +293,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
         renderNode={(node: Node) => (
@@ -309,10 +309,10 @@ describe('NestedListView', () => {
     expect(component).toBeDefined();
 
     if (component) {
-      fireEvent.press(component);
+      await fireEvent.press(component);
     }
 
-    expect(mockOnNodePressed).toBeCalledTimes(1);
+    expect(mockOnNodePressed).toHaveBeenCalledTimes(1);
   });
 
   test('onNodePressed should be called when press a node and keepOpenedState is true', async () => {
@@ -324,7 +324,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         keepOpenedState
         onNodePressed={mockOnNodePressed}
@@ -341,10 +341,10 @@ describe('NestedListView', () => {
     expect(component).toBeDefined();
 
     if (component) {
-      fireEvent.press(component);
+      await fireEvent.press(component);
     }
 
-    expect(mockOnNodePressed).toBeCalledTimes(1);
+    expect(mockOnNodePressed).toHaveBeenCalledTimes(1);
   });
 
   test('renders with NestedRow', async () => {
@@ -356,7 +356,7 @@ describe('NestedListView', () => {
 
     const mockOnNodePressed = jest.fn();
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         onNodePressed={mockOnNodePressed}
         renderNode={(node: Node, level?: number) => (
@@ -380,7 +380,7 @@ describe('NestedListView', () => {
       { title: 'child3' },
     ];
 
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         // @ts-ignore
         renderNode={null}
@@ -393,7 +393,7 @@ describe('NestedListView', () => {
   });
 
   test('renders without data', async () => {
-    const { queryByText } = render(
+    const { queryByText } = await render(
       <NestedListView
         renderNode={renderNode}
         // @ts-ignore
@@ -415,7 +415,7 @@ describe('NestedListView', () => {
 
     const mockIsTheLast = jest.fn();
 
-    const { getByText } = render(
+    const { getByText } = await render(
       <NestedListView
         renderNode={(item: Node, level: number, isLastItem: boolean) => {
           mockIsTheLast(isLastItem);

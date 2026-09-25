@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: '@react-native',
   rules: {
     semi: 'off',
     'react/jsx-no-bind': [2],

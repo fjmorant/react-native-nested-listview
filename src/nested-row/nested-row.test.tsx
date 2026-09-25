@@ -5,7 +5,7 @@ import { render, waitFor } from '@testing-library/react-native';
 
 describe('NestedListView', () => {
   test('renders with succesfully', async () => {
-    const { getByText } = render(
+    const { getByText } = await render(
       <NestedRow level={1} style={{ borderColor: 'black', borderWidth: 1 }}>
         <Text>Test</Text>
       </NestedRow>,
@@ -18,7 +18,7 @@ describe('NestedListView', () => {
   });
 
   test('renders without level passed', async () => {
-    const { getByText } = render(
+    const { getByText } = await render(
       <NestedRow style={{ borderColor: 'black', borderWidth: 1 }}>
         <Text>Test</Text>
       </NestedRow>,
@@ -31,7 +31,7 @@ describe('NestedListView', () => {
   });
 
   test('renders with height passed', async () => {
-    const { getByText } = render(
+    const { getByText } = await render(
       <NestedRow
         level={1}
         height={60}
