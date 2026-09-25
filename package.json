@@ -14,7 +14,8 @@
     "prettier-format": "prettier --write 'src/**/*.{ts, tsx}'",
     "check-all": "yarn lint && yarn type-check && yarn test",
     "start-watch": "./start-watch.sh",
-    "stop-watch": "./stop-watch.sh"
+    "stop-watch": "./stop-watch.sh",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
