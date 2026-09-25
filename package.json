@@ -3,11 +3,18 @@
   "version": "0.14.2",
   "description": "Nested Listview for React native",
   "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/cjs/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -19,9 +26,11 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "build:cjs": "tsc -p tsconfig.build.json --module node16 --moduleResolution node16 --declaration false --outDir dist/cjs",
-    "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --outDir dist/types",
-    "build": "yarn clean && yarn build:cjs && yarn build:types",
+    "build:cjs": "tsc -p tsconfig.build.json --module node16 --moduleResolution node16 --outDir dist/cjs",
+    "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir dist/esm && node scripts/fix-esm-imports.mjs",
+    "build": "yarn clean && yarn build:cjs && yarn build:esm",
+    "check-build": "node scripts/check-build.mjs",
+    "check-package": "attw --pack .",
     "prepublishOnly": "yarn build",
     "prettier-check": "prettier --check 'src/**/*.{ts,tsx}'",
     "prettier-format": "prettier --write 'src/**/*.{ts,tsx}'",
@@ -42,6 +51,7 @@
     "react-native": "*"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@babel/core": "^7.29.7",
     "@babel/runtime": "^7.29.7",
     "@commitlint/cli": "^21.2.3",
