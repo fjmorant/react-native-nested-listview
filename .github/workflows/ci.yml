@@ -38,6 +38,18 @@ jobs:
 
       - run: yarn test
 
+      # the published output is plain JS, but the base tsconfig preserves JSX
+      # for Metro; if the build loses its override, dist ships unparseable
+      # files. Resolution checks do not notice, so parse them.
+      - name: Check the build parses
+        if: matrix.node-version == '22'
+        run: yarn build && yarn check-build
+
+      # entrypoints and types agree with the JS, across all resolution modes
+      - name: Check published package
+        if: matrix.node-version == '22'
+        run: yarn check-package
+
       - name: Upload coverage to Codecov
         # one upload is enough; the matrix legs produce identical coverage
         if: matrix.node-version == '22'
