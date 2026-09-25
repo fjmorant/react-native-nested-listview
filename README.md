@@ -93,7 +93,7 @@ as objects, a performance case and a Redux integration.
 
 | Version App | React Native | Library |
 | ----------- | ------------ | ------- |
-| 1.0.0       | 0.69.6       | 0.14.2  |
+| 1.0.1       | 0.86.3       | 0.15.0  |
 
 ## Roadmap
 
