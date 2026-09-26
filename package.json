@@ -42,9 +42,6 @@
     "type": "git",
     "url": "git+https://github.com/fjmorant/react-native-nested-listview.git"
   },
-  "dependencies": {
-    "object-hash": "3.0.0"
-  },
   "peerDependencies": {
     "react": ">=17",
     "react-native": "*"
@@ -60,7 +57,6 @@
     "@react-native/jest-preset": "^0.87.1",
     "@testing-library/react-native": "^14.0.1",
     "@types/jest": "^30.0.0",
-    "@types/object-hash": "^3.0.6",
     "@types/react": "^19.1.1",
     "babel-jest": "^30.5.2",
     "eslint": "^9.39.5",
