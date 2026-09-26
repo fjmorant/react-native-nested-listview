@@ -839,3 +839,123 @@ describe('NestedListView as a flat list', () => {
     expect(view.getByText('by-title-a/by-title-a1')).toBeTruthy();
   });
 });
+
+describe('NestedListView listProps', () => {
+  /** Captures what actually reached the list. */
+  const spyList = () => {
+    const seen: any[] = [];
+    const ListComponent = (props: any) => {
+      seen.push(props);
+      return <FlatList {...props} />;
+    };
+
+    return { seen, ListComponent };
+  };
+
+  const renderTitle = (node: Node) => <Text>{node.title}</Text>;
+  const data = [{ title: 'a' }];
+
+  test('forwards arbitrary props to the list', async () => {
+    // #451: there was no way to reach the list, so hiding the scroll indicator
+    // was impossible.
+    const { seen, ListComponent } = spyList();
+
+    await render(
+      <NestedListView
+        data={data}
+        ListComponent={ListComponent}
+        listProps={{ showsVerticalScrollIndicator: false }}
+        renderNode={renderTitle}
+      />,
+    );
+
+    expect(seen[0].showsVerticalScrollIndicator).toBe(false);
+  });
+
+  test('cannot override the props the list needs to render', async () => {
+    const { seen, ListComponent } = spyList();
+    const hostile = {
+      data: [],
+      renderItem: () => null,
+      keyExtractor: () => 'same-key-for-everything',
+    } as unknown as NonNullable<
+      React.ComponentProps<typeof NestedListView>['listProps']
+    >;
+
+    const view = await render(
+      <NestedListView
+        data={[{ title: 'a' }, { title: 'b' }]}
+        ListComponent={ListComponent}
+        listProps={hostile}
+        renderNode={renderTitle}
+      />,
+    );
+
+    expect(seen[0].data).toHaveLength(2);
+    expect(seen[0].keyExtractor(seen[0].data[0])).toBe('0');
+    expect(view.getByText('a')).toBeTruthy();
+    expect(view.getByText('b')).toBeTruthy();
+  });
+
+  test('an explicit prop wins over the same key in listProps', async () => {
+    const { seen, ListComponent } = spyList();
+
+    await render(
+      <NestedListView
+        data={data}
+        initialNumToRender={3}
+        extraData="explicit"
+        style={{ backgroundColor: 'red' }}
+        ListComponent={ListComponent}
+        listProps={{
+          initialNumToRender: 99,
+          extraData: 'from-bag',
+          style: { backgroundColor: 'blue' },
+        }}
+        renderNode={renderTitle}
+      />,
+    );
+
+    expect(seen[0].initialNumToRender).toBe(3);
+    expect(seen[0].extraData).toBe('explicit');
+    expect(seen[0].style).toEqual({ backgroundColor: 'red' });
+  });
+
+  test('listProps survives when the explicit prop is absent', async () => {
+    // The subtle one. Setting these unconditionally would spread `undefined`
+    // over the bag and silently erase what the caller asked for.
+    const { seen, ListComponent } = spyList();
+
+    await render(
+      <NestedListView
+        data={data}
+        ListComponent={ListComponent}
+        listProps={{
+          initialNumToRender: 42,
+          extraData: 'from-bag',
+          style: { backgroundColor: 'blue' },
+        }}
+        renderNode={renderTitle}
+      />,
+    );
+
+    expect(seen[0].initialNumToRender).toBe(42);
+    expect(seen[0].extraData).toBe('from-bag');
+    expect(seen[0].style).toEqual({ backgroundColor: 'blue' });
+  });
+
+  test('works with no listProps at all', async () => {
+    const { seen, ListComponent } = spyList();
+
+    await render(
+      <NestedListView
+        data={data}
+        ListComponent={ListComponent}
+        renderNode={renderTitle}
+      />,
+    );
+
+    expect(seen[0].data).toHaveLength(1);
+    expect(seen[0].showsVerticalScrollIndicator).toBeUndefined();
+  });
+});
