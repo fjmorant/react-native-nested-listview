@@ -412,6 +412,51 @@ describe('NestedListView', () => {
     expect(component).toBeDefined();
   });
 
+  test('forwards listViewProps to the underlying lists', async () => {
+    const data = [{ title: 'child1', items: [{ title: 'subchild 1.1' }] }];
+
+    const { getAllByTestId } = await render(
+      <NestedListView
+        getChildrenName={() => 'items'}
+        listViewProps={{
+          testID: 'inner-list',
+          showsVerticalScrollIndicator: false,
+        }}
+        renderNode={(node: Node) => (
+          <View>
+            <Text>{node.title}</Text>
+          </View>
+        )}
+        data={data}
+      />,
+    );
+
+    const lists = getAllByTestId('inner-list');
+    expect(lists.length).toBeGreaterThan(0);
+    expect(lists[0].props.showsVerticalScrollIndicator).toBe(false);
+  });
+
+  test('listViewProps cannot override the props the list controls', async () => {
+    const data = [{ title: 'child1' }, { title: 'child2' }];
+
+    const { queryByText } = await render(
+      <NestedListView
+        // deliberately hostile: these must not win over the component's own
+        // @ts-ignore
+        listViewProps={{ data: [], renderItem: () => null }}
+        renderNode={(node: Node) => (
+          <View>
+            <Text>{node.title}</Text>
+          </View>
+        )}
+        data={data}
+      />,
+    );
+
+    expect(queryByText('child1')).toBeTruthy();
+    expect(queryByText('child2')).toBeTruthy();
+  });
+
   test('renders with isLast renderNode', async () => {
     const data = [
       {

@@ -1,6 +1,11 @@
 import hashObjectGenerator from 'object-hash';
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  type VirtualizedListProps,
+} from 'react-native';
 import { Node, NodeView } from '../node-view';
 import { NodeProvider } from '../nodes-context-provider';
 
@@ -29,6 +34,7 @@ export interface IProps {
   style?: StyleSheet;
   keepOpenedState?: boolean;
   initialNumToRender?: number;
+  listViewProps?: Partial<VirtualizedListProps>;
 }
 
 const DEFAULT_CHILDREN_NAME = 'items';
@@ -50,6 +56,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     extraData,
     keepOpenedState,
     initialNumToRender,
+    listViewProps,
   }: IProps) => {
     const generateIds = useCallback(
       (node?: Node) => {
@@ -168,6 +175,7 @@ const NestedListView: React.FC<IProps> = React.memo(
           extraData={extraData}
           keepOpenedState={keepOpenedState}
           initialNumToRender={initialNumToRender}
+          listViewProps={listViewProps}
         />
       </NodeProvider>
     );

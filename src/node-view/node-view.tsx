@@ -1,5 +1,9 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import { Pressable, VirtualizedList } from 'react-native';
+import {
+  Pressable,
+  VirtualizedList,
+  type VirtualizedListProps,
+} from 'react-native';
 import { useNodesContext } from '../nodes-context-provider';
 import { Node } from './types';
 
@@ -13,6 +17,7 @@ export interface IProps {
   extraData?: any;
   keepOpenedState?: boolean;
   initialNumToRender?: number;
+  listViewProps?: Partial<VirtualizedListProps>;
 }
 
 const NodeView: React.FC<IProps> = React.memo(
@@ -25,6 +30,7 @@ const NodeView: React.FC<IProps> = React.memo(
     onNodePressed,
     keepOpenedState,
     initialNumToRender,
+    listViewProps,
   }) => {
     const { openedNodes, setOpenNode } = useNodesContext();
     const [_node, setNode]: [Node, any] = useState({
@@ -71,9 +77,19 @@ const NodeView: React.FC<IProps> = React.memo(
           onNodePressed={onNodePressed}
           renderNode={renderNode}
           keepOpenedState={keepOpenedState}
+          initialNumToRender={initialNumToRender}
+          listViewProps={listViewProps}
         />
       ),
-      [extraData, getChildrenName, onNodePressed, renderNode, keepOpenedState],
+      [
+        extraData,
+        getChildrenName,
+        onNodePressed,
+        renderNode,
+        keepOpenedState,
+        initialNumToRender,
+        listViewProps,
+      ],
     );
 
     const renderItem = useCallback(
@@ -105,6 +121,7 @@ const NodeView: React.FC<IProps> = React.memo(
         ) : null}
         {isNodeOpened && nodeChildren ? (
           <VirtualizedList
+            {...listViewProps}
             data={nodeChildren}
             getItemCount={getItemCount}
             getItem={getItem}

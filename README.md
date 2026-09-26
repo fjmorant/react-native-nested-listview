@@ -80,6 +80,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | **`extraData`**          | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
 | **`keepOpenedState`**    | Prop for keeping the opened state of each node when data passed to the list changes                                                                                      | Boolean  | Not required |
 | **`initialNumToRender`** | Prop for setting the initial amount of items to render.                                                                                                                  | number   | Not required |
+| **`listViewProps`**      | Props forwarded to every underlying `VirtualizedList`, for options the component does not expose itself — for example `showsVerticalScrollIndicator`. Props the component controls (`data`, `renderItem`, `getItem`, `getItemCount`, `keyExtractor`) always take precedence. | Object   | Not required |
 
 ### NestedRow
 
