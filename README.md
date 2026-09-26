@@ -258,9 +258,14 @@ yarn check-package    # entrypoints and types agree, across all resolution modes
 Releasing is one button: **Actions → Publish → Run workflow**.
 
 It reads the version from `package.json`, refuses to go on if that version is
-already tagged or already on npm, runs the whole gate, publishes to npm with
+already tagged or already on npm, takes the release notes from that version's
+CHANGELOG entry, runs the whole gate, publishes to npm with
 [provenance](https://docs.npmjs.com/generating-provenance-statements), and
 creates the GitHub release.
+
+The CHANGELOG entry is required. A version with no `## <version>` section stops
+the run before anything is published, so the release and the CHANGELOG cannot
+drift apart — and a rehearsal shows the notes it would publish.
 
 **Rehearse only** is ticked by default, so the default action of that button
 publishes nothing — it runs every check and stops. Untick it to release for
@@ -270,7 +275,7 @@ Bumping the version stays a pull request, because the CHANGELOG has to be
 written by a person anyway. Everything after that point is what this automates:
 
 ```
-# 1. a PR bumping the version in package.json and moving the CHANGELOG heading
+# 1. a PR bumping package.json and adding the CHANGELOG entry for it
 # 2. merge it
 # 3. Actions -> Publish -> Run workflow, with Rehearse only unticked
 ```
