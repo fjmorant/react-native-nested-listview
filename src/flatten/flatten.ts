@@ -1,12 +1,17 @@
 import { Node, RenderedNode, Row } from '../types';
 
 /**
- * Level given to the nodes of `data` itself.
+ * Level given to the nodes of `data` itself, and the only place it is defined.
  *
- * The recursive implementation this replaces wrapped `data` in a hidden root
- * node at level 0 and rendered its children one level deeper, so `renderNode`
- * has always received 1 for a top-level node. Keeping that means existing
- * `NestedRow` indentation is unchanged.
+ * It is 1 rather than 0, and that is a decision rather than an accident worth
+ * writing down. The recursive implementation this replaces wrapped `data` in a
+ * synthetic hidden root at level 0 and rendered its children one level deeper,
+ * so `renderNode` has always received 1 for a top-level node.
+ *
+ * It stays 1 because `NestedRow` indents by `level * paddingLeftIncrement`: a 0
+ * base would put top-level rows flush against the screen edge, changing the
+ * appearance of every app built on the documented pattern, for no functional
+ * gain. Callers wanting a flush edge pass `level - 1` or their own increment.
  */
 export const TOP_LEVEL = 1;
 

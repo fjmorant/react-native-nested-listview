@@ -74,6 +74,14 @@ The props are unchanged and the exported surface — the default export,
   happened to be unchanged, since that content was its React key. State is now
   keyed by node identity, so a node stays expanded while its own content changes.
 
+- The `NestedRow` props table documented a default `height` of **50**, which has
+  never existed — the code applies `height ? {height} : {}`, so a row with no
+  `height` sizes to its content. It also documented `level` as required when it
+  defaults to `0`, marked `children` required when it is optional, and omitted
+  `paddingLeftIncrement` entirely. The defaults are now documented as they are
+  and covered by tests. `height` deliberately keeps having no default: adding one
+  would resize every row in every app that omits it.
+
 ### Removed
 
 - **The `object-hash` dependency.** The library now has no runtime dependencies.
@@ -86,6 +94,12 @@ The props are unchanged and the exported surface — the default export,
 - `_internalId` is now a path (`parent/child`) built from a node's own `id`, or
   failing that its `key`, or failing that its position, rather than a hash of the
   node's content. Do not persist these values across versions.
+- **Top-level nodes are at `level` 1, not 0.** Inherited from the synthetic root
+  node the old recursive renderer wrapped `data` in, and now kept on purpose
+  rather than by accident: `NestedRow` indents by `level * paddingLeftIncrement`,
+  so a 0 base would put top-level rows flush against the screen edge in every app
+  built on the documented pattern. `TOP_LEVEL` is the single definition, and six
+  tests fail if it changes. Pass `level - 1` for a flush edge.
 - Expanded state now survives a change to `data` whenever a node's identity is
   unchanged, `keepOpenedState` or not. `keepOpenedState` still controls whether
   the state outlives the node leaving the tree — including while it sits inside a

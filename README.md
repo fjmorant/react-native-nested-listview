@@ -87,12 +87,27 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ### NestedRow
 
-| Prop           | Description                 | Type      | Default      |
-| -------------- | --------------------------- | --------- | ------------ |
-| **`height`**   | Height of the row           | number    | 50           |
-| **`children`** | Content of the NestedRow    | Component | **Required** |
-| **`level`**    | Level where a given node is | number    | **Required** |
-| **`style`**    | NestedRow container style   | Style     | Not required |
+| Prop                       | Description                                                                     | Type                   | Default                                   |
+| -------------------------- | ------------------------------------------------------------------------------- | ---------------------- | ----------------------------------------- |
+| **`children`**             | Content of the row                                                              | `ReactNode`            | Not required                              |
+| **`level`**                | Nesting depth, used to indent the row. Pass the `level` given to `renderNode`    | number                 | `0`                                       |
+| **`paddingLeftIncrement`** | Left padding added per level, in pixels                                         | number                 | `10`                                      |
+| **`height`**               | Fixed height for the row                                                        | number                 | Not required — the row sizes to its content |
+| **`style`**                | Row container style                                                             | `StyleProp<ViewStyle>` | Not required                              |
+
+#### Why levels start at 1
+
+The nodes of `data` are at level **1**, not 0, so with the default increment a
+top-level row is already indented by 10px.
+
+That is deliberate. `NestedRow` indents by `level * paddingLeftIncrement`, so a 0
+base would put top-level rows flush against the screen edge — changing the
+appearance of every app built on the documented pattern, for no functional gain.
+It is inherited from the synthetic root node the old recursive renderer wrapped
+`data` in, and it is kept on purpose rather than by accident.
+
+If you want a flush left edge, pass `level={level - 1}` or set your own
+`paddingLeftIncrement`.
 
 ### Types
 
