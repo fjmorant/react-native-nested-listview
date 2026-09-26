@@ -30,6 +30,12 @@ UI component for React Native that allows to create a listview with N levels of 
 | --- | --- |
 | **React** | `>=17` — the package is compiled with the automatic JSX runtime, which needs `react/jsx-runtime` |
 | **React Native** | no hard lower bound is declared. Verified against **0.86** and **0.87** |
+| **New Architecture** | supported. Verified on React Native 0.86 via Expo SDK 57, where the New Architecture is the only one available |
+
+This library is pure JavaScript. It contains no native modules, no `codegenConfig`
+and no iOS or Android sources, and builds only on core components —
+`VirtualizedList`, `Pressable`, `View`, `Text` and `StyleSheet` — so it behaves
+the same under Fabric as under the legacy renderer. It also runs in Expo Go.
 
 The package ships compiled JavaScript with both CommonJS and ESM entrypoints and
 its own type declarations. Nothing needs to be added to your Metro or Babel
