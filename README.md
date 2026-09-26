@@ -75,8 +75,8 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 | Prop                     | Description                                                                                                                                                              | Type     | Default      |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------ |
-| **`data`**               | Array of nested items                                                                                                                                                    | Array    | **Required** |
-| **`renderNode`**         | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. `level` is 1 for the nodes of `data` and grows with depth. | Function | **Required** |
+| **`data`**               | Array of nested items                                                                                                                                                    | `INode[]` | **Required** |
+| **`renderNode`**         | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. The node is an `IRenderedNode`, and `level` is 1 for the nodes of `data` and grows with depth. | Function | **Required** |
 | **`getChildrenName`**    | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                                     | Function | **items**    |
 | **`onNodePressed`**      | Function called when a node is pressed by a user                                                                                                                         | Function | Not required |
 | **`extraData`**          | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
@@ -93,6 +93,32 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | **`children`** | Content of the NestedRow    | Component | **Required** |
 | **`level`**    | Level where a given node is | number    | **Required** |
 | **`style`**    | NestedRow container style   | Style     | Not required |
+
+### Types
+
+Two node types are exported, because a node on the way in and a node on the way
+out are not the same shape.
+
+| Type | What it describes |
+| --- | --- |
+| **`INode`** | a node as you write it in `data`. Every field is optional — add whatever your app needs |
+| **`IRenderedNode`** | a node as `renderNode` and `onNodePressed` receive it: the `_internalId` the list assigned, and `opened` resolved to the node's current expanded state |
+
+```typescript
+import NestedListView, {NestedRow, INode, IRenderedNode} from 'react-native-nested-listview'
+
+const data: INode[] = [{title: 'Node 1', items: [{title: 'Node 1.1'}]}]
+
+const renderNode = (node: IRenderedNode, level: number, isLastLevel: boolean) => (
+  <NestedRow level={level}>
+    <Text>{node.opened ? '▾' : '▸'} {node.title}</Text>
+  </NestedRow>
+)
+```
+
+`getChildrenName` and `keyExtractor` are handed an `INode`, not an
+`IRenderedNode`: both are called while the tree is being walked, before the list
+has assigned a node anything.
 
 ## Performance
 

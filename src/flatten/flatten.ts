@@ -1,4 +1,4 @@
-import { Node, Row } from '../types';
+import { Node, RenderedNode, Row } from '../types';
 
 /**
  * Level given to the nodes of `data` itself.
@@ -126,8 +126,8 @@ const project = (
   opened: boolean,
   childrenName: string,
   children: unknown[] | undefined,
-): Node => {
-  const projected: Node = { ...node, _internalId: id, opened };
+): RenderedNode => {
+  const projected: RenderedNode = { ...node, _internalId: id, opened };
 
   if (children && node[childrenName] !== children) {
     projected[childrenName] = children;
