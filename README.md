@@ -273,8 +273,11 @@ is the mistake that otherwise ships a version under the wrong release. Running
 passes `--dry-run`, so it can never publish; provenance is left to real
 releases, since a dry run has nothing to attest.
 
-Publishing needs an `NPM_TOKEN` repository secret — an npm **automation** token,
-since a classic token fails against an account that requires 2FA for publishing.
+Publishing needs an `NPM_TOKEN` secret on the **`production`** environment — an
+npm **automation** token, since a classic token fails against an account that
+requires 2FA for publishing. The job declares that environment, so its
+protection rules apply: restricting *Deployment branches and tags* to `v*` means
+only a release tag can ever publish.
 
 ### Trying a local build in an app
 

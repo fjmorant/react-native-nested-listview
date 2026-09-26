@@ -22,6 +22,12 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    # NPM_TOKEN is an environment secret, and an environment's secrets are only
+    # visible to a job that declares it. Without this line secrets.NPM_TOKEN is
+    # empty and npm refuses the publish. Declaring it also means the
+    # environment's protection rules — reviewers, wait timers, which branches
+    # and tags may deploy — apply to releases.
+    environment: production
 
     steps:
       - uses: actions/checkout@v7
@@ -50,6 +56,23 @@ jobs:
             exit 1
           fi
           echo "publishing ${pkg}"
+
+      # A missing token otherwise surfaces as an npm 403 after the whole gate has
+      # run, which reads like a permissions problem with the account rather than
+      # a secret that is not reaching the job.
+      - name: Check the npm token is present
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NODE_AUTH_TOKEN" ]; then
+            echo "NPM_TOKEN is reaching this job"
+            exit 0
+          fi
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "::error::NPM_TOKEN is empty. It must be a secret of the environment this job declares, or a repository secret."
+            exit 1
+          fi
+          echo "::warning::NPM_TOKEN is empty, so this rehearsal cannot check authentication."
 
       # CI already ran these on the merge commit, but a publish cannot be undone
       # — npm only allows unpublishing within 72 hours, and never a republish of
