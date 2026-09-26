@@ -1,0 +1,80 @@
+name: Publish
+
+# Publishing is driven by a GitHub release rather than by a push, so cutting a
+# version is a deliberate act with a human behind it. Creating the release is
+# the only path that publishes; `workflow_dispatch` is a rehearsal and always
+# passes `--dry-run`.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+# Provenance needs id-token; nothing here writes to the repository.
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # .nvmrc; npm 10 ships here, which is what --provenance needs
+          node-version: '22'
+          cache: yarn
+          # writes the .npmrc that NODE_AUTH_TOKEN is read against
+          registry-url: 'https://registry.npmjs.org'
+
+      # the repo pins yarn via packageManager
+      - run: corepack enable
+
+      - run: yarn install --frozen-lockfile
+
+      # A release tag that disagrees with package.json means one of the two was
+      # forgotten, and npm would happily publish the version in package.json
+      # under the wrong release. Checked before anything is built.
+      - name: Check the tag matches package.json
+        if: github.event_name == 'release'
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg="$(node -p 'require("./package.json").version')"
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::release tag ${GITHUB_REF_NAME} does not match package.json version ${pkg}"
+            exit 1
+          fi
+          echo "publishing ${pkg}"
+
+      # CI already ran these on the merge commit, but a publish cannot be undone
+      # — npm only allows unpublishing within 72 hours, and never a republish of
+      # the same version. Cheap insurance against releasing from a tag that was
+      # cut somewhere other than a green master.
+      - run: yarn lint
+
+      - run: yarn type-check
+
+      - run: yarn test
+
+      - run: yarn build
+
+      - run: yarn check-build
+
+      - run: yarn check-package
+
+      # --ignore-scripts so that what ships is exactly the tree just verified,
+      # rather than a rebuild npm triggers through prepublishOnly and that
+      # nothing has checked.
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # a manual run rehearses and never publishes
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && '--dry-run' || '' }}
+        run: npm publish --provenance --access public --ignore-scripts $DRY_RUN
