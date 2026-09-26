@@ -16,8 +16,17 @@ by one list, and depth is a number carried on a row rather than a level of
 nesting in the component tree.
 
 Alongside it, everything that would otherwise have forced a major bump later was
-settled first: the node types (#492), the `level` base (#493) and the list's prop
-surface (#451). That is what the version number is for.
+settled first: the node types (#492), the `level` base (#493) and the list's
+prop surface (#451). That is what the version number is for.
+
+### At a glance
+
+|                                       | 0.15.0               | 1.0.0                     |
+| ------------------------------------- | -------------------- | ------------------------- |
+| Lists mounted for an N-level tree     | N                    | **1**                     |
+| Rows mounted for a 20,000-level tree  | every node           | **bounded by the window** |
+| Work per render of the parent         | whole tree re-hashed | **none**                  |
+| Runtime dependencies                  | `object-hash`        | **none**                  |
 
 ### Upgrading from 0.15.0
 
@@ -27,50 +36,68 @@ Nothing in the documented usage changes. `data`, `renderNode`,
 `INode` are still what you import.
 
 Two things may need attention, and both surface as type errors rather than
-silently:
+silently.
 
-- if you annotate a node parameter as `INode` and read `opened` or `hidden`
-  expecting a `boolean`, switch that annotation to `IRenderedNode`
-- if you persisted `_internalId` values anywhere, they are paths now rather than
-  content hashes
+**A node parameter annotated `INode`** that reads `opened` or `hidden` expecting
+a `boolean` wants the other type now:
+
+```tsx
+// before
+const renderNode = (node: INode) => <Text>{node.opened ? '▾' : '▸'}</Text>
+
+// after
+const renderNode = (node: IRenderedNode) => <Text>{node.opened ? '▾' : '▸'}</Text>
+```
+
+**Persisted `_internalId` values.** They are paths now rather than content
+hashes, so anything stored by a previous version will no longer match.
 
 ### Breaking
 
-- **`INode` now describes the node you pass in, not the node the list hands
-  back.** It required `_internalId` — which the library assigns and a caller
-  cannot know — so the only exported node type could not type the input:
-  `const data: INode[] = [{title: 'x'}]` did not compile. `opened` and `hidden`
-  are optional now, and a second exported type, **`IRenderedNode`**, describes
-  what `renderNode` and `onNodePressed` receive, where `_internalId` is a
-  `string` and `opened` a `boolean`, both guaranteed.
+#### `INode` describes the node you pass in, not the node the list hands back
 
-  Property *access* keeps compiling either way, because the index signature
-  resolves any property to `any`. The narrowing is `opened` and `hidden` on an
-  input node, which are now `boolean | undefined`. Typing a `renderNode`
-  parameter as `IRenderedNode` gets the guarantees back, and gets them honestly —
-  previously the required property and the index signature contradicted each
-  other.
+It required `_internalId` — which the library assigns and a caller cannot know —
+so the only exported node type could not describe the input:
 
-  `getChildrenName` and `keyExtractor` are now typed with `INode`, which is what
-  they were already being called with. They claimed an `_internalId` that was
-  not there.
-- **`data` is typed `readonly INode[]`** rather than `any`, which is the point of
-  having an input type.
+```ts
+const data: INode[] = [{ title: 'Node 1' }]; // did not compile in 0.15.0
+```
+
+`opened` and `hidden` are optional now, and a second exported type,
+**`IRenderedNode`**, describes what `renderNode` and `onNodePressed` receive,
+where `_internalId` is a `string` and `opened` a `boolean`, both guaranteed.
+
+Property *access* keeps compiling either way, because the index signature
+resolves any property to `any`. The narrowing is `opened` and `hidden` on an
+input node, which are now `boolean | undefined`. Typing a `renderNode` parameter
+as `IRenderedNode` gets the guarantees back, and gets them honestly — previously
+the required property and the index signature contradicted each other.
+
+`getChildrenName` and `keyExtractor` are now typed with `INode`, which is what
+they were already being called with. They claimed an `_internalId` that was not
+there.
+
+#### `data` is typed `readonly INode[]`
+
+Rather than `any`, which is the point of having an input type at all.
 
 ### Changed
 
 - **One list instead of one per node.** A 20,000-level-deep tree now mounts as
   few rows as a flat one; it previously mounted every node. Expanding and
   collapsing recomputes the row array rather than mounting and unmounting lists.
+
 - **Nothing walks the tree on an ordinary render.** Ids were produced by hashing
   each node's entire subtree with `object-hash`, on a pass that depended on
   `data`, `extraData`, `renderNode`, `onNodePressed` and `getChildrenName`.
   Since `renderNode` and `onNodePressed` are inline arrows in every documented
   usage, the whole tree was re-hashed on every render of the parent. Only a
   change to `data` or `extraData` rebuilds the rows now.
+
 - **Rows that did not move are no longer re-rendered.** A rebuild hands back the
   same row object where nothing about the node changed, so expanding a node
   re-renders the rows that appeared rather than every row on screen.
+
 - The list is a `FlatList` rather than a bare `VirtualizedList`, which is what
   makes `ListComponent` interchangeable.
 
@@ -79,33 +106,43 @@ silently:
 - **`ListComponent`**, the list used to render the rows. Because the rows are
   already flat, anything with a `FlatList`-shaped API works — `LegendList` or
   `FlashList`, to get their recycling.
+
 - **`keyExtractor`**, to decide a node's identity within its parent.
-- **`listProps`**, forwarded to the underlying list, which closes #451 — there
-  was previously no way to reach the list at all, so something as ordinary as
+
+- **`listProps`**, forwarded to the underlying list. This closes #451: there was
+  previously no way to reach the list at all, so something as ordinary as
   `showsVerticalScrollIndicator` was unreachable. Rather than adding a prop per
   option, the whole surface is now reachable.
 
-  The merge order is defined and tested: `listProps` first, then `extraData`,
-  `initialNumToRender` and `style` when they are given as their own props, then
-  `data`, `renderItem` and `keyExtractor`, which the component controls and
-  nothing can override. Those three are excluded from the `IListProps` type, so
-  passing one is a compile error rather than a silent no-op.
-
-  An absent `extraData`, `initialNumToRender` or `style` does **not** erase a
-  value set through `listProps`, which the obvious implementation gets wrong.
 - **`IRow` and `IListProps` are exported.** `ListComponent` shipped without a way
   to type the rows a custom list receives, which left it unusable from
   TypeScript.
+
+#### How `listProps` merges
+
+Defined and tested, in this order:
+
+| Order | What                                        | Notes                                                                                                              |
+| ----- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 1     | `listProps`                                 | everything you pass                                                                                                |
+| 2     | `extraData`, `initialNumToRender`, `style`  | win over `listProps`, but **only when actually passed**                                                            |
+| 3     | `data`, `renderItem`, `keyExtractor`        | set by the component. Excluded from `IListProps`, so passing one is a compile error rather than a silent no-op      |
+
+An absent `extraData`, `initialNumToRender` or `style` does **not** erase a value
+set through `listProps`, which the obvious implementation gets wrong.
 
 ### Fixed
 
 - `initialNumToRender` only ever applied to the top level; the recursive
   `renderChildren` call omitted it. It now applies to the whole list.
+
 - `style` was declared on the props but never used. It is applied to the list.
+
 - Two nodes holding the same content shared an `_internalId`, because the id was
   a hash of content alone. They therefore shared one expansion state and one
   React key: expanding either expanded both. Ids are now paths, unique by
   construction.
+
 - A node kept its expanded state across a change to `data` only when its content
   happened to be unchanged, since that content was its React key. State is now
   keyed by node identity, so a node stays expanded while its own content changes.
@@ -121,6 +158,7 @@ silently:
 ### Removed
 
 - **The `object-hash` dependency.** The library now has no runtime dependencies.
+
 - The undocumented `node-view` and `nodes-context-provider` internals. These were
   already unreachable from outside the package: the `exports` map has permitted
   only the package root since 0.15.0.
@@ -130,12 +168,14 @@ silently:
 - `_internalId` is now a path (`parent/child`) built from a node's own `id`, or
   failing that its `key`, or failing that its position, rather than a hash of the
   node's content. Do not persist these values across versions.
+
 - **Top-level nodes are at `level` 1, not 0.** Inherited from the synthetic root
   node the old recursive renderer wrapped `data` in, and now kept on purpose
   rather than by accident: `NestedRow` indents by `level * paddingLeftIncrement`,
   so a 0 base would put top-level rows flush against the screen edge in every app
   built on the documented pattern. `TOP_LEVEL` is the single definition, and six
   tests fail if it changes. Pass `level - 1` for a flush edge.
+
 - Expanded state now survives a change to `data` whenever a node's identity is
   unchanged, `keepOpenedState` or not. `keepOpenedState` still controls whether
   the state outlives the node leaving the tree — including while it sits inside a
