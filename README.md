@@ -224,14 +224,27 @@ state instead, so a subtree comes back expanded as it was.
 
 ## Examples
 
-There is a bare React Native project [here](https://github.com/fjmorant/react-native-nested-listview-examples)
-and an Expo project [here](https://github.com/fjmorant/-react-native-nested-listview-examples-expo),
-which covers custom nodes, state changes, extra data, dynamic content, children
-as objects, a performance case and a Redux integration.
+Runnable examples live in the
+[Expo examples app](https://github.com/fjmorant/-react-native-nested-listview-examples-expo),
+covering custom nodes, state changes, extra data, dynamic content, children as
+objects, a performance case, `listProps` and a Redux integration.
 
-| Version App | React Native | Library |
-| ----------- | ------------ | ------- |
-| 1.0.1       | 0.86.3       | 0.15.0  |
+| Example app | Expo SDK | React Native | Library |
+| ----------- | -------- | ------------ | ------- |
+| 1.1.0       | 57       | 0.86.3       | 1.0.0   |
+
+```
+git clone https://github.com/fjmorant/-react-native-nested-listview-examples-expo
+cd -react-native-nested-listview-examples-expo
+npm install && npm start
+```
+
+There is no separate bare React Native example, and there is nothing to lose by
+that: this library is pure JavaScript with no native module, so it installs and
+behaves identically in a bare app and in an Expo one. The
+[bare examples repository](https://github.com/fjmorant/react-native-nested-listview-examples)
+is archived — it targeted React Native 0.70 and no longer builds on current
+toolchains, and keeping two example apps current is what let it rot.
 
 ## Roadmap
 
