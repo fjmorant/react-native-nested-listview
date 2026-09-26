@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { useFlattenedRows } from '../expansion';
-import { Node, Row } from '../types';
+import { Node, RenderedNode, Row } from '../types';
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -28,10 +28,17 @@ const styles = StyleSheet.create({
 });
 
 export interface IProps {
-  data: any;
+  /**
+   * The tree to render. Nodes carry whatever shape you like; see `INode`.
+   */
+  data: readonly Node[];
   extraData?: any;
-  renderNode: (item: Node, level: number, isLastLevel: boolean) => ReactElement;
-  onNodePressed?: (item: Node) => void;
+  renderNode: (
+    item: RenderedNode,
+    level: number,
+    isLastLevel: boolean,
+  ) => ReactElement;
+  onNodePressed?: (item: RenderedNode) => void;
   /**
    * Where a node's children live. Defaults to `items`.
    *

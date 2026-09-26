@@ -1,16 +1,30 @@
 /**
- * A node of the tree passed in `data`.
+ * A node as it appears in `data`.
  *
- * Callers supply their own shape; the properties named here are the ones the
- * list itself reads. `_internalId` is assigned by the list rather than by the
- * caller, and `opened` reflects the node's current expanded state on the node
- * handed to `renderNode`.
+ * Callers supply their own shape, so every property here is optional and the
+ * list requires none of them: `opened` sets a node's initial expanded state,
+ * `hidden` suppresses the node's own row while still showing its children, and
+ * children live under whatever key `getChildrenName` returns.
+ *
+ * This is also what `getChildrenName` and `keyExtractor` are handed, because
+ * both are called while the tree is being walked, before the list has assigned
+ * anything to a node.
  */
 export interface Node {
-  _internalId: string;
-  hidden: boolean;
-  opened: boolean;
+  opened?: boolean;
+  hidden?: boolean;
   [key: string]: any;
+}
+
+/**
+ * A node as handed to `renderNode` and `onNodePressed`.
+ *
+ * The list assigns `_internalId` and resolves `opened` to the node's current
+ * expanded state, so unlike on an input node neither is ever absent here.
+ */
+export interface RenderedNode extends Node {
+  _internalId: string;
+  opened: boolean;
 }
 
 /**
@@ -25,7 +39,7 @@ export interface Row {
   /** The node exactly as it appeared in `data`. */
   source: Node;
   /** The node handed to `renderNode`. */
-  node: Node;
+  node: RenderedNode;
   /** Nesting depth. Nodes of `data` itself are at level 1. */
   level: number;
   /** True when the node has no children to expand into. */

@@ -14,6 +14,29 @@ level of nesting in the component tree.
 The props are unchanged and the exported surface — the default export,
 `NestedRow` and `INode` — is unchanged.
 
+### Breaking
+
+- **`INode` now describes the node you pass in, not the node the list hands
+  back.** It required `_internalId` — which the library assigns and a caller
+  cannot know — so the only exported node type could not type the input:
+  `const data: INode[] = [{title: 'x'}]` did not compile. `opened` and `hidden`
+  are optional now, and a second exported type, **`IRenderedNode`**, describes
+  what `renderNode` and `onNodePressed` receive, where `_internalId` is a
+  `string` and `opened` a `boolean`, both guaranteed.
+
+  Property *access* keeps compiling either way, because the index signature
+  resolves any property to `any`. The narrowing is `opened` and `hidden` on an
+  input node, which are now `boolean | undefined`. Typing a `renderNode`
+  parameter as `IRenderedNode` gets the guarantees back, and gets them honestly —
+  previously the required property and the index signature contradicted each
+  other.
+
+  `getChildrenName` and `keyExtractor` are now typed with `INode`, which is what
+  they were already being called with. They claimed an `_internalId` that was
+  not there.
+- **`data` is typed `readonly INode[]`** rather than `any`, which is the point of
+  having an input type.
+
 ### Changed
 
 - **One list instead of one per node.** A 20,000-level-deep tree now mounts as
