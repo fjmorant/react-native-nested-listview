@@ -31,8 +31,6 @@ jobs:
           # .nvmrc; npm 10 ships here, which is what --provenance needs
           node-version: '22'
           cache: yarn
-          # writes the .npmrc that NODE_AUTH_TOKEN is read against
-          registry-url: 'https://registry.npmjs.org'
 
       # the repo pins yarn via packageManager
       - run: corepack enable
@@ -69,12 +67,28 @@ jobs:
 
       - run: yarn check-package
 
+      # npm is pointed at the registry only now, and deliberately in a second
+      # setup-node step rather than the one above. `registry-url` writes an
+      # .npmrc holding the literal `${NODE_AUTH_TOKEN}` for npm to expand at
+      # publish time, but yarn 1 reads .npmrc too and aborts on a variable that
+      # is not set — "Failed to replace env in config" — and `cache: yarn`
+      # triggers exactly that by shelling out to `yarn cache dir`. So everything
+      # yarn touches has to run before this file exists.
+      #
+      # It also keeps the publish token out of the environment of the install,
+      # test and build steps, which are the steps that run third-party code.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
       # --ignore-scripts so that what ships is exactly the tree just verified,
       # rather than a rebuild npm triggers through prepublishOnly and that
       # nothing has checked.
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # a manual run rehearses and never publishes
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && '--dry-run' || '' }}
-        run: npm publish --provenance --access public --ignore-scripts $DRY_RUN
+          # A manual run rehearses and never publishes. Provenance is left to
+          # real releases: there is no attestation to make for a dry run.
+          EXTRA: ${{ github.event_name == 'workflow_dispatch' && '--dry-run' || '--provenance' }}
+        run: npm publish --access public --ignore-scripts $EXTRA
