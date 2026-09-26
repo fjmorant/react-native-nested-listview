@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Node } from '../types';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 import { NestedListView } from './nested-list-view';
@@ -571,6 +571,44 @@ describe('NestedListView as a flat list', () => {
     await fireEvent.press(view.getByText('a'));
 
     expect(levels).toEqual({ a: 1, a1: 2 });
+  });
+
+  test('indents a top-level row by one increment, via NestedRow', async () => {
+    // The user-visible consequence of levels starting at 1. This is the test
+    // that would fail if TOP_LEVEL were changed to 0, which is the whole reason
+    // the base is written down rather than inherited.
+    const paddingOfRowContaining = (view: any, text: string) => {
+      let node = view.getByText(text).parent;
+
+      while (node) {
+        const style = StyleSheet.flatten(node.props?.style) as any;
+
+        if (style && style.paddingLeft !== undefined) {
+          return style.paddingLeft;
+        }
+
+        node = node.parent;
+      }
+
+      return undefined;
+    };
+
+    const view = await render(
+      <NestedListView
+        data={[{ title: 'top', items: [{ title: 'nested' }] }]}
+        renderNode={(node: Node, level: number) => (
+          <NestedRow level={level}>
+            <Text>{node.title}</Text>
+          </NestedRow>
+        )}
+      />,
+    );
+
+    expect(paddingOfRowContaining(view, 'top')).toBe(10);
+
+    await fireEvent.press(view.getByText('top'));
+
+    expect(paddingOfRowContaining(view, 'nested')).toBe(20);
   });
 
   test('renders through a ListComponent when one is given', async () => {
