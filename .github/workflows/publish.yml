@@ -1,32 +1,41 @@
 name: Publish
 
-# Publishing is driven by a GitHub release rather than by a push, so cutting a
-# version is a deliberate act with a human behind it. Creating the release is
-# the only path that publishes; `workflow_dispatch` is a rehearsal and always
-# passes `--dry-run`.
+# One entry point for a release: Actions -> Publish -> Run workflow.
+#
+# It verifies the tree, publishes to npm and creates the GitHub release, in that
+# order. The version comes from package.json, which the release pull request
+# already set — bumping it stays a reviewable change, because the CHANGELOG has
+# to be written by a person anyway. Everything after that point is mechanical,
+# and this is that part.
+#
+# `dry_run` defaults to true, so the default action of the button is the
+# harmless one. A rehearsal runs every check and publishes nothing.
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Rehearse only: run every check and publish nothing'
+        type: boolean
+        default: true
 
-# Provenance needs id-token; nothing here writes to the repository.
 permissions:
-  contents: read
+  # create the tag and the GitHub release
+  contents: write
+  # npm provenance
   id-token: write
 
 concurrency:
-  group: publish-${{ github.ref }}
+  group: publish
   cancel-in-progress: false
 
 jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
-    # NPM_TOKEN is an environment secret, and an environment's secrets are only
-    # visible to a job that declares it. Without this line secrets.NPM_TOKEN is
-    # empty and npm refuses the publish. Declaring it also means the
-    # environment's protection rules — reviewers, wait timers, which branches
-    # and tags may deploy — apply to releases.
+    # NPM_TOKEN is a secret of this environment, and an environment's secrets
+    # are only visible to a job that declares it. Declaring it also means the
+    # environment's protection rules apply, so adding required reviewers there
+    # turns a real publish into something that has to be approved.
     environment: production
 
     steps:
@@ -43,41 +52,58 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      # A release tag that disagrees with package.json means one of the two was
-      # forgotten, and npm would happily publish the version in package.json
-      # under the wrong release. Checked before anything is built.
-      - name: Check the tag matches package.json
-        if: github.event_name == 'release'
+      - name: Read the version
+        id: version
         run: |
-          tag="${GITHUB_REF_NAME#v}"
-          pkg="$(node -p 'require("./package.json").version')"
-          if [ "$tag" != "$pkg" ]; then
-            echo "::error::release tag ${GITHUB_REF_NAME} does not match package.json version ${pkg}"
+          name="$(node -p 'require("./package.json").name')"
+          version="$(node -p 'require("./package.json").version')"
+          {
+            echo "name=${name}"
+            echo "version=${version}"
+            echo "tag=v${version}"
+          } >> "$GITHUB_OUTPUT"
+          echo "releasing ${name}@${version}"
+
+      # These cost a second or two and the gate below costs minutes. Both are
+      # states you cannot publish out of, and npm never allows a version to be
+      # republished, so finding out here rather than at the last step matters.
+      - name: Check the version is not already released
+        env:
+          NAME: ${{ steps.version.outputs.name }}
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "::error::tag ${TAG} already exists. Bump the version in package.json first."
             exit 1
           fi
-          echo "publishing ${pkg}"
+          # tested on output rather than exit code, which npm has not been
+          # consistent about across majors
+          if [ -n "$(npm view "${NAME}@${VERSION}" version 2>/dev/null)" ]; then
+            echo "::error::${NAME}@${VERSION} is already on npm, and npm never allows republishing a version."
+            exit 1
+          fi
+          echo "${VERSION} is unreleased on both npm and this repository"
 
-      # A missing token otherwise surfaces as an npm 403 after the whole gate has
-      # run, which reads like a permissions problem with the account rather than
-      # a secret that is not reaching the job.
+      # A missing token otherwise surfaces as an npm 403 after the whole gate
+      # has run, which reads like a problem with the account rather than a
+      # secret that is not reaching the job.
       - name: Check the npm token is present
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ -n "$NODE_AUTH_TOKEN" ]; then
             echo "NPM_TOKEN is reaching this job"
-            exit 0
-          fi
-          if [ "${{ github.event_name }}" = "release" ]; then
-            echo "::error::NPM_TOKEN is empty. It must be a secret of the environment this job declares, or a repository secret."
+          elif [ "$DRY_RUN" = "true" ]; then
+            echo "::warning::NPM_TOKEN is empty, so this rehearsal cannot check authentication."
+          else
+            echo "::error::NPM_TOKEN is empty. It must be a secret of the production environment."
             exit 1
           fi
-          echo "::warning::NPM_TOKEN is empty, so this rehearsal cannot check authentication."
 
       # CI already ran these on the merge commit, but a publish cannot be undone
-      # — npm only allows unpublishing within 72 hours, and never a republish of
-      # the same version. Cheap insurance against releasing from a tag that was
-      # cut somewhere other than a green master.
+      # and this workflow can be run from any ref.
       - run: yarn lint
 
       - run: yarn type-check
@@ -107,11 +133,59 @@ jobs:
 
       # --ignore-scripts so that what ships is exactly the tree just verified,
       # rather than a rebuild npm triggers through prepublishOnly and that
-      # nothing has checked.
+      # nothing has checked. Provenance is left to real publishes: a dry run has
+      # nothing to attest.
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # A manual run rehearses and never publishes. Provenance is left to
-          # real releases: there is no attestation to make for a dry run.
-          EXTRA: ${{ github.event_name == 'workflow_dispatch' && '--dry-run' || '--provenance' }}
+          EXTRA: ${{ inputs.dry_run && '--dry-run' || '--provenance' }}
         run: npm publish --access public --ignore-scripts $EXTRA
+
+      # After npm, because npm is the half that cannot be undone: a GitHub
+      # release is deleted in a click, a published version is not. If this step
+      # fails the package is already correctly on npm and the release can be
+      # created by hand, which is the better way round to fail.
+      - name: Create the GitHub release
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "$TAG" \
+            --target "$GITHUB_SHA" \
+            --title "$VERSION" \
+            --generate-notes
+
+      # The run page otherwise looks identical whether or not anything was
+      # published, which is genuinely confusing when the default is a rehearsal.
+      - name: Say what happened
+        if: always()
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          NAME: ${{ steps.version.outputs.name }}
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          {
+            if [ -z "$VERSION" ]; then
+              echo "## Stopped before reading the version"
+              echo
+              echo "Nothing was published."
+            elif [ "$DRY_RUN" = "true" ]; then
+              echo "## Rehearsal only — nothing was published"
+              echo
+              echo "Verified \`${NAME}@${VERSION}\`. No npm release, no tag, no GitHub release."
+              echo
+              echo "To publish for real, run this workflow again with **Rehearse only** unchecked."
+            elif [ "${{ job.status }}" != "success" ]; then
+              echo "## Failed while releasing ${VERSION}"
+              echo
+              echo "Check the failed step above before retrying."
+            else
+              echo "## Published ${NAME}@${VERSION}"
+              echo
+              echo "- [npm](https://www.npmjs.com/package/${NAME}/v/${VERSION})"
+              echo "- [release](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG})"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
