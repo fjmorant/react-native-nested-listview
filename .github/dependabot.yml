@@ -1,7 +1,25 @@
-
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # one PR per group rather than one per package, which is how seven
+      # superseded PRs accumulated between 2022 and 2026
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+
+  # the workflows pinned actions/stale@v1 and actions/first-interaction@v1
+  # for years; both were many majors behind and one had renamed its inputs
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
