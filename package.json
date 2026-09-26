@@ -1,6 +1,6 @@
 {
   "name": "react-native-nested-listview",
-  "version": "0.15.0",
+  "version": "1.0.0",
   "description": "Nested Listview for React native",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

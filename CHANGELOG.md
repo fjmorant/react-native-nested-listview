@@ -1,18 +1,38 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
 
-Replaces the recursive nested-`VirtualizedList` renderer with a flattened row
-model (#469).
+First stable release. Semver rule 5: *version 1.0.0 defines the public API* —
+and this is that API. The library has been in production since 2018 on a 0.x
+that, per rule 4, claimed "anything MAY change at any time". It no longer
+claims that.
 
-`node-view` rendered a `VirtualizedList` per node, recursively, so an N-level
-tree nested N lists of the same orientation inside one another — the arrangement
-React Native warns against. The tree is now flattened into a single array of
-visible rows, rendered by one list. Depth is a number on a row rather than a
-level of nesting in the component tree.
+The headline is a rewritten core. The recursive nested-`VirtualizedList`
+renderer is replaced by a flattened row model (#469): `node-view` rendered a
+`VirtualizedList` per node, recursively, so an N-level tree nested N lists of
+the same orientation inside one another — the arrangement React Native warns
+against. The tree is now flattened into a single array of visible rows rendered
+by one list, and depth is a number carried on a row rather than a level of
+nesting in the component tree.
 
-The props are unchanged and the exported surface — the default export,
-`NestedRow` and `INode` — is unchanged.
+Alongside it, everything that would otherwise have forced a major bump later was
+settled first: the node types (#492), the `level` base (#493) and the list's prop
+surface (#451). That is what the version number is for.
+
+### Upgrading from 0.15.0
+
+Nothing in the documented usage changes. `data`, `renderNode`,
+`getChildrenName`, `onNodePressed`, `extraData`, `keepOpenedState` and
+`initialNumToRender` behave as they did, and the default export, `NestedRow` and
+`INode` are still what you import.
+
+Two things may need attention, and both surface as type errors rather than
+silently:
+
+- if you annotate a node parameter as `INode` and read `opened` or `hidden`
+  expecting a `boolean`, switch that annotation to `IRenderedNode`
+- if you persisted `_internalId` values anywhere, they are paths now rather than
+  content hashes
 
 ### Breaking
 
