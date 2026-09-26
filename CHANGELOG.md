@@ -60,6 +60,22 @@ The props are unchanged and the exported surface — the default export,
   already flat, anything with a `FlatList`-shaped API works — `LegendList` or
   `FlashList`, to get their recycling.
 - **`keyExtractor`**, to decide a node's identity within its parent.
+- **`listProps`**, forwarded to the underlying list, which closes #451 — there
+  was previously no way to reach the list at all, so something as ordinary as
+  `showsVerticalScrollIndicator` was unreachable. Rather than adding a prop per
+  option, the whole surface is now reachable.
+
+  The merge order is defined and tested: `listProps` first, then `extraData`,
+  `initialNumToRender` and `style` when they are given as their own props, then
+  `data`, `renderItem` and `keyExtractor`, which the component controls and
+  nothing can override. Those three are excluded from the `IListProps` type, so
+  passing one is a compile error rather than a silent no-op.
+
+  An absent `extraData`, `initialNumToRender` or `style` does **not** erase a
+  value set through `listProps`, which the obvious implementation gets wrong.
+- **`IRow` and `IListProps` are exported.** `ListComponent` shipped without a way
+  to type the rows a custom list receives, which left it unusable from
+  TypeScript.
 
 ### Fixed
 

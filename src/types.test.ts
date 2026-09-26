@@ -1,4 +1,4 @@
-import { INode, IRenderedNode } from './index';
+import { IListProps, INode, IRenderedNode, IRow } from './index';
 
 /**
  * These assertions are checked by `yarn type-check`, not at runtime. A failure
@@ -44,6 +44,23 @@ const rendered: IRenderedNode = {
 };
 const roundTripped: INode = rendered;
 
+// A custom `ListComponent` is handed rows, so the row type has to be reachable
+// from the package root or `ListComponent` is unusable from TypeScript.
+export type RowNodeIsRendered = Expect<Equals<IRow['node'], IRenderedNode>>;
+export type RowSourceIsInput = Expect<Equals<IRow['source'], INode>>;
+export type RowLevelIsNumber = Expect<Equals<IRow['level'], number>>;
+
+// The props the list controls are excluded from the bag, so passing one is a
+// compile error rather than a silent no-op.
+export type ListPropsExcludesControlled = Expect<
+  Equals<keyof IListProps & ('data' | 'renderItem' | 'keyExtractor'), never>
+>;
+
+// ...but the rest of the list's surface is there, which is what #451 needed.
+export type ListPropsHasScrollIndicator = Expect<
+  Equals<IListProps['showsVerticalScrollIndicator'], boolean | undefined>
+>;
+
 describe('exported node types', () => {
   test('input data needs none of the fields the list assigns', () => {
     expect(data).toHaveLength(3);
@@ -53,5 +70,19 @@ describe('exported node types', () => {
   test('a rendered node can be used where an input node is expected', () => {
     expect(roundTripped.title).toBe('Node 1');
     expect(roundTripped.opened).toBe(false);
+  });
+
+  test('a row can be described with the exported types', () => {
+    const row: IRow = {
+      id: '0',
+      source: { title: 'Node 1' },
+      node: rendered,
+      level: 1,
+      isLastLevel: true,
+      isExpanded: false,
+    };
+
+    expect(row.node.title).toBe('Node 1');
+    expect(row.level).toBe(1);
   });
 });

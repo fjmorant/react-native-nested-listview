@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useRef } from 'react';
 import {
   FlatList,
+  type FlatListProps,
   Pressable,
   StyleProp,
   StyleSheet,
@@ -59,7 +60,20 @@ export interface IProps {
   keyExtractor?: (item: Node, index: number) => string | number;
   style?: StyleProp<ViewStyle>;
   keepOpenedState?: boolean;
+  /**
+   * Convenience alias for `listProps.initialNumToRender`. Wins over `listProps`
+   * when given.
+   */
   initialNumToRender?: number;
+  /**
+   * Props forwarded to the underlying list — `showsVerticalScrollIndicator`,
+   * `onEndReached`, `refreshControl` and the rest of its surface.
+   *
+   * Applied before the props this component controls, so `data`, `renderItem`
+   * and `keyExtractor` cannot be overridden, and before `extraData`,
+   * `initialNumToRender` and `style`, which win when given as their own props.
+   */
+  listProps?: ListProps;
   /**
    * The list used to render the rows. Defaults to `FlatList`. Because the tree
    * is flattened first, anything with a `FlatList`-shaped API works here —
@@ -67,6 +81,23 @@ export interface IProps {
    */
   ListComponent?: React.ComponentType<any>;
 }
+
+/**
+ * The props the component sets on the list itself.
+ *
+ * They are applied after `listProps`, so nothing passed in can stop the list
+ * rendering, and they are excluded from `ListProps` so that passing them is a
+ * compile error rather than a silent no-op.
+ */
+type ControlledListProps = 'data' | 'renderItem' | 'keyExtractor';
+
+/**
+ * Props forwarded to the underlying list.
+ *
+ * Typed against `FlatList`, which is the default. Another `ListComponent` with
+ * props of its own may need a cast.
+ */
+export type ListProps = Omit<Partial<FlatListProps<Row>>, ControlledListProps>;
 
 interface INestedListRowProps {
   row: Row;
@@ -123,6 +154,7 @@ const NestedListView: React.FC<IProps> = React.memo(
     style,
     keepOpenedState,
     initialNumToRender,
+    listProps,
     ListComponent = FlatList,
   }: IProps) => {
     const { rows, toggle } = useFlattenedRows({
@@ -171,16 +203,20 @@ const NestedListView: React.FC<IProps> = React.memo(
       return renderErrorMessage('data');
     }
 
-    return (
-      <ListComponent
-        data={rows}
-        renderItem={renderItem}
-        keyExtractor={extractRowKey}
-        extraData={extraData}
-        initialNumToRender={initialNumToRender}
-        style={style}
-      />
-    );
+    // Each of these only overrides `listProps` when it was actually given:
+    // assigning `undefined` unconditionally would erase a value the caller set
+    // through `listProps` instead of deferring to it.
+    const composed = {
+      ...listProps,
+      ...(extraData !== undefined ? { extraData } : null),
+      ...(initialNumToRender !== undefined ? { initialNumToRender } : null),
+      ...(style !== undefined ? { style } : null),
+      data: rows,
+      renderItem,
+      keyExtractor: extractRowKey,
+    };
+
+    return <ListComponent {...composed} />;
   },
 );
 

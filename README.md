@@ -84,6 +84,38 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | **`initialNumToRender`** | Prop for setting the initial amount of items to render.                                                                                                                  | number   | Not required |
 | **`keyExtractor`**       | Identity of a node within its parent, used to keep expanded state attached to the right node when `data` changes. See [Node identity](#node-identity). | Function | node's `id`, then `key`, then position |
 | **`ListComponent`**      | The list used to render the rows. Anything with a `FlatList`-shaped API works. See [Using another list](#using-another-list). | Component | `FlatList` |
+| **`listProps`**          | Props forwarded to the underlying list — the scroll indicator, `onEndReached`, `refreshControl` and the rest of its surface. See [Reaching the list](#reaching-the-list). | `IListProps` | Not required |
+
+### Reaching the list
+
+`listProps` is forwarded to the underlying list, which is how you reach anything
+on its surface:
+
+```javascript
+<NestedListView
+  data={data}
+  renderNode={renderNode}
+  listProps={{
+    showsVerticalScrollIndicator: false,
+    onEndReached: loadMore,
+  }}
+/>
+```
+
+Three groups of props reach the list, applied in this order:
+
+| Order | What | Notes |
+| --- | --- | --- |
+| 1 | `listProps` | everything you pass, applied first |
+| 2 | `extraData`, `initialNumToRender`, `style` | their own props, which win over `listProps` — but **only when you actually pass them**, so a value set through `listProps` is never erased by an absent prop |
+| 3 | `data`, `renderItem`, `keyExtractor` | set by the component and not overridable. They are excluded from `IListProps`, so passing one is a compile error rather than a silent no-op |
+
+`initialNumToRender` therefore has two spellings. Its own prop predates
+`listProps` and stays supported; `listProps.initialNumToRender` is equivalent,
+and the dedicated prop wins if you set both.
+
+`IListProps` is typed against `FlatList`, the default. Another `ListComponent`
+with props of its own may need a cast.
 
 ### NestedRow
 
@@ -118,6 +150,8 @@ out are not the same shape.
 | --- | --- |
 | **`INode`** | a node as you write it in `data`. Every field is optional — add whatever your app needs |
 | **`IRenderedNode`** | a node as `renderNode` and `onNodePressed` receive it: the `_internalId` the list assigned, and `opened` resolved to the node's current expanded state |
+| **`IRow`** | one row of the flattened tree, as a custom `ListComponent` receives it in `renderItem` |
+| **`IListProps`** | the shape of `listProps` |
 
 ```typescript
 import NestedListView, {NestedRow, INode, IRenderedNode} from 'react-native-nested-listview'
@@ -172,9 +206,9 @@ import {LegendList} from '@legendapp/list'
 />
 ```
 
-The component receives `data`, `renderItem`, `keyExtractor`, `extraData`,
-`initialNumToRender` and `style`. Each `item` is a row, so a custom list must
-pass its `item` through to `renderItem` unchanged.
+Each `item` is an `IRow`, so a custom list must pass its `item` through to
+`renderItem` unchanged. What else the component sets, and what `listProps` can
+and cannot override, is in [Reaching the list](#reaching-the-list).
 
 ### Node identity
 
