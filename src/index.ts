@@ -1,6 +1,6 @@
 import { NestedListView } from './nested-list-view';
 import { NestedRow } from './nested-row';
-import { Node } from './node-view';
+import { Node } from './types';
 
 export { NestedRow };
 

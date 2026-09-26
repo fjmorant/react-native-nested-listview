@@ -15,6 +15,7 @@ UI component for React Native that allows to create a listview with N levels of 
 1. [Requirements](#requirements)
 1. [Usage](#usage)
 1. [Props](#props)
+1. [Performance](#performance)
 1. [Examples](#examples)
 1. [Roadmap](#roadmap)
 1. [Development](#development)
@@ -32,10 +33,11 @@ UI component for React Native that allows to create a listview with N levels of 
 | **React Native** | no hard lower bound is declared. Verified against **0.86** and **0.87** |
 | **New Architecture** | supported. Verified on React Native 0.86 via Expo SDK 57, where the New Architecture is the only one available |
 
-This library is pure JavaScript. It contains no native modules, no `codegenConfig`
-and no iOS or Android sources, and builds only on core components —
-`VirtualizedList`, `Pressable`, `View`, `Text` and `StyleSheet` — so it behaves
-the same under Fabric as under the legacy renderer. It also runs in Expo Go.
+This library is pure JavaScript with no runtime dependencies. It contains no
+native modules, no `codegenConfig` and no iOS or Android sources, and builds only
+on core components — `FlatList`, `Pressable`, `View`, `Text` and `StyleSheet` —
+so it behaves the same under Fabric as under the legacy renderer. It also runs in
+Expo Go.
 
 The package ships compiled JavaScript with both CommonJS and ESM entrypoints and
 its own type declarations. Nothing needs to be added to your Metro or Babel
@@ -74,12 +76,14 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | Prop                     | Description                                                                                                                                                              | Type     | Default      |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------ |
 | **`data`**               | Array of nested items                                                                                                                                                    | Array    | **Required** |
-| **`renderNode`**         | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. | Function | **Required** |
+| **`renderNode`**         | Takes a node from data and renders it into the NestedlistView. The function receives `{node, level, isLastLevel}` (see [Usage](#usage)) and must return a React element. `level` is 1 for the nodes of `data` and grows with depth. | Function | **Required** |
 | **`getChildrenName`**    | Function to determine in a node where are the children, by default NestedListView will try to find them in **items**                                                     | Function | **items**    |
 | **`onNodePressed`**      | Function called when a node is pressed by a user                                                                                                                         | Function | Not required |
 | **`extraData`**          | A marker property for telling the list to re-render                                                                                                                      | Boolean  | Not required |
 | **`keepOpenedState`**    | Prop for keeping the opened state of each node when data passed to the list changes                                                                                      | Boolean  | Not required |
 | **`initialNumToRender`** | Prop for setting the initial amount of items to render.                                                                                                                  | number   | Not required |
+| **`keyExtractor`**       | Identity of a node within its parent, used to keep expanded state attached to the right node when `data` changes. See [Node identity](#node-identity). | Function | node's `id`, then `key`, then position |
+| **`ListComponent`**      | The list used to render the rows. Anything with a `FlatList`-shaped API works. See [Using another list](#using-another-list). | Component | `FlatList` |
 
 ### NestedRow
 
@@ -89,6 +93,59 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 | **`children`** | Content of the NestedRow    | Component | **Required** |
 | **`level`**    | Level where a given node is | number    | **Required** |
 | **`style`**    | NestedRow container style   | Style     | Not required |
+
+## Performance
+
+The tree is flattened into a single array of visible rows, and one list renders
+it. Depth is a number carried on a row rather than a level of nesting in the
+component tree, so:
+
+- there is one list, not one per node, whatever the shape of the data. Nesting
+  lists of the same orientation is the arrangement React Native warns against,
+  where windowing cannot work correctly
+- the number of mounted rows is bounded by the window rather than by the size of
+  the tree. A 20,000-level-deep tree mounts as few rows as a flat one
+- expanding and collapsing recomputes the row array instead of mounting and
+  unmounting lists. Rows that did not move keep their identity and are not
+  re-rendered
+- nothing walks the tree on an ordinary render. Only a change to `data` or
+  `extraData` rebuilds the rows, so an inline `renderNode`, `onNodePressed` or
+  `getChildrenName` costs nothing
+
+`getChildrenName` and `keyExtractor` are read when the rows are built. If either
+starts answering differently without `data` changing, change `extraData` to pick
+it up.
+
+### Using another list
+
+Because the rows are already flat, any list with a `FlatList`-shaped API can
+render them. Pass it as `ListComponent` to get that list's own recycling:
+
+```javascript
+import {LegendList} from '@legendapp/list'
+
+<NestedListView
+  data={data}
+  renderNode={renderNode}
+  ListComponent={LegendList}
+/>
+```
+
+The component receives `data`, `renderItem`, `keyExtractor`, `extraData`,
+`initialNumToRender` and `style`. Each `item` is a row, so a custom list must
+pass its `item` through to `renderItem` unchanged.
+
+### Node identity
+
+Each node is given an `_internalId`: a path built from the node's own `id`, or
+failing that its `key`, or failing that its position among its siblings.
+`keyExtractor` overrides the choice. Identity is what expanded state is keyed by,
+so giving nodes stable keys is what lets a node stay expanded while `data`
+changes around it.
+
+By default a node's expanded state is forgotten once the node leaves the tree,
+including while it sits inside a collapsed parent. `keepOpenedState` keeps that
+state instead, so a subtree comes back expanded as it was.
 
 ## Examples
 
