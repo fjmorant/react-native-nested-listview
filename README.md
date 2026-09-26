@@ -253,6 +253,28 @@ yarn check-build      # every emitted file parses as plain JavaScript
 yarn check-package    # entrypoints and types agree, across all resolution modes
 ```
 
+### Releasing
+
+Publishing is driven by a GitHub release. Create one whose tag matches the
+version in `package.json` — `v1.0.0` for `1.0.0`, with or without the `v` — and
+the `Publish` workflow builds, re-runs every check, and publishes to npm with
+[provenance](https://docs.npmjs.com/generating-provenance-statements).
+
+```
+# 1. bump the version and move the CHANGELOG heading, on a branch
+# 2. merge it
+# 3. create the release on the tag
+gh release create v1.0.0 --title 1.0.0 --notes-from-tag
+```
+
+The workflow refuses to publish when the tag and `package.json` disagree, which
+is the mistake that otherwise ships a version under the wrong release. Running
+`Publish` manually from the Actions tab rehearses the whole thing and always
+passes `--dry-run`, so it can never publish.
+
+Publishing needs an `NPM_TOKEN` repository secret — an npm **automation** token,
+since a classic token fails against an account that requires 2FA for publishing.
+
 ### Trying a local build in an app
 
 Pack the library and install the tarball into the consuming app:
