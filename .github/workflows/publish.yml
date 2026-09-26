@@ -85,6 +85,33 @@ jobs:
           fi
           echo "${VERSION} is unreleased on both npm and this repository"
 
+      # The CHANGELOG entry is what the GitHub release will say. Generated notes
+      # are a list of merged pull requests, which puts "stop setup-node's .npmrc
+      # breaking every yarn step" next to the reason the library got faster, and
+      # leaves the release and the CHANGELOG telling different stories.
+      #
+      # It doubles as a guard: the script exits non-zero when the section is
+      # missing or empty, and a version nobody wrote an entry for is not ready
+      # to publish.
+      - name: Build the release notes from the CHANGELOG
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/changelog-section.mjs "$VERSION" > "${RUNNER_TEMP}/notes.md"
+          # the release being made does not exist yet, so the latest one is the
+          # previous one
+          previous="$(gh release view --json tagName --jq .tagName 2>/dev/null || true)"
+          if [ -n "$previous" ]; then
+            {
+              echo
+              echo '---'
+              echo
+              echo "**Full changelog**: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/${previous}...v${VERSION}"
+            } >> "${RUNNER_TEMP}/notes.md"
+          fi
+          echo "release notes: $(wc -l < "${RUNNER_TEMP}/notes.md") lines from the CHANGELOG"
+
       # A missing token otherwise surfaces as an npm 403 after the whole gate
       # has run, which reads like a problem with the account rather than a
       # secret that is not reaching the job.
@@ -155,7 +182,7 @@ jobs:
           gh release create "$TAG" \
             --target "$GITHUB_SHA" \
             --title "$VERSION" \
-            --generate-notes
+            --notes-file "${RUNNER_TEMP}/notes.md"
 
       # The run page otherwise looks identical whether or not anything was
       # published, which is genuinely confusing when the default is a rehearsal.
@@ -178,6 +205,14 @@ jobs:
               echo "Verified \`${NAME}@${VERSION}\`. No npm release, no tag, no GitHub release."
               echo
               echo "To publish for real, run this workflow again with **Rehearse only** unchecked."
+              if [ -f "${RUNNER_TEMP}/notes.md" ]; then
+                echo
+                echo "<details><summary>Release notes this would publish</summary>"
+                echo
+                cat "${RUNNER_TEMP}/notes.md"
+                echo
+                echo "</details>"
+              fi
             elif [ "${{ job.status }}" != "success" ]; then
               echo "## Failed while releasing ${VERSION}"
               echo
