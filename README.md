@@ -224,14 +224,27 @@ state instead, so a subtree comes back expanded as it was.
 
 ## Examples
 
-There is a bare React Native project [here](https://github.com/fjmorant/react-native-nested-listview-examples)
-and an Expo project [here](https://github.com/fjmorant/-react-native-nested-listview-examples-expo),
-which covers custom nodes, state changes, extra data, dynamic content, children
-as objects, a performance case and a Redux integration.
+Runnable examples live in the
+[Expo examples app](https://github.com/fjmorant/-react-native-nested-listview-examples-expo),
+covering custom nodes, state changes, extra data, dynamic content, children as
+objects, a performance case, `listProps` and a Redux integration.
 
-| Version App | React Native | Library |
-| ----------- | ------------ | ------- |
-| 1.0.1       | 0.86.3       | 0.15.0  |
+| Example app | Expo SDK | React Native | Library |
+| ----------- | -------- | ------------ | ------- |
+| 1.1.0       | 57       | 0.86.3       | 1.0.0   |
+
+```
+git clone https://github.com/fjmorant/-react-native-nested-listview-examples-expo
+cd -react-native-nested-listview-examples-expo
+npm install && npm start
+```
+
+There is no separate bare React Native example, and there is nothing to lose by
+that: this library is pure JavaScript with no native module, so it installs and
+behaves identically in a bare app and in an Expo one. The
+[bare examples repository](https://github.com/fjmorant/react-native-nested-listview-examples)
+is archived — it targeted React Native 0.70 and no longer builds on current
+toolchains, and keeping two example apps current is what let it rot.
 
 ## Roadmap
 
@@ -255,25 +268,37 @@ yarn check-package    # entrypoints and types agree, across all resolution modes
 
 ### Releasing
 
-Publishing is driven by a GitHub release. Create one whose tag matches the
-version in `package.json` — `v1.0.0` for `1.0.0`, with or without the `v` — and
-the `Publish` workflow builds, re-runs every check, and publishes to npm with
-[provenance](https://docs.npmjs.com/generating-provenance-statements).
+Releasing is one button: **Actions → Publish → Run workflow**.
+
+It reads the version from `package.json`, refuses to go on if that version is
+already tagged or already on npm, takes the release notes from that version's
+CHANGELOG entry, runs the whole gate, publishes to npm with
+[provenance](https://docs.npmjs.com/generating-provenance-statements), and
+creates the GitHub release.
+
+The CHANGELOG entry is required. A version with no `## <version>` section stops
+the run before anything is published, so the release and the CHANGELOG cannot
+drift apart — and a rehearsal shows the notes it would publish.
+
+**Rehearse only** is ticked by default, so the default action of that button
+publishes nothing — it runs every check and stops. Untick it to release for
+real. Either way the run's summary says plainly what did or did not happen.
+
+Bumping the version stays a pull request, because the CHANGELOG has to be
+written by a person anyway. Everything after that point is what this automates:
 
 ```
-# 1. bump the version and move the CHANGELOG heading, on a branch
+# 1. a PR bumping package.json and adding the CHANGELOG entry for it
 # 2. merge it
-# 3. create the release on the tag
-gh release create v1.0.0 --title 1.0.0 --notes-from-tag
+# 3. Actions -> Publish -> Run workflow, with Rehearse only unticked
 ```
 
-The workflow refuses to publish when the tag and `package.json` disagree, which
-is the mistake that otherwise ships a version under the wrong release. Running
-`Publish` manually from the Actions tab rehearses the whole thing and always
-passes `--dry-run`, so it can never publish.
-
-Publishing needs an `NPM_TOKEN` repository secret — an npm **automation** token,
-since a classic token fails against an account that requires 2FA for publishing.
+Publishing needs an `NPM_TOKEN` secret on the **`production`** environment — an
+npm **automation** token, since a classic token fails against an account that
+requires 2FA for publishing. The job declares that environment, so its
+protection rules apply: adding required reviewers there makes a real publish
+something that has to be approved, and restricting *Deployment branches and
+tags* limits where it can run from.
 
 ### Trying a local build in an app
 
