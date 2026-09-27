@@ -88,8 +88,7 @@ const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}
 
 ### Reaching the list
 
-`listProps` is forwarded to the underlying list, which is how you reach anything
-on its surface:
+`listProps` is forwarded to the underlying list:
 
 ```javascript
 <NestedListView
@@ -102,20 +101,20 @@ on its surface:
 />
 ```
 
-Three groups of props reach the list, applied in this order:
+Props reach the list in this order:
 
-| Order | What | Notes |
+| Order | What | |
 | --- | --- | --- |
-| 1 | `listProps` | everything you pass, applied first |
-| 2 | `extraData`, `initialNumToRender`, `style` | their own props, which win over `listProps` — but **only when you actually pass them**, so a value set through `listProps` is never erased by an absent prop |
-| 3 | `data`, `renderItem`, `keyExtractor` | set by the component and not overridable. They are excluded from `IListProps`, so passing one is a compile error rather than a silent no-op |
+| 1 | `listProps` | |
+| 2 | `extraData`, `initialNumToRender`, `style` | win over `listProps`, and only when you pass them |
+| 3 | `data`, `renderItem`, `keyExtractor` | set by the component. Excluded from `IListProps`, so passing one is a compile error |
 
-`initialNumToRender` therefore has two spellings. Its own prop predates
-`listProps` and stays supported; `listProps.initialNumToRender` is equivalent,
-and the dedicated prop wins if you set both.
+`initialNumToRender` has two spellings: its own prop and
+`listProps.initialNumToRender`. They are equivalent, and the prop wins if you set
+both.
 
-`IListProps` is typed against `FlatList`, the default. Another `ListComponent`
-with props of its own may need a cast.
+`IListProps` is typed against `FlatList`. Another `ListComponent` with props of
+its own may need a cast.
 
 ### NestedRow
 
@@ -127,30 +126,19 @@ with props of its own may need a cast.
 | **`height`**               | Fixed height for the row                                                        | number                 | Not required — the row sizes to its content |
 | **`style`**                | Row container style                                                             | `StyleProp<ViewStyle>` | Not required                              |
 
-#### Why levels start at 1
+#### Levels start at 1
 
-The nodes of `data` are at level **1**, not 0, so with the default increment a
-top-level row is already indented by 10px.
-
-That is deliberate. `NestedRow` indents by `level * paddingLeftIncrement`, so a 0
-base would put top-level rows flush against the screen edge — changing the
-appearance of every app built on the documented pattern, for no functional gain.
-It is inherited from the synthetic root node the old recursive renderer wrapped
-`data` in, and it is kept on purpose rather than by accident.
-
-If you want a flush left edge, pass `level={level - 1}` or set your own
-`paddingLeftIncrement`.
+The nodes of `data` are at level 1, so with the default increment a top-level row
+is indented by 10px. For a flush left edge pass `level={level - 1}`, or set your
+own `paddingLeftIncrement`.
 
 ### Types
 
-Two node types are exported, because a node on the way in and a node on the way
-out are not the same shape.
-
 | Type | What it describes |
 | --- | --- |
-| **`INode`** | a node as you write it in `data`. Every field is optional — add whatever your app needs |
-| **`IRenderedNode`** | a node as `renderNode` and `onNodePressed` receive it: the `_internalId` the list assigned, and `opened` resolved to the node's current expanded state |
-| **`IRow`** | one row of the flattened tree, as a custom `ListComponent` receives it in `renderItem` |
+| **`INode`** | a node as you write it in `data`. Every field is optional |
+| **`IRenderedNode`** | what `renderNode` and `onNodePressed` receive, where `_internalId` is a `string` and `opened` a `boolean` |
+| **`IRow`** | one row of the flattened tree, as a custom `ListComponent` receives it |
 | **`IListProps`** | the shape of `listProps` |
 
 ```typescript
@@ -165,31 +153,24 @@ const renderNode = (node: IRenderedNode, level: number, isLastLevel: boolean) =>
 )
 ```
 
-`getChildrenName` and `keyExtractor` are handed an `INode`, not an
-`IRenderedNode`: both are called while the tree is being walked, before the list
-has assigned a node anything.
+`getChildrenName` and `keyExtractor` receive an `INode`.
 
 ## Performance
 
-The tree is flattened into a single array of visible rows, and one list renders
-it. Depth is a number carried on a row rather than a level of nesting in the
-component tree, so:
+The tree is flattened into a single array of visible rows, rendered by one list.
+Depth is a number on a row rather than a level of nesting in the component tree.
 
-- there is one list, not one per node, whatever the shape of the data. Nesting
-  lists of the same orientation is the arrangement React Native warns against,
-  where windowing cannot work correctly
-- the number of mounted rows is bounded by the window rather than by the size of
-  the tree. A 20,000-level-deep tree mounts as few rows as a flat one
-- expanding and collapsing recomputes the row array instead of mounting and
-  unmounting lists. Rows that did not move keep their identity and are not
-  re-rendered
-- nothing walks the tree on an ordinary render. Only a change to `data` or
-  `extraData` rebuilds the rows, so an inline `renderNode`, `onNodePressed` or
-  `getChildrenName` costs nothing
+- one list, whatever the shape of the data
+- the number of mounted rows is bounded by the window, not by the size of the
+  tree. A 20,000-level-deep tree mounts as few rows as a flat one
+- expanding and collapsing recomputes the row array. Rows that did not move keep
+  their identity and are not re-rendered
+- only a change to `data` or `extraData` rebuilds the rows, so inline
+  `renderNode` and `onNodePressed` callbacks cost nothing
 
-`getChildrenName` and `keyExtractor` are read when the rows are built. If either
-starts answering differently without `data` changing, change `extraData` to pick
-it up.
+`getChildrenName` and `keyExtractor` are read when the rows are built. Change
+`extraData` if either starts returning something different while `data` stays
+the same.
 
 ### Using another list
 
@@ -206,21 +187,17 @@ import {LegendList} from '@legendapp/list'
 />
 ```
 
-Each `item` is an `IRow`, so a custom list must pass its `item` through to
-`renderItem` unchanged. What else the component sets, and what `listProps` can
-and cannot override, is in [Reaching the list](#reaching-the-list).
+Each `item` is an `IRow`; pass it through to `renderItem` unchanged. See
+[Reaching the list](#reaching-the-list) for what `listProps` can override.
 
 ### Node identity
 
-Each node is given an `_internalId`: a path built from the node's own `id`, or
-failing that its `key`, or failing that its position among its siblings.
-`keyExtractor` overrides the choice. Identity is what expanded state is keyed by,
-so giving nodes stable keys is what lets a node stay expanded while `data`
-changes around it.
+Each node gets an `_internalId`: a path built from its own `id`, or its `key`, or
+its position among its siblings. `keyExtractor` overrides that.
 
-By default a node's expanded state is forgotten once the node leaves the tree,
-including while it sits inside a collapsed parent. `keepOpenedState` keeps that
-state instead, so a subtree comes back expanded as it was.
+Expanded state is keyed by this id, so stable keys keep a node expanded while
+`data` changes around it. The state is dropped once a node leaves the tree,
+including while it sits inside a collapsed parent. `keepOpenedState` keeps it.
 
 ## Examples
 
@@ -238,13 +215,6 @@ git clone https://github.com/fjmorant/-react-native-nested-listview-examples-exp
 cd -react-native-nested-listview-examples-expo
 npm install && npm start
 ```
-
-There is no separate bare React Native example, and there is nothing to lose by
-that: this library is pure JavaScript with no native module, so it installs and
-behaves identically in a bare app and in an Expo one. The
-[bare examples repository](https://github.com/fjmorant/react-native-nested-listview-examples)
-is archived — it targeted React Native 0.70 and no longer builds on current
-toolchains, and keeping two example apps current is what let it rot.
 
 ## Roadmap
 
@@ -268,37 +238,24 @@ yarn check-package    # entrypoints and types agree, across all resolution modes
 
 ### Releasing
 
-Releasing is one button: **Actions → Publish → Run workflow**.
+**Actions → Publish → Run workflow.**
 
-It reads the version from `package.json`, refuses to go on if that version is
-already tagged or already on npm, takes the release notes from that version's
-CHANGELOG entry, runs the whole gate, publishes to npm with
+It takes the version from `package.json` and the release notes from that
+version's CHANGELOG entry, runs the checks, publishes to npm with
 [provenance](https://docs.npmjs.com/generating-provenance-statements), and
 creates the GitHub release.
 
-The CHANGELOG entry is required. A version with no `## <version>` section stops
-the run before anything is published, so the release and the CHANGELOG cannot
-drift apart — and a rehearsal shows the notes it would publish.
+**Rehearse only** is ticked by default: it runs every check and publishes
+nothing. Untick it to release.
 
-**Rehearse only** is ticked by default, so the default action of that button
-publishes nothing — it runs every check and stops. Untick it to release for
-real. Either way the run's summary says plainly what did or did not happen.
-
-Bumping the version stays a pull request, because the CHANGELOG has to be
-written by a person anyway. Everything after that point is what this automates:
+The run stops before publishing if the version is already tagged, already on
+npm, or has no `## <version>` section in the CHANGELOG.
 
 ```
-# 1. a PR bumping package.json and adding the CHANGELOG entry for it
+# 1. a PR bumping package.json and adding the CHANGELOG entry
 # 2. merge it
 # 3. Actions -> Publish -> Run workflow, with Rehearse only unticked
 ```
-
-Publishing needs an `NPM_TOKEN` secret on the **`production`** environment — an
-npm **automation** token, since a classic token fails against an account that
-requires 2FA for publishing. The job declares that environment, so its
-protection rules apply: adding required reviewers there makes a real publish
-something that has to be approved, and restricting *Deployment branches and
-tags* limits where it can run from.
 
 ### Trying a local build in an app
 
